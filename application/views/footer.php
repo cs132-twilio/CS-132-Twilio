@@ -4,7 +4,6 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/assets/javascript/jquery.js"></script>
     <script src="/assets/javascript/bootstrap-transition.js"></script>
     <script src="/assets/javascript/bootstrap-alert.js"></script>
     <script src="/assets/javascript/bootstrap-modal.js"></script>
