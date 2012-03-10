@@ -9,7 +9,7 @@
 <div class="row">
   <div class="span4">
     <h2>Heading</h2>
-     <p>Donec id elit non mi <?= $this->ajax->link_to_remote('LINK!', array('url' => 'http://www.google.com', 'update' => 'container')) ?>porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+     <p>Donec id elit non mi <?= $this->ajax->link_to_remote('LINK!', array('url' => 'welcome/ajax/dashboard', 'update' => 'content')) ?>porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
     <p><a class="btn" href="#">View details &raquo;</a></p>
   </div>
   <div class="span4">

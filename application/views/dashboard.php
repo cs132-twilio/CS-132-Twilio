@@ -32,39 +32,36 @@
 <footer>
   <p>&copy; Company 2012</p>
 </footer>-->
-
-<div class="container">
-  <div class="container-fluid">
-    <div class="row-fluid">
-	<div class="span2">
-	  <!--Sidebar content-->
-	  <ul class="nav nav-pills nav-stacked">
-	      <li class="nav-header"><h4>Your Classes</h4></li>
-	      <li class="active"><a href="#">Math</a></li>
-	      <li><a href="#">Biology</a></li>
-	      <li><a href="#">Web Applications</a></li>
-	  </ul>
-	</div>
-	<div class="span10">
-	  <!--Body content-->
-	    <ul class="nav nav-tabs">
-	      <li class="active"><a href="#">List</a></li>
-	      <li><a href="#">Poll</a></li>
-	      <li><a href="#">Discussion</a></li>
-	    </ul>
-	    
-	    <form class="well">
-		<label>Label name</label>
-		<input type="text" class="span3" placeholder="Enter your classes?">
-		<label for="message">Message </label>
-		<textarea name="message" id="message" cols=40 rows=6></textarea>
-		<br />
-		<button type="submit" class="btn">Send</button>
-	    </form>
-	    
-	</div>
-    </div>
-
-
-  </div> <!--class="container-fluid"-->
+<div class="container-fluid">
+  <div class="row-fluid">
+<div class="span2">
+  <!--Sidebar content-->
+  <ul class="nav nav-pills nav-stacked">
+      <li class="nav-header"><h4>Your Classes</h4></li>
+      <li class="active"><a href="#">Math</a></li>
+      <li><a href="#">Biology</a></li>
+      <li><a href="#">Web Applications</a></li>
+  </ul>
 </div>
+<div class="span10">
+  <!--Body content-->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#">List</a></li>
+      <li><a href="#">Poll</a></li>
+      <li><a href="#">Discussion</a></li>
+    </ul>
+    
+    <form class="well">
+  <label>Label name</label>
+  <input type="text" class="span3" placeholder="Enter your classes?">
+  <label for="message">Message </label>
+  <textarea name="message" id="message" cols=40 rows=6></textarea>
+  <br />
+  <button type="submit" class="btn">Send</button>
+    </form>
+    
+</div>
+  </div>
+
+
+</div> <!--class="container-fluid"-->
