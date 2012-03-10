@@ -1,3 +1,9 @@
+<?php
+
+$user_id = 1;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,15 +39,26 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Twexter</a>
-          <div class="nav-collapse">
+          <div class="nav-collapse">          
+
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>		
             </ul>			
-            <form class="form-inline pull-right login-form">
-                <input type="text" class="input-small login-field" placeholder="Email">
-                <input type="password" class="input-small login-field" placeholder="Password">
-                <button type="submit" class="btn">Login</button>
-            </form>
+            
+            <ul class="nav pull-right">
+              <?php if ($user_id) { ?>
+              <li><a href="#Profile">Profile</a></li>
+              <li><a href="#Log out">Log out</a></li>
+              <?php } else { ?>
+              <li>
+                <form class="form-inline login-form">
+                  <input type="text" class="input-small login-field" placeholder="Email">
+                  <input type="password" class="input-small login-field" placeholder="Password">
+                  <button type="submit" class="btn">Login</button>
+                </form>
+              </li>
+              <?php } ?>
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
