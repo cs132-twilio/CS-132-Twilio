@@ -38,11 +38,12 @@ $user_id = 1;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Twexter</a>
+          <a class="brand" href="/">Twexter</a>
           <div class="nav-collapse">          
 
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>		
+              <li class="active"><a href="/">Home</a></li>		
+              <li class="active"><a href="/dashboard">Dashboard</a></li>		
             </ul>			
             
             <ul class="nav pull-right">
