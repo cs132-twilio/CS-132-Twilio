@@ -1,7 +1,11 @@
-.hero-less-padding {
+.welcome_container {
 	padding-top:15px;
 	padding-bottom:15px;
+  /*white-space: nowrap;*/
 }
+/*.welcome_container > *{
+  white-space: normal;
+}*/
 
 .big-button {
 	font-size:2em;
