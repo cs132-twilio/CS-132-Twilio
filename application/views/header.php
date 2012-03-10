@@ -1,3 +1,9 @@
+<?php
+
+$user_id = 1;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,12 +32,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
-          <div class="nav-collapse">
+          <a class="brand" href="#">Twexter</a>
+          <div class="nav-collapse">          
+
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+            
+	      <?php if ($user_id) { ?>
+		<li><a href="#Profile">Profile</a></li>
+		<li><a href="#Log out">Log out</a></li>
+	      <?php } else { ?>
+		<li><a href="#Profile">Log in</a></li>
+	      <?php } ?>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
