@@ -8,8 +8,8 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="../assets/stylesheets/bootstrap.css" rel="stylesheet">
-    <link href="../assets/stylesheets/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="assets/stylesheets/bootstrap-responsive.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
