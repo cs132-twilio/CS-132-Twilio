@@ -17,6 +17,9 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+  function ajax($view){
+    $this->load->view($view);
+  }
   function render($view){
     $this->load->view('header');
 		$this->load->view($view);
