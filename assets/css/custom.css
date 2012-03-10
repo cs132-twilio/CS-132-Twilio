@@ -1,0 +1,16 @@
+.hero-less-padding {
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+.big-button {
+	font-size:2em;
+}
+
+.login-form {
+	margin: 0px;
+}
+
+.login-field {
+	margin-top:6px;
+}
