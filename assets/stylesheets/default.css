@@ -1,0 +1,20 @@
+.welcome_container {
+	padding-top:15px;
+	padding-bottom:15px;
+  /*white-space: nowrap;*/
+}
+/*.welcome_container > *{
+  white-space: normal;
+}*/
+
+.big-button {
+	font-size:2em;
+}
+
+.login-form {
+	margin: 0px;
+}
+
+.login-field {
+	margin-top:6px;
+}
