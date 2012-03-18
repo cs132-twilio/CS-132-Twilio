@@ -38,28 +38,47 @@
   <!--Sidebar content-->
   <ul class="nav nav-pills nav-stacked">
       <li class="nav-header"><h4>Your Classes</h4></li>
-      <li class="active"><a href="#">Math</a></li>
-      <li><a href="#">Biology</a></li>
-      <li><a href="#">Web Applications</a></li>
+      <li class="active"><?php echo $this->ajax->link_to_remote("Math", array('url' => '/welcome/ajax/list.php', 'update' => 'moduleContent')); ?></li>
+      <li onclick="this.className='active'"><?php echo $this->ajax->link_to_remote("Biology", array('url' => '/welcome/ajax/list.php', 'update' => 'moduleContent')); ?></li>
+      <li onclick="this.className='active'"><?php echo $this->ajax->link_to_remote("Web Applications", array('url' => '/welcome/ajax/list.php', 'update' => 'moduleContent')); ?></li>
   </ul>
 </div>
-<div class="span10">
+
+<div id="modules" class="span10">
   <!--Body content-->
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#">List</a></li>
-      <li><a href="#">Poll</a></li>
-      <li><a href="#">Discussion</a></li>
+    <ul id="moduleTabs" class="nav nav-tabs">
+      <li class="active"><?php echo $this->ajax->link_to_remote("List", array('url' => '/welcome/ajax/list.php', 'update' => 'moduleContent')); ?></li>
+      <li onclick="this.className='active'"><?php echo $this->ajax->link_to_remote("Message", array('url' => '/welcome/ajax/message.php', 'update' => 'moduleContent')); ?></li>
     </ul>
-    
-    <form class="well">
-  <label>Label name</label>
-  <input type="text" class="span3" placeholder="Enter your classes?">
-  <label for="message">Message </label>
-  <textarea name="message" id="message" cols=40 rows=6></textarea>
-  <br />
-  <button type="submit" class="btn">Send</button>
-    </form>
-    
+    <div id="moduleContent" >
+<!--       LIST!!! (redundant) -->
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>First Name</th>
+	      <th>Last Name</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>Angela</td>
+	      <td>Santin</td>
+	    </tr>
+	    <tr>
+	      <td>Siffat</td>
+	      <td>Hingorani</td>
+	    </tr>
+	    <tr>
+	      <td>Peter</td>
+	      <td>Ciullo</td>
+	    </tr>
+	    <tr>
+	      <td>Ryan</td>
+	      <td>Chan</td>
+	    </tr>
+	  </tbody>
+	</table>
+    </div>
 </div>
   </div>
 
