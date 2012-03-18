@@ -42,8 +42,8 @@ $user_id = 1;
           <div class="nav-collapse">          
 
             <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>		
-              <li class="active"><a href="/dashboard">Dashboard</a></li>		
+              <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>		
+              <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
             </ul>			
             
             <ul class="nav pull-right">
