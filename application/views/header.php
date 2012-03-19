@@ -1,6 +1,6 @@
 <?php
 
-$user_id = 1;
+$user_id = $this->session->userdata('user_id');
 
 ?>
 
@@ -48,11 +48,11 @@ $user_id = 1;
             
             <ul class="nav pull-right">
               <?php if ($user_id) { ?>
-              <li><a href="#Profile">Profile</a></li>
-              <li><a href="#Log out">Log out</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#" onclick="jQuery.post('/auth/logout', {}, function(){document.location.reload(true);});">Log out</a></li>
               <?php } else { ?>
               <li>
-                <form class="form-inline login-form">
+                <form class="form-inline login-form" onsubmit="jQuery.post('/auth/login', {}, function(){document.location.reload(true);}); return false;">
                   <input type="text" class="input-small login-field" placeholder="Email">
                   <input type="password" class="input-small login-field" placeholder="Password">
                   <button type="submit" class="btn">Login</button>
