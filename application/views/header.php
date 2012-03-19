@@ -8,7 +8,7 @@ $user_id = 1;
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Twexter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -38,11 +38,12 @@ $user_id = 1;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Twexter</a>
+          <a class="brand" href="/">Twexter</a>
           <div class="nav-collapse">          
 
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>		
+              <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>		
+              <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
             </ul>			
             
             <ul class="nav pull-right">
