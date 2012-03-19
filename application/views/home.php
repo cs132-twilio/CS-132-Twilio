@@ -45,8 +45,9 @@
     <p><a class="btn" href="#">View details &raquo;</a></p>
   </div>
   <div class="span4">
-    <h2>Heading</h2>
-    <p> In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. </p>
+    <h2>Why Twexter</h2>
+    <p>In recent years, the use of alternative methods in education has become extremely popular. However, although 87% of public school students have an SMS capable device, the full potential of SMS as an educational tool has not yet been exploited.</p>
+    <p>The aim of this project is to create a series of educational tools for secondary school teachers that allow them to connect with students through SMS in constructive ways.</p>
     <p><a class="btn" href="#">View details &raquo;</a></p>
   </div>
 
