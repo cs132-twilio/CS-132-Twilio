@@ -21,15 +21,13 @@ class Welcome extends CI_Controller {
     $this->load->view($view);
   }
   function render($view){
-    $this->load->view('header');
+    $this->load->view('header', array('page' => $view));
 		$this->load->view($view);
 		$this->load->view('footer');
   }
   public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('welcome');
-		$this->load->view('footer');
+    $this->render('home');
 	}
 }
 
