@@ -30,7 +30,8 @@ class Auth extends CI_Controller
 	function login()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('');
+			//redirect('');
+			$this->load->view('user_control.php');
 
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
 			redirect('/auth/send_again/');
@@ -92,7 +93,7 @@ class Auth extends CI_Controller
 					$data['captcha_html'] = $this->_create_captcha();
 				}
 			}
-			$this->load->view('auth/login_form', $data);
+			$this->load->view('login_form', $data);
 		}
 	}
 

@@ -7,7 +7,7 @@
 | These details are used in emails sent by authentication library.
 |--------------------------------------------------------------------------
 */
-$config['website_name'] = 'Your project';
+$config['website_name'] = 'Twexter';
 $config['webmaster_email'] = 'webmaster@your-site.com';
 
 /*
@@ -126,9 +126,9 @@ $config['captcha_case_sensitive'] = TRUE;
 | You can get reCAPTCHA keys by registering at http://recaptcha.net
 |--------------------------------------------------------------------------
 */
-$config['use_recaptcha'] = FALSE;
-$config['recaptcha_public_key'] = '';
-$config['recaptcha_private_key'] = '';
+$config['use_recaptcha'] = TRUE;
+$config['recaptcha_public_key'] = '6Ldg688SAAAAAKncTSEz7vs2krmvJTVzHIvEgvRn';
+$config['recaptcha_private_key'] = '6Ldg688SAAAAALXWvFJuzyOfQYhzVjtz5eUk7M2M';
 
 /*
 |--------------------------------------------------------------------------
