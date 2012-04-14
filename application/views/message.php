@@ -1,9 +1,10 @@
-
-<form class="well">
-	<label>Label name</label>
-	<input type="text" class="span3" placeholder="Enter your classes?">
-	<label for="message">Message: </label>
-	<textarea name="message" id="message" cols=40 rows=6></textarea>
+<?= form_open('/action/send', 'method="POST" class="well" onsubmit="return Twexter.Message.submit(this)"') ?>
+	<label>Message to:
+    <input type="text" name="n" class="span5" placeholder="Enter comma separated numbers">
+  </label>
+	<label>Message:
+    <textarea name="m" class="span5" rows="10"></textarea>
+  </label>
 	<br />
-	<button type="submit" class="btn">Send</button>
-</form>
+	<button type="submit" class="btn">Send</button><span id="message_sent"></span>
+<?= form_close() ?>

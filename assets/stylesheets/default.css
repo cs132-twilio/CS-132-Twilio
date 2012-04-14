@@ -18,3 +18,10 @@
 .login-field {
 	margin-top:6px;
 }
+
+.success {
+  background: #AAFFAA;
+}
+.error {
+  background: #FFAAAA;
+}
