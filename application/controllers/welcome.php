@@ -19,6 +19,9 @@ class Welcome extends CI_Controller {
   function ajax($view){
     $this->load->view($view, $data);
   }
+  function modules($view){
+    $this->load->view('modules/' . $view, $data);
+  }
   function render($view){
     $data = $this->_checkauth();
     $data['page'] = $view;

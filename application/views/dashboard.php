@@ -14,37 +14,11 @@
 <div id="modules" class="span10">
   <!--Body content-->
     <ul id="moduleTabs" class="nav nav-tabs">
-      <li class="active"><?php echo $this->ajax->link_to_remote("List", array('url' => '/welcome/ajax/list.php', 'update' => 'moduleContent')); ?></li>
-      <li><?php echo $this->ajax->link_to_remote("Message", array('url' => '/welcome/ajax/message.php', 'update' => 'moduleContent')); ?></li>
+      <li class="active"><?php echo $this->ajax->link_to_remote("List", array('url' => '/welcome/modules/list.php', 'update' => 'moduleContent')); ?></li>
+      <li><?php echo $this->ajax->link_to_remote("Message", array('url' => '/welcome/modules/message.php', 'update' => 'moduleContent')); ?></li>
     </ul>
     <div id="moduleContent" >
-<!--       LIST!!! (redundant) -->
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th>First Name</th>
-	      <th>Last Name</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <td>Angela</td>
-	      <td>Santin</td>
-	    </tr>
-	    <tr>
-	      <td>Siffat</td>
-	      <td>Hingorani</td>
-	    </tr>
-	    <tr>
-	      <td>Peter</td>
-	      <td>Ciullo</td>
-	    </tr>
-	    <tr>
-	      <td>Ryan</td>
-	      <td>Chan</td>
-	    </tr>
-	  </tbody>
-	</table>
+    <?php include 'application/views/modules/list.php'; ?>
     </div>
 </div>
   </div>
