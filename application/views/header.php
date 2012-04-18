@@ -20,6 +20,7 @@
     <script src="/assets/javascript/jquery.form.js" type="text/javascript"></script>
     <script src="/assets/javascript/default.js" type="text/javascript"></script>
     <script src="/assets/javascript/Message.js" type="text/javascript"></script>
+    <script src="/assets/javascript/Stream.js" type="text/javascript"></script>
   </head>
 
   <body>
