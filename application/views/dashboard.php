@@ -14,9 +14,9 @@
 <div id="modules" class="span10">
   <!--Body content-->
     <ul id="moduleTabs" class="nav nav-tabs">
-      <li class="active"><a onclick="return ajax_load('/welcome/modules/list.php', 'moduleContent');">List</a></li>
-      <li><a onclick="return ajax_load('/welcome/modules/message.php', 'moduleContent');">Message</a></li>
-      <li><a onclick="return ajax_load('/welcome/modules/stream.php', 'moduleContent');">Stream</a></li>
+      <li class="active"><a onclick="return ajax_load_module('List');">List</a></li>
+      <li><a onclick="return ajax_load_module('Message');">Message</a></li>
+      <li><a onclick="return ajax_load_module('Stream');">Stream</a></li>
     </ul>
     <div id="moduleContent" >
     <?php include 'application/views/modules/list.php'; ?>
