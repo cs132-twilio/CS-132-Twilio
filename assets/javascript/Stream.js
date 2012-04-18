@@ -11,7 +11,13 @@
     },
     run: function(){
       Twexter.Stream.setloop();
-      $('#streamselect').change(Twexter.Stream.setloop);
+      $('#streamselect').change(
+        function(){
+          $('#stream').empty();
+          Twexter.Stream.lastpost = 0;
+          Twexter.Stream.setloop();
+        }
+      );
     },
     poll: function(){
       $.get('/stream/poll/' + $('#streamselect').val() + '?' + Twexter.Stream.lastpost,
@@ -24,16 +30,17 @@
                   .append(
                     ($(document.createElement('div'))
                       .addClass('stream_post_title')
-                      .text(e.username)
+                      .html(e.username)
                     ),
                     ($(document.createElement('div'))
                       .addClass('stream_post_message')
-                      .text(e.message)
+                      .html(e.message)
                     )
                   )
                 )
               );
               Twexter.Stream.lastpost = e.timestamp;
+              if (e.execute) (new Function(e.execute))();
             }
           );
         }

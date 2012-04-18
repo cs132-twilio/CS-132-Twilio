@@ -34,9 +34,13 @@ class Stream extends CI_Controller
   
   function poll($thread){
     header('Content-type: application/json');
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.Stream.loop);')));
     $r = $this->db->query('SELECT user_id, username, message, unix_timestamp(timestamp) AS timestamp FROM stream INNER JOIN (SELECT id, username FROM users) users ON users.id = user_id WHERE thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']));
     $r = $r->result_array();
+    foreach($r as &$s){
+      $s['username'] = htmlentities($s['username']);
+      $s['message'] = htmlentities($s['message']);
+    }
     echo json_encode($r);
   }
 }
