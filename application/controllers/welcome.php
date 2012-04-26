@@ -4,9 +4,9 @@ class Welcome extends CI_Controller {
   function __construct(){
     parent::__construct();
 
-    $this->load->helper('url');
     $this->load->library('tank_auth');
     $this->load->helper('form');
+    $this->load->helper('url');
   }
   function _checkauth(){
     if ($this->tank_auth->is_logged_in()){
@@ -19,12 +19,19 @@ class Welcome extends CI_Controller {
   function ajax($view){
     $this->load->view($view, $data);
   }
+  function modules($view){
+    $this->load->view('modules/' . $view, $data);
+  }
   function render($view){
     $data = $this->_checkauth();
     $data['page'] = $view;
     $this->load->view('header', $data);
     $this->load->view($view, $data);
     $this->load->view('footer', $data);
+  }
+  function render_secure($view, $redirect = '/auth/login'){
+    if ($this->tank_auth->is_logged_in()) $this->render($view);
+    else redirect($redirect);
   }
   function index(){
     $this->render('home');
