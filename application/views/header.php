@@ -17,11 +17,10 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="/assets/javascript/ajax/prototype.js" type="text/javascript"></script>
-    <script src="/assets/javascript/ajax/effects.js" type="text/javascript"></script>
-    <script src="/assets/javascript/ajax/dragdrop.js" type="text/javascript"></script>
-    <script src="/assets/javascript/ajax/controls.js" type="text/javascript"></script> 
+    <script src="/assets/javascript/jquery.form.js" type="text/javascript"></script>
     <script src="/assets/javascript/default.js" type="text/javascript"></script>
+    <script src="/assets/javascript/Message.js" type="text/javascript"></script>
+    <script src="/assets/javascript/Stream.js" type="text/javascript"></script>
   </head>
 
   <body>
