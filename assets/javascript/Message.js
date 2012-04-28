@@ -1,5 +1,5 @@
 (function($){
-  Twexter.Message = {
+  Twexter.modules.Message = {
     submit: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
