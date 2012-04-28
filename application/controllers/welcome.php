@@ -22,15 +22,15 @@ class Welcome extends CI_Controller {
   function modules($view){
     $this->load->view('modules/' . $view, $data);
   }
-  function render($view){
+  function render($view, $data = array()){
     $data = $this->_checkauth();
     $data['page'] = $view;
     $this->load->view('header', $data);
     $this->load->view($view, $data);
     $this->load->view('footer', $data);
   }
-  function render_secure($view, $redirect = '/auth/login'){
-    if ($this->tank_auth->is_logged_in()) $this->render($view);
+  function render_secure($view, $data=array(), $redirect = '/auth/login'){
+    if ($this->tank_auth->is_logged_in()) $this->render($view, $data);
     else redirect($redirect);
   }
   function index(){
