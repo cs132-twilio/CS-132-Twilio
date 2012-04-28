@@ -21,7 +21,7 @@ class Receiver extends CI_Controller
     }
     switch(substr($_GET['Body'], 0, 2)){
       case 'st':
-        $this->load->view('twiml.php', array('redirect' => 'http://rcchan.cs132-twilio.cs.brown.edu/stream/post'));
+        $this->load->view('twiml.php', array('redirect' => '/stream/post'));
         break;
       default:
         $this->load->view('twiml.php', array('message' => 'Invalid module code'));
