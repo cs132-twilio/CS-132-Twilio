@@ -7,13 +7,6 @@
           if(typeof f == 'function') f();
         }
       );
-    },
-
-    setClass: function(c){
-      
-    },
-    setModule: function(m){
-
     }
   }
   
@@ -30,8 +23,8 @@
     function(){
       activeTabs('moduleTabs');
       activeTabs('classTabs');
-      Twexter.dashboard.setClass(1);
-      Twexter.dashboard.setModule('List');
+      $('#classTabs > li.class:first').addClass('active');
+      Twexter.ajax_load('/modules/cList/index/1', 'moduleContent');
     }
   );
 })(jQuery);
