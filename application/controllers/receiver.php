@@ -19,9 +19,14 @@ class Receiver extends CI_Controller
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
-    switch(substr($_GET['Body'], 0, 2)){
-      case 'st':
-        $this->load->view('twiml.php', array('redirect' => '/stream/post'));
+    $code = preg_split('/[\s]+/', $_GET['Body'], 2);
+    $code = strtolower($code[0]);
+    switch($code){
+      case 'join':
+        $this->load->view('twiml.php', array('redirect' => '/join/add'));
+        break;
+      case 'str':
+        $this->load->view('twiml.php', array('redirect' => '/modules/stream/post'));
         break;
       default:
         $this->load->view('twiml.php', array('message' => 'Invalid module code'));
