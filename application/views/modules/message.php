@@ -1,6 +1,7 @@
-<?= form_open('/action/send', 'method="POST" class="well" onsubmit="return Twexter.Message.submit(this)"') ?>
+<link rel="Stylesheet" type="text/css" href="/assets/stylesheets/tokeninput.facebook.css">
+<?= form_open('/modules/message/send', 'method="POST" id="messageform" class="well" onsubmit="return Twexter.Message.submit(this)"') ?>
 	<label>Message to:
-    <input type="text" name="n" class="span5" placeholder="Enter comma separated numbers">
+    <input type="text" name="n" class="span5">
   </label>
 	<label>Message:
     <textarea name="m" class="span5" rows="10"></textarea>
