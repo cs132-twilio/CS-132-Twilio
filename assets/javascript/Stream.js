@@ -20,25 +20,32 @@
       );
     },
     poll: function(){
-      $.get('/stream/poll/' + $('#streamselect').val() + '?' + Twexter.modules.Stream.lastpost,
+      $.get('/modules/stream/poll/' + $('#streamselect').val() + '?' + Twexter.modules.Stream.lastpost,
         function(r){
           $(r).each(
             function(i, e){
-              $('#stream').append(
-                ($(document.createElement('div'))
-                  .addClass('stream_post')
-                  .append(
-                    ($(document.createElement('div'))
-                      .addClass('stream_post_title')
-                      .html(e.username)
-                    ),
-                    ($(document.createElement('div'))
-                      .addClass('stream_post_message')
-                      .html(e.message)
+              ($(document.createElement('div'))
+                .addClass('stream_post')
+                .css('display', 'none')
+                .append(
+                  ($(document.createElement('div'))
+                    .append(
+                      ($(document.createElement('span'))
+                        .addClass('stream_post_title')
+                        .text(e.name)
+                      ),
+                      ($(document.createElement('span'))
+                        .addClass('stream_post_timestamp')
+                        .text(' (' + $.timeago(new Date(e.timestamp * 1000)) + ')')
+                      )
                     )
+                  ),
+                  ($(document.createElement('div'))
+                    .addClass('stream_post_message')
+                    .html(e.message)
                   )
                 )
-              );
+              ).prependTo($('#stream')).slideDown();
               Twexter.modules.Stream.lastpost = e.timestamp;
               if (e.execute) (new Function(e.execute))();
             }
