@@ -18,7 +18,8 @@ class Message extends CI_Controller
         UNION SELECT number as id,
         CONCAT(s.name, " (Student in ", GROUP_CONCAT(l.name), ")") as name
         FROM classlist l, classmap m, students s WHERE m.student_id = s.id
-        AND owner_id = ? GROUP BY s.id', array($uid, $uid))->result_array()
+        AND m.class_id = l.id AND owner_id = ? GROUP BY s.id',
+        array($uid, $uid))->result_array()
       );
     } else {
       echo '[{name: "Your session has been timed out. Please refresh the page"}]';
@@ -39,12 +40,18 @@ class Message extends CI_Controller
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
     if ($_SERVER['REQUEST_METHOD'] != 'POST') exit(json_encode(array('success' => 0, 'message' => 'Invalid Request!')));
     if (!$_POST['n'] || !$_POST['m']) exit(json_encode(array('success' => 0, 'messsage' => 'You must fill in all fields')));
+    if ($this->tank_auth->is_logged_in()){
+      $uid = $this->tank_auth->get_user_id();
+    }
+    if (!$uid){
+      return array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');
+    }
     $targets = explode(',', $_POST['n']);
     $r = array();
     foreach ($targets as $t){
       $t = strtolower(trim($t));
-      if ($t[0] == 'c'){
-        $list = $this->db->query('SELECT number FROM classlist l, classmap m, students s WHERE m.student_id = s.id AND owner_id = 1 AND m.class_id = l.id AND s.id = m.student_id')->result_array();
+      if ($t[0] == 'c' && substr($t, 1)){
+        $list = $this->db->query('SELECT DISTINCT number FROM classlist l, classmap m, students s WHERE m.class_id = ? AND m.student_id = s.id AND owner_id = ? AND m.class_id = l.id', array(substr($t, 1), $uid))->result_array();
         foreach ($list as $l){
           $r[] = $this->_send($l['number'], $_POST['m']);
         }
