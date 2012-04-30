@@ -41,7 +41,7 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 $route['dashboard'] = '/welcome/render_secure/dashboard';
-$routh['profile'] = '/welcome/render_secure/profile';
+$route['profile'] = '/welcome/render_secure/profile';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
