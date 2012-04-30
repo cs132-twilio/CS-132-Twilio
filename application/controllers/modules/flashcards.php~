@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Stream extends CI_Controller
+class FlashCards extends CI_Controller
 {
 	function __construct()
 	{
@@ -30,6 +30,7 @@ class Stream extends CI_Controller
       return;
     }*/
     $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
+    echo 'HEY TEST123';
   }
   
   function poll($thread){
