@@ -51,12 +51,12 @@ class FlashCards extends CI_Controller
       default:
       
     }
-    
+    /*
     $id = intval($message[1]);
     if ($id <= 0 || $message[2] === '' || $message[2] === null || $message[2] === false){
       $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
       return;
-    }
+    }*/
     // $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
     $this->load->view('twiml.php', array('message' => $output));
     
