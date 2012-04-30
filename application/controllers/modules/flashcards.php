@@ -30,7 +30,8 @@ class FlashCards extends CI_Controller
       return;
     }*/
     // $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
-    echo 'HEY TEST123';
+    $this->load->view('twiml.php', array('message' => $_GET['Body']));
+    
   }
   
   function poll($thread){
