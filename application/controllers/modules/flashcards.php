@@ -32,9 +32,9 @@ class FlashCards extends CI_Controller
       case 1: 
 	$query = $this->db->query('SELECT deck_name FROM fl_decks');
 	$output = 'Decks: ';
-	foreach ($query->result() as $row)
+	foreach ($query->result_array() as $row)
 	{
-	    $output .= $row->$deck_name . ', ';
+	    $output .= $row['deck_name'] . ', ';
 	}	
 	break;
       // Message format: "FL nameOfDeck"
