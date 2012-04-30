@@ -13,6 +13,7 @@ class Stream extends CI_Controller
 	{
 		header('Status: 403 FORBIDDEN');
 	}
+    $this->session->sess_update();
 
   function post(){
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
