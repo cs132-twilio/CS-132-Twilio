@@ -29,7 +29,7 @@ class FlashCards extends CI_Controller
       $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
       return;
     }*/
-    $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
+    // $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
     echo 'HEY TEST123';
   }
   
