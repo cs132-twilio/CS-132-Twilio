@@ -32,7 +32,7 @@
     </div>
     <div class="span3">			
       <h1>Try Now Free</h1>	
-      <p><a href="/auth/register"class="btn btn-info btn-large big-button">Sign up &raquo;</a></p>			
+      <p><a href="auth/register" class="btn btn-info btn-large big-button">Sign up &raquo;</a></p>			
     </div>
   </div>
 </div>
