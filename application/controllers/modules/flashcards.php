@@ -14,23 +14,51 @@ class FlashCards extends CI_Controller
 		header('Status: 403 FORBIDDEN');
 	}
 
-  function post(){/*
+  function post(){
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
-    $message = preg_split('/[\s]+/', $_GET['Body'], 3);
-    if (count($message) != 3){
+    $message = preg_split('/[\s]+/', $_GET['Body'], 3);    
+    if (count($message) < 1){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
+    $output = '';
+    switch(count($message)) {
+      // Message format: "FL"
+      // Should list available decks
+      case 1: 
+	$query = $this->db->query('SELECT deck_name FROM fl_decks');
+	$output = 'Decks: ';
+	foreach ($query->result() as $row)
+	{
+	    $output .= $row->$deck_name . ', ';
+	}	
+	break;
+      // Message format: "FL nameOfDeck"
+      //Should start you off from the beginning, or point you left off
+      case 2:
+	break;
+      // Message format: "FL nameOfDeck [command]"
+      // 	Where command is one of the following: flip, next, reset, [number]
+      // flip: give the answer to the current card
+      // next: go to the next question
+      // reset: go to the first question
+      // [number]: go to the question with that number
+      case 3: 
+	break;
+      default:
+      
+    }
+    
     $id = intval($message[1]);
     if ($id <= 0 || $message[2] === '' || $message[2] === null || $message[2] === false){
       $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
       return;
-    }*/
+    }
     // $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
-    $this->load->view('twiml.php', array('message' => $_GET['Body']));
+    $this->load->view('twiml.php', array('message' => $output));
     
   }
   
