@@ -14,7 +14,7 @@ class Stream extends CI_Controller
 		header('Status: 403 FORBIDDEN');
 	}
 
-  function post(){
+  function post(){/*
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
@@ -28,8 +28,8 @@ class Stream extends CI_Controller
     if ($id <= 0 || $message[2] === '' || $message[2] === null || $message[2] === false){
       $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
       return;
-    }
-    $this->db->query('INSERT INTO fl_decks (deck_id, deck_name) VALUES (?, (SELECT id FROM students WHERE number = ?))', array($id, $message[2]));
+    }*/
+    $this->db->query("INSERT INTO fl_decks (deck_name) VALUES 'test')");
   }
   
   function poll($thread){
