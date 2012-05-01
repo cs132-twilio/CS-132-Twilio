@@ -47,8 +47,8 @@ class FlashCards extends CI_Controller
       $deck_info = getDeck($_GET('From'),$message[1]);
       
       $deck_id = $deck_info['deck_id'] ;
-      $student_id $deck_info['student_id'];
-      $position= $deck_info['position'];
+      $student_id  = $deck_info['student_id'];
+      $position = $deck_info['position'];
       $answer = $deck_info['answer'];
       
       // get the card
