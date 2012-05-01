@@ -176,7 +176,148 @@ class FlashCards extends CI_Controller
       // next: go to the next question
       // reset: go to the first question
       // [number]: go to the question with that number
-      case 3: 
+      case 3:
+      $phone_number = $_GET['From'];
+      $deck_code = $message[1];
+      $command = trim($message[2]);
+      // Get the student's ID number from the phone number
+      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($phone_number));
+      $student_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$student_id = $row['id'];
+      }
+      if ($student_id==0) {
+	$this->load->view('twiml.php', array('message' => "Sorry, you are not registered for any of this number's classes."));
+	return;      
+      }  
+      
+      // get the ID number of the deck
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
+      $deck_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$deck_id = $row['deck_id'];
+      }
+      if ($deck_id==0) {
+	$this->load->view('twiml.php', array('message' => "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. "));
+	return;     
+      }
+      $position = 1;
+      $answer = 0;
+      switch(strtolower($command)) {
+	
+	case 'flip':
+	  // get the deck position number for this student
+	  $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+	  $position = 1;
+	  $answer = 0;
+	  if ($query->num_rows() > 0)
+	  {
+	    $row = $query->row_array();
+	    $position = $row['position'];
+	    $answer = $row['answer'];
+	    $answer = ($answer==1) ? 0 : 1;
+	    $this->db->query('UPDATE fl_students 
+			      SET answer = ?
+			      WHERE student_id = ? AND deck_id = ?', array($answer, $student_id, $deck_id)); 
+	  }
+	  else {
+	    $this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+					VALUES(?,?,1,0)', array($student_id, $deck_id));      
+	  }	
+	  break;
+	case 'next':
+	  // get the deck position number for this student
+	  $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+	  $total_query = $this->db->query('SELECT COUNT(*) as "numcards" FROM fl_cards WHERE deck_id = ?', array($deck_id));
+	  $total_cards = 0;
+	  if ($total_query->num_rows() > 0)
+	  {
+	      $total_row = $total_query->row_array();
+	      $total_cards = $total_row['numcards'];   	      
+	  }
+	  $position = 1;
+	  $answer = 0;
+	  if ($query->num_rows() > 0)
+	  {
+	    $row = $query->row_array();
+	    $position = $row['position'];
+	    $answer = $row['answer'];
+	    if ($position < $total_cards) {
+	      $position = $position + 1;
+	    }
+	    else {
+	      $position = 1;
+	    }
+	    $this->db->query('UPDATE fl_students 
+			      SET position = ?, answer = 0 			      
+			      WHERE student_id = ? AND deck_id = ?', array($position, $student_id, $deck_id)); 
+	  }
+	  else {
+	    $this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+					VALUES(?,?,1,0)', array($student_id, $deck_id));      
+	  }	
+	  break;
+	case 'reset':	  
+	   // get the deck position number for this student
+	  $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+	  $position = 1;
+	  $answer = 0;
+	  if ($query->num_rows() > 0)
+	  {
+	    $this->db->query('UPDATE fl_students 
+			      SET position=1, answer = 0
+			      WHERE student_id = ? AND deck_id = ?', array($answer, $student_id, $deck_id)); 
+	  }
+	  else {
+	    $this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+					VALUES(?,?,1,0)', array($student_id, $deck_id));      
+	  }	
+	  break;
+	default:
+	  $position = intval($command);	  
+	  break;          
+      }
+      
+      
+      // get the card
+      $query = $this->db->query('SELECT question, answer FROM fl_cards WHERE position = ? AND deck_id = ? LIMIT 1', array($position, $deck_id));
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$question_txt = $row['question'];
+	$answer_txt = $row['answer'];
+	$content = ($answer==0) ? $question_txt : $answer_txt;
+	$total_query = $this->db->query('SELECT COUNT(*) as "numcards" FROM fl_cards WHERE deck_id = ?', array($deck_id));
+	if ($total_query->num_rows() > 0)
+	{
+
+	    $total_row = $total_query->row_array();
+	    $total_cards = $total_row['numcards'];   
+	    
+	    $prefix = "(" . $position . "/" . $total_cards . ") ";
+	    $prefix .= ($answer==0) ? "Q: " : "A: ";
+	    $output = $prefix . $content;
+	}
+	else {
+	  $output = 'Error determining total cards in deck.';
+	}
+	
+      }
+      else {
+	$output = 'Sorry, there is no card with that number in this deck. ' . $position . ' | ' . $deck_id;
+      }
+      break;
+      
+      
+      
+      
+      
+      
+      
 	break;
       default:
       
