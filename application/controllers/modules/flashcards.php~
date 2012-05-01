@@ -101,7 +101,7 @@ class FlashCards extends CI_Controller
 	    {
 	      $total_cards = $row['numcards'];
 	    }   
-	    
+	    $total_cards = 69;
 	    $prefix = "(" . $position . "/" . $total_cards . ") ";
 	    $prefix .= ($answer==0) ? "Q: " : "A: ";
 	    $output = $prefix . $content;
