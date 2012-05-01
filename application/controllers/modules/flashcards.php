@@ -34,8 +34,7 @@ class FlashCards extends CI_Controller
 	$output = 'Decks: ';
 	foreach ($query->result_array() as $row)
 	{
-	    $output .= $row['deck_name'] . '
-	    ';
+	    $output .= $row['deck_name'] . "\n";
 	}	
 	break;
       // Message format: "FL nameOfDeck"
