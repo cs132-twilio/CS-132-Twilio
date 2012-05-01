@@ -117,7 +117,7 @@ class FlashCards extends CI_Controller
       
       
       
-      $output = 'Work in progress.';
+      // $output = 'Work in progress.';
       
       break;
       
