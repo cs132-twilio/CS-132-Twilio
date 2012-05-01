@@ -45,7 +45,7 @@ class FlashCards extends CI_Controller
       case 2:     
       
       // Get the student's ID number from the phone number
-      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']);
+      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']));
       $student_id = 0;
       if ($query->num_rows() > 0)
       {
