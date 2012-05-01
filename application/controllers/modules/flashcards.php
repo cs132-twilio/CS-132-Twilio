@@ -58,7 +58,7 @@ class FlashCards extends CI_Controller
       }  
       
       // get the ID number of the deck
-      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array(trim($message[1]));
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array(trim($message[1])));
       $deck_id = 0;
       if ($query->num_rows() > 0)
       {
