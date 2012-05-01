@@ -277,7 +277,25 @@ class FlashCards extends CI_Controller
 	  }	
 	  break;
 	default:
-	  $position = intval($command);	  
+	  $command_num = intval($command);	
+	  // get the deck position number for this student
+	  $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+	  $position = $command_num;
+	  $answer = 0;
+	  if ($query->num_rows() > 0 && $position > 0)
+	  {
+	    $this->db->query('UPDATE fl_students 
+			      SET position=?, answer = 0
+			      WHERE student_id = ? AND deck_id = ?', array($position, $student_id, $deck_id)); 
+	  }
+	  else if ($position > 0) {
+	    $this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+					VALUES(?,?,?,0)', array($student_id, $deck_id, $position));      
+	  }
+	  else {
+	    $this->load->view('twiml.php', array('message' => "Error, bad number value."));
+	    return;
+	  }	    
 	  break;          
       }
       
