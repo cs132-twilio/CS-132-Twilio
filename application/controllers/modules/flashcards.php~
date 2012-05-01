@@ -68,7 +68,54 @@ class FlashCards extends CI_Controller
       if ($deck_id==0) {
 	$output = "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. ";
 	break;      
-      }       
+      }
+      
+      // get the deck position number for this student
+      $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+      $position = 1;
+      $answer = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$position = $deck_id = $row['position'];
+	$answer = $deck_id = $row['answer'];
+      }
+      else {
+	$this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+				    VALUES(?,?,1,0)', array($student_id, $deck_id));      
+      }
+      
+      // get the card
+      $query = $this->db->query('SELECT question, answer FROM fl_cards WHERE position = ? AND deck_id = ? LIMIT 1', array($position, $deck_id));
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$question_txt = $row['question'];
+	$answer_txt = $row['answer'];
+	$content = ($answer==0) ? $question_txt : $answer_txt;
+	$total_query = $this->db->query('SELECT COUNT(card_id) AS total_cards FROM fl_cards WHERE deck_id = ? LIMIT 1', array($deck_id));
+	if ($total_query->num_rows() > 0)
+	{
+	    $total_row = $total_query->row_array();
+	    $total_cards = $row['total_cards'];
+	    $prefix = "(" + $position + "/" + $total_cards + ") ";
+	    $prefix .= ($answer==0) ? "Q: " : "A: ";
+	    $output = $prefix . $content;
+	}
+	else {
+	  $output = 'Error determining total cards in deck.';
+	}
+	
+      }
+      else {
+	$output = 'Sorry, there is no card with that number in this deck.';
+      }
+      
+      
+      
+      
+      
+      
       
       $output = 'Work in progress.';
       
