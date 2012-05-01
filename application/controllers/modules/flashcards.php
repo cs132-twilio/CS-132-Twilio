@@ -97,7 +97,7 @@ class FlashCards extends CI_Controller
 	if ($total_query->num_rows() > 0)
 	{
 
-	    $total_row = $query->row_array();
+	    $total_row = $total_query->row_array();
 	    $total_cards = $total_row['numcards'];   
 	    
 	    $prefix = "(" . $position . "/" . $total_cards . ") ";
