@@ -20,7 +20,7 @@ class FlashCards extends CI_Controller
       return;
     }
     $message = preg_split('/[\s]+/', trim($_GET['Body']), 3); 
-    $this->load->view('twiml.php', array('message' => count($message)));
+    // $this->load->view('twiml.php', array('message' => count($message)));
     if (count($message) < 1){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
@@ -32,16 +32,51 @@ class FlashCards extends CI_Controller
       case 1: 
 	$query = $this->db->query('SELECT deck_name FROM fl_decks');
 	$output = 'Decks: ';
-	foreach ($query->result_array() as $row)
+	if ($query->num_rows() > 0)
 	{
-	    $output .= $row['deck_name'] . "\n";
-	}	
+	  foreach ($query->result_array() as $row)
+	  {
+	      $output .= "\n" . $row['deck_name'];
+	  }
+	}
 	break;
       // Message format: "FL nameOfDeck"
       //Should start you off from the beginning, or point you left off
-      case 2:
-	break;
-      // Message format: "FL nameOfDeck [command]"
+      case 2:     
+      
+      // Get the student's ID number from the phone number
+      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']);
+      $student_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$student_id = $row['id'];
+      }
+      if ($student_id==0) {
+	$output = "Sorry, you are not registered for any of this number's classes.";
+	break;      
+      }  
+      
+      // get the ID number of the deck
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array(trim($message[1]));
+      $deck_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$deck_id = $row['deck_id'];
+      }
+      if ($deck_id==0) {
+	$output = "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. ";
+	break;      
+      }       
+      
+      $output = 'Work in progress.';
+      
+      break;
+      
+      
+      
+            // Message format: "FL nameOfDeck [command]"
       // 	Where command is one of the following: flip, next, reset, [number]
       // flip: give the answer to the current card
       // next: go to the next question
