@@ -245,7 +245,6 @@ class FlashCards extends CI_Controller
 	  {
 	    $row = $query->row_array();
 	    $position = $row['position'];
-	    $answer = $row['answer'];
 	    if ($position < $total_cards) {
 	      $position = $position + 1;
 	    }
@@ -308,7 +307,7 @@ class FlashCards extends CI_Controller
 	
       }
       else {
-	$output = 'Sorry, there is no card with that number in this deck. ' . $position . ' | ' . $deck_id;
+	$output = 'Sorry, there is no card with that number in this deck. ';
       }
       break;
       
