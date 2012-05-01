@@ -77,8 +77,8 @@ class FlashCards extends CI_Controller
       if ($query->num_rows() > 0)
       {
 	$row = $query->row_array();
-	$position = $deck_id = $row['position'];
-	$answer = $deck_id = $row['answer'];
+	$position = $row['position'];
+	$answer = $row['answer'];
       }
       else {
 	$this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
@@ -108,7 +108,7 @@ class FlashCards extends CI_Controller
 	
       }
       else {
-	$output = 'Sorry, there is no card with that number in this deck.' . $position . ' | ' . $deck_id;
+	$output = 'Sorry, there is no card with that number in this deck. ' . $position . ' | ' . $deck_id;
       }
       
       
