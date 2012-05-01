@@ -1,38 +1,41 @@
+<script type="text/javascript" src="/assets/javascript/home.js"></script>
 <div class="hero-unit span8 offset1 welcome_container">
   <div class="row">
-    <h1>Twexter</h1>
     <div class="span5">
-      <div id="myCarousel" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="item active">
-          <img src="/assets/images/phone.jpg" alt="">
-          <div class="carousel-caption">
-            <h4>First Thumbnail label</h4>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      <h1 class="span5">Twexter</h1>
+      <div class="span5">
+        <div id="myCarousel" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="item active">
+            <img src="/assets/images/phone.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>First Thumbnail label</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+            </div>
+            <div class="item">
+            <img src="/assets/images/students.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Second Thumbnail label</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+            </div>
+            <div class="item">
+            <img src="/assets/images/phone.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Third Thumbnail label</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+            </div>
           </div>
-          </div>
-          <div class="item">
-          <img src="/assets/images/students.jpg" alt="">
-          <div class="carousel-caption">
-            <h4>Second Thumbnail label</h4>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          </div>
-          </div>
-          <div class="item">
-          <img src="/assets/images/phone.jpg" alt="">
-          <div class="carousel-caption">
-            <h4>Third Thumbnail label</h4>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          </div>
-          </div>
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
       </div>
     </div>
     <div class="span3">			
-      <h1>Try Now Free</h1>	
-      <p><a class="btn btn-info btn-large big-button">Sign up &raquo;</a></p>			
+      <h1 class="span3">Try Now</h1>
+      <?= $user_id?'':'<div class="span3" id="registration"></div>' ?>
     </div>
   </div>
 </div>
