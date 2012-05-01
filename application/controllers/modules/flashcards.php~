@@ -93,7 +93,7 @@ class FlashCards extends CI_Controller
 	$question_txt = $row['question'];
 	$answer_txt = $row['answer'];
 	$content = ($answer==0) ? $question_txt : $answer_txt;
-	$total_query = $this->db->query('SELECT COUNT(card_id) AS total_cards FROM fl_cards WHERE deck_id = ? LIMIT 1', array($deck_id));
+	$total_query = $this->db->query('SELECT COUNT(card_id) as "total_cards" FROM fl_cards WHERE deck_id = ? LIMIT 1', array($deck_id));
 	if ($total_query->num_rows() > 0)
 	{
 	    $total_row = $total_query->row_array();
