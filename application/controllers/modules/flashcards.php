@@ -19,7 +19,7 @@ class FlashCards extends CI_Controller
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
-    $message = preg_split('/[\s]+/', $_GET['Body'], 3); 
+    $message = preg_split('/[\s]+/', trim($_GET['Body']), 3); 
     $this->load->view('twiml.php', array('message' => count($message)));
     if (count($message) < 1){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
