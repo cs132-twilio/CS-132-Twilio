@@ -93,11 +93,15 @@ class FlashCards extends CI_Controller
 	$question_txt = $row['question'];
 	$answer_txt = $row['answer'];
 	$content = ($answer==0) ? $question_txt : $answer_txt;
-	$total_query = $this->db->query('SELECT COUNT(*) as "num_cards" FROM fl_cards WHERE deck_id = ?', array($deck_id));
+	$total_query = $this->db->query('SELECT COUNT(*) as "numcards" FROM fl_cards WHERE deck_id = ?', array($deck_id));
 	if ($total_query->num_rows() > 0)
 	{
-	    $total_row = $total_query->row_array();
-	    $total_cards = $row['num_cards'];
+	    $total_cards = 420;
+	    foreach ($total_query->result_array() as $total_row)
+	    {
+	      $total_cards = $row['numcards'];
+	    }   
+	    
 	    $prefix = "(" . $position . "/" . $total_cards . ") ";
 	    $prefix .= ($answer==0) ? "Q: " : "A: ";
 	    $output = $prefix . $content;
