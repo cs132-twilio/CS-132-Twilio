@@ -269,7 +269,7 @@ class FlashCards extends CI_Controller
 	  {
 	    $this->db->query('UPDATE fl_students 
 			      SET position=1, answer = 0
-			      WHERE student_id = ? AND deck_id = ?', array($answer, $student_id, $deck_id)); 
+			      WHERE student_id = ? AND deck_id = ?', array($student_id, $deck_id)); 
 	  }
 	  else {
 	    $this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
