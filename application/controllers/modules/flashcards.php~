@@ -16,8 +16,8 @@ class FlashCards extends CI_Controller
 	
 	
 	
-	
-	 function getDeck($phone_number, $deck_code) {
+	/*
+    function getDeck($phone_number, $deck_code) {
       // Get the student's ID number from the phone number
       $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($phone_number));
       $student_id = 0;
@@ -65,7 +65,7 @@ class FlashCards extends CI_Controller
       $result['answer'] = $answer;
       return result;
 	
-  }
+  }*/
 
   function post(){
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
@@ -96,15 +96,48 @@ class FlashCards extends CI_Controller
       // Message format: "FL nameOfDeck"
       //Should start you off from the beginning, or point you left off
       case 2:     
-      $this->load->view('twiml.php', array('message' => "Case 2"));
-      $deck_info = getDeck($_GET('From'),$message[1]);
+      $phone_number = $_GET['From'];
+      $deck_code = $message[1];
+      // Get the student's ID number from the phone number
+      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($phone_number));
+      $student_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$student_id = $row['id'];
+      }
+      if ($student_id==0) {
+	$this->load->view('twiml.php', array('message' => "Sorry, you are not registered for any of this number's classes."));
+	return;      
+      }  
       
-      $this->load->view('twiml.php', array('message' => var_dump($deck_info)));
+      // get the ID number of the deck
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
+      $deck_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$deck_id = $row['deck_id'];
+      }
+      if ($deck_id==0) {
+	$this->load->view('twiml.php', array('message' => "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. "));
+	return;     
+      }
       
-      $deck_id = $deck_info['deck_id'] ;
-      $student_id  = $deck_info['student_id'];
-      $position = $deck_info['position'];
-      $answer = $deck_info['answer'];
+      // get the deck position number for this student
+      $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+      $position = 1;
+      $answer = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$position = $row['position'];
+	$answer = $row['answer'];
+      }
+      else {
+	$this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+				    VALUES(?,?,1,0)', array($student_id, $deck_id));      
+      }
       
       // get the card
       $query = $this->db->query('SELECT question, answer FROM fl_cards WHERE position = ? AND deck_id = ? LIMIT 1', array($position, $deck_id));
