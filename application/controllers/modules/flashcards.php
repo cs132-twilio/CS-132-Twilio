@@ -108,7 +108,7 @@ class FlashCards extends CI_Controller
 	
       }
       else {
-	$output = 'Sorry, there is no card with that number in this deck.';
+	$output = 'Sorry, there is no card with that number in this deck.' . $position . ' | ' . $deck_id;
       }
       
       
