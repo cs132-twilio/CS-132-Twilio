@@ -43,7 +43,7 @@ class FlashCards extends CI_Controller
       // Message format: "FL nameOfDeck"
       //Should start you off from the beginning, or point you left off
       case 2:     
-      
+      $this->load->view('twiml.php', array('message' => "Case 2"));
       $deck_info = getDeck($_GET('From'),$message[1]);
       
       $this->load->view('twiml.php', array('message' => var_dump($deck_info)));
