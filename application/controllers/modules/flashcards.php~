@@ -46,6 +46,8 @@ class FlashCards extends CI_Controller
       
       $deck_info = getDeck($_GET('From'),$message[1]);
       
+      $this->load->view('twiml.php', array('message' => var_dump($deck_info)));
+      
       $deck_id = $deck_info['deck_id'] ;
       $student_id  = $deck_info['student_id'];
       $position = $deck_info['position'];
