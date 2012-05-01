@@ -44,46 +44,12 @@ class FlashCards extends CI_Controller
       //Should start you off from the beginning, or point you left off
       case 2:     
       
-      // Get the student's ID number from the phone number
-      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']));
-      $student_id = 0;
-      if ($query->num_rows() > 0)
-      {
-	$row = $query->row_array();
-	$student_id = $row['id'];
-      }
-      if ($student_id==0) {
-	$output = "Sorry, you are not registered for any of this number's classes.";
-	break;      
-      }  
+      $deck_info = getDeck($_GET('From'),$message[1]);
       
-      // get the ID number of the deck
-      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array(trim($message[1])));
-      $deck_id = 0;
-      if ($query->num_rows() > 0)
-      {
-	$row = $query->row_array();
-	$deck_id = $row['deck_id'];
-      }
-      if ($deck_id==0) {
-	$output = "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. ";
-	break;      
-      }
-      
-      // get the deck position number for this student
-      $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
-      $position = 1;
-      $answer = 0;
-      if ($query->num_rows() > 0)
-      {
-	$row = $query->row_array();
-	$position = $row['position'];
-	$answer = $row['answer'];
-      }
-      else {
-	$this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
-				    VALUES(?,?,1,0)', array($student_id, $deck_id));      
-      }
+      $deck_id = $deck_info['deck_id'] ;
+      $student_id $deck_info['student_id'];
+      $position= $deck_info['position'];
+      $answer = $deck_info['answer'];
       
       // get the card
       $query = $this->db->query('SELECT question, answer FROM fl_cards WHERE position = ? AND deck_id = ? LIMIT 1', array($position, $deck_id));
@@ -112,20 +78,11 @@ class FlashCards extends CI_Controller
       else {
 	$output = 'Sorry, there is no card with that number in this deck. ' . $position . ' | ' . $deck_id;
       }
-      
-      
-      
-      
-      
-      
-      
-      // $output = 'Work in progress.';
-      
       break;
       
       
       
-            // Message format: "FL nameOfDeck [command]"
+      // Message format: "FL nameOfDeck [command]"
       // 	Where command is one of the following: flip, next, reset, [number]
       // flip: give the answer to the current card
       // next: go to the next question
@@ -147,14 +104,64 @@ class FlashCards extends CI_Controller
     
   }
   
-  function poll($thread){
-    header('Content-type: application/json');
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.Stream.loop);')));
-    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp) AS timestamp FROM stream, students s WHERE s.id = student_id AND thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
-    foreach($r as &$s){
-      $s['name'] = htmlentities($s['name']);
-      $s['message'] = htmlentities($s['message']);
-    }
-    echo json_encode($r);
+    function getDeck($phone_number, $deck_code) {
+      // Get the student's ID number from the phone number
+      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($phone_number));
+      $student_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$student_id = $row['id'];
+      }
+      if ($student_id==0) {
+	$this->load->view('twiml.php', array('message' => "Sorry, you are not registered for any of this number's classes."));
+	return;      
+      }  
+      
+      // get the ID number of the deck
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
+      $deck_id = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$deck_id = $row['deck_id'];
+      }
+      if ($deck_id==0) {
+	$this->load->view('twiml.php', array('message' => "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. "));
+	return;     
+      }
+      
+      // get the deck position number for this student
+      $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
+      $position = 1;
+      $answer = 0;
+      if ($query->num_rows() > 0)
+      {
+	$row = $query->row_array();
+	$position = $row['position'];
+	$answer = $row['answer'];
+      }
+      else {
+	$this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
+				    VALUES(?,?,1,0)', array($student_id, $deck_id));      
+      }
+      $result = array();
+      $result['deck_id'] = $deck_id;
+      $result['student_id'] = $student_id;
+      $result['position'] = $position;
+      $result['answer'] = $answer;
+      return result;
+	
   }
+  
+  
 }
+  
+  
+
+  
+  
+  
+  
+
+ 
