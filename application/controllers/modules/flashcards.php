@@ -289,11 +289,12 @@ class FlashCards extends CI_Controller
   
   
    function poll($thread){
-    header('Content-type: application/json');
-    exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.Stream.loop);')));
-    return;
-    
+    header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.FlashCards.loop);')));
+    
+     
+    exit(json_encode(array('position' => 1, 'question' => 'hey sup', 'answer' => 'nm, u?')));
+    return;
     
     $r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
     foreach($r as &$s){
