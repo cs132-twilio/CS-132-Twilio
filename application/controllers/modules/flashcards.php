@@ -304,7 +304,7 @@ class FlashCards extends CI_Controller
 			    (SELECT deck_id 
 			     FROM fl_decks 
 			     WHERE deck_name = ?)', array($deck))->result_array();
-    echo var_dump($r);
+    //echo var_dump($r);
     foreach($r as &$s){
       $s['position'] = htmlentities($s['position']);
       $s['question'] = htmlentities($s['question']);
@@ -312,8 +312,8 @@ class FlashCards extends CI_Controller
     }
     echo json_encode($r);
     
-    //exit(json_encode(array('position' => 1, 'question' => $deck, 'answer' => 'nm, u?')));
-    //return;
+    exit(json_encode(array('position' => 1, 'question' => var_dump($r), 'answer' => 'nm, u?')));
+    return;
     
   }
   
