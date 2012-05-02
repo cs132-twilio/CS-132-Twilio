@@ -25,10 +25,10 @@
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
           $(r).each(
-          ($(document.createElement('div'))
-                .text(r) 
-              ).prependTo($('#deck')).slideDown();
             function(i, e){
+	      $(document.createElement('div'))
+                .text('test2') 
+              ).prependTo($('#deck')).slideDown()
               ($(document.createElement('div'))
                 .text(e.question)
               ).prependTo($('#deck')).slideDown();              
