@@ -312,7 +312,7 @@ class FlashCards extends CI_Controller
     }
     //echo json_encode($r);
     
-    exit(json_encode(array('position' => 1, 'question' => var_dump($r), 'answer' => 'nm, u?')));
+    exit(json_encode(array('position' => 1, 'question' => count($r), 'answer' => 'nm, u?')));
     return;
     
   }
