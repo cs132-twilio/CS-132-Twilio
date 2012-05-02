@@ -22,7 +22,7 @@
       <li class="active"><a onclick="return Twexter.ajax_load('/modules/cList/index/1', 'moduleContent');">List</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('Message');">Message</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('Stream');">Stream</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('FlashCards');">FlashCards</a></li>
+      <li><a onclick="return Console.log(Twexter.modules); /* Twexter.dashboard.ajax_load_module('FlashCards');*/">FlashCards</a></li>
     </ul>
     <div id="moduleContent" >
     </div>
