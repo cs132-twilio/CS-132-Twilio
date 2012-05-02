@@ -1,52 +1,46 @@
 (function($){
-  Twexter.modules.FlashCards = {
-    lastpost: 0,
+  Twexter.modules.FlashCards = {   
     loop: null,
     setloop: function(){
-      if ($('#streamselect').val() != '0'){
-        Twexter.modules.Stream.poll();
-        Twexter.modules.Stream.loop = setInterval(Twexter.modules.Stream.poll, 5000);
+      if ($('#flashselect').val() != '0'){
+        Twexter.modules.FlashCards.poll();
+        Twexter.modules.FlashCards.loop = setInterval(Twexter.modules.FlashCards.poll, 500000);
       }
-      else clearInterval(Twexter.modules.Stream.loop);
+      else clearInterval(Twexter.modules.FlashCards.loop);
     },
     run: function(){
-      Twexter.modules.Stream.setloop();
-      $('#streamselect').change(
+      Twexter.modules.FlashCards.setloop();
+      $('#flashselect').change(
         function(){
-          $('#stream').empty();
-          Twexter.modules.Stream.lastpost = 0;
-          Twexter.modules.Stream.setloop();
+          $('#flash').empty();
+          Twexter.modules.FlashCards.lastpost = 0;
+          Twexter.modules.FlashCards.setloop();
         }
       );
     },
     poll: function(){
-      $.get('/modules/stream/poll/' + $('#streamselect').val() + '?' + Twexter.modules.Stream.lastpost,
+      $.get('/modules/flashcards/poll/' + $('#flashselect').val(),
         function(r){
           $(r).each(
             function(i, e){
               ($(document.createElement('div'))
-                .addClass('stream_post')
+                .addClass('flash_post')
                 .css('display', 'none')
                 .append(
                   ($(document.createElement('div'))
                     .append(
                       ($(document.createElement('span'))
-                        .addClass('stream_post_title')
-                        .text(e.name)
-                      ),
-                      ($(document.createElement('span'))
-                        .addClass('stream_post_timestamp')
-                        .text(' (' + $.timeago(new Date(e.timestamp * 1000)) + ')')
+                        .addClass('flash_post_title')
+                        .text(e.question)
                       )
                     )
                   ),
                   ($(document.createElement('div'))
-                    .addClass('stream_post_message')
-                    .html(e.message)
+                    .addClass('flash_post_message')
+                    .html(e.answer)
                   )
                 )
-              ).prependTo($('#stream')).slideDown();
-              Twexter.modules.Stream.lastpost = e.timestamp;
+              ).prependTo($('#flash')).slideDown();              
               if (e.execute) (new Function(e.execute))();
             }
           );

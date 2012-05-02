@@ -15,57 +15,6 @@ class FlashCards extends CI_Controller
 	}
 	
 	
-	
-	/*
-    function getDeck($phone_number, $deck_code) {
-      // Get the student's ID number from the phone number
-      $query = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($phone_number));
-      $student_id = 0;
-      if ($query->num_rows() > 0)
-      {
-	$row = $query->row_array();
-	$student_id = $row['id'];
-      }
-      if ($student_id==0) {
-	$this->load->view('twiml.php', array('message' => "Sorry, you are not registered for any of this number's classes."));
-	return;      
-      }  
-      
-      // get the ID number of the deck
-      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
-      $deck_id = 0;
-      if ($query->num_rows() > 0)
-      {
-	$row = $query->row_array();
-	$deck_id = $row['deck_id'];
-      }
-      if ($deck_id==0) {
-	$this->load->view('twiml.php', array('message' => "Sorry, that deck does not exist. Reply with 'FL' to see a list of decks. "));
-	return;     
-      }
-      
-      // get the deck position number for this student
-      $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
-      $position = 1;
-      $answer = 0;
-      if ($query->num_rows() > 0)
-      {
-	$row = $query->row_array();
-	$position = $row['position'];
-	$answer = $row['answer'];
-      }
-      else {
-	$this->db->query('INSERT INTO fl_students (student_id, deck_id, position, answer) 
-				    VALUES(?,?,1,0)', array($student_id, $deck_id));      
-      }
-      $result = array();
-      $result['deck_id'] = $deck_id;
-      $result['student_id'] = $student_id;
-      $result['position'] = $position;
-      $result['answer'] = $answer;
-      return result;
-	
-  }*/
 
   function post(){
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
@@ -335,6 +284,21 @@ class FlashCards extends CI_Controller
 
     $this->load->view('twiml.php', array('message' => $output));
     
+  }
+  
+  
+  
+   function poll($thread){
+    header('Content-type: application/json');
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.FlashCards.loop);')));
+    
+    $r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
+    foreach($r as &$s){
+      $s['position'] = htmlentities($s['position']);
+      $s['question'] = htmlentities($s['question']);
+      $s['answer'] = htmlentities($s['answer']);
+    }
+    echo json_encode($r);
   }
   
    
