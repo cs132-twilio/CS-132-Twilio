@@ -19,26 +19,25 @@ class Stream extends CI_Controller
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
-    if (!preg_match('/^([\d]+) (.+)$/', substr($_GET['Body'], 2), $message)){
+    $message = preg_split('/[\s]+/', $_GET['Body'], 3);
+    if (count($message) != 3){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
     $id = intval($message[1]);
-    if ($id <= 0){
+    if ($id <= 0 || $message[2] === '' || $message[2] === null || $message[2] === false){
       $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
       return;
     }
-    $message = $message[2];
-    $this->db->query('INSERT INTO stream (thread, user_id, message, timestamp) VALUES (?, ?, ?, NOW())', array($id, 1, $message));
+    $this->db->query('INSERT INTO stream (thread, student_id, message, timestamp) VALUES (?, (SELECT id FROM students WHERE number = ?), ?, NOW())', array($id, $_GET['From'], $message[2]));
   }
   
   function poll($thread){
     header('Content-type: application/json');
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.Stream.loop);')));
-    $r = $this->db->query('SELECT user_id, username, message, unix_timestamp(timestamp) AS timestamp FROM stream INNER JOIN (SELECT id, username FROM users) users ON users.id = user_id WHERE thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']));
-    $r = $r->result_array();
+    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp) AS timestamp FROM stream, students s WHERE s.id = student_id AND thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
     foreach($r as &$s){
-      $s['username'] = htmlentities($s['username']);
+      $s['name'] = htmlentities($s['name']);
       $s['message'] = htmlentities($s['message']);
     }
     echo json_encode($r);
