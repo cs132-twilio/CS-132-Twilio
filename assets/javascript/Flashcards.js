@@ -30,7 +30,7 @@
               $(document.createElement('div'))
                 .text('test2') 
               ).prependTo($('#deck')).slideDown();
-              $(document.createElement('div'))
+              ($(document.createElement('div'))
                 .text(e.question)
               ).prependTo($('#deck')).slideDown();              
               if (e.execute) (new Function(e.execute))();
