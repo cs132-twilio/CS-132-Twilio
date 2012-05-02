@@ -297,12 +297,15 @@ class FlashCards extends CI_Controller
     return;*/
     
     $r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($deck))->result_array();
+    
+    /*
     foreach($r as &$s){
       $s['position'] = htmlentities($s['position']);
       $s['question'] = htmlentities($s['question']);
       $s['answer'] = htmlentities($s['answer']);
     }
-    echo json_encode($r);
+    echo json_encode($r);*/
+    
   }
   
    
