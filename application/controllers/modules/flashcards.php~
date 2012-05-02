@@ -296,9 +296,9 @@ class FlashCards extends CI_Controller
     exit(json_encode(array('position' => 1, 'question' => 'hey sup', 'answer' => 'nm, u?')));
     return;*/
     
-    // $r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($deck))->result_array();
+    //$r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($deck))->result_array();
     
-    $r = $this->db->query('SELECT * FROM fl_cards', array($deck))->result_array();
+    $r = $this->db->query('SELECT position, question, answer FROM fl_cards', array($deck))->result_array();
     
     /*
     foreach($r as &$s){
@@ -308,7 +308,7 @@ class FlashCards extends CI_Controller
     }
     echo json_encode($r);*/
     
-    exit(json_encode(array('position' => 1, 'question' => 'hey sup', 'answer' => 'nm, u?')));
+    exit(json_encode(array('position' => 1, 'question' => $deck, 'answer' => 'nm, u?')));
     return;
     
   }
