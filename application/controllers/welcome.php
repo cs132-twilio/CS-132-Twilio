@@ -37,6 +37,7 @@ class Welcome extends CI_Controller {
   function index(){
     $this->render('home');
   }
+
   function dashboard(){
     $data = $this->_checkauth($data);
     if ($data['user_id']){
