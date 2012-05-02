@@ -4,7 +4,7 @@
     setloop: function(){
       if ($('#deckselect').val() != ''){
         Twexter.modules.FlashCards.poll();
-        Twexter.modules.FlashCards.loop = setInterval(Twexter.modules.FlashCards.poll, 500000);
+        Twexter.modules.FlashCards.loop = setInterval(Twexter.modules.FlashCards.poll, 1000);
       }
       else clearInterval(Twexter.modules.FlashCards.loop);
     },
