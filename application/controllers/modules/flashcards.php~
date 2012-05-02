@@ -310,7 +310,7 @@ class FlashCards extends CI_Controller
       $s['question'] = htmlentities($s['question']);
       $s['answer'] = htmlentities($s['answer']);
     }
-    echo json_encode($r);
+    //echo json_encode($r);
     
     exit(json_encode(array('position' => 1, 'question' => 'does this still print the question', 'answer' => 'nm, u?')));
     return;
