@@ -4,6 +4,8 @@
       Twexter.ajax_load('/welcome/modules/' + module.toLowerCase() + '.php', 'moduleContent',
         function(){
 	  console.log(module.charAt(0).toUpperCase() + module.slice(1).toLowerCase());
+	  console.log(Texter.modules);
+	  console.log(Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()]);
           var f = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()].run;
           if(typeof f == 'function') f();
         }
