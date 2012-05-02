@@ -1,4 +1,4 @@
-    <script src="/assets/javascript/home.js"></script>
+    <script type="text/javascript"  src="/assets/javascript/home.js"></script>
 <div class="hero-unit span8 offset1 welcome_container">
   <div class="row">
     <h1>Twexter</h1>
