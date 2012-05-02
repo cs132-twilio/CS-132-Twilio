@@ -22,7 +22,7 @@
       ($(document.createElement('div'))
                 .text('test') 
               ).prependTo($('#deck')).slideDown();
-      $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
+      $.get('/modules/flashcards/poll/?' + $('#deckselect').val(),
         function(r){
           $(r).each(
             function(i, e){
