@@ -22,13 +22,15 @@
       ($(document.createElement('div'))
                 .text('test') 
               ).prependTo($('#deck')).slideDown();
-      $.get('/modules/flashcards/poll/?' + $('#deckselect').val(),
+      $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
           $(r).each(
+          ($(document.createElement('div'))
+                .text(r) 
+              ).prependTo($('#deck')).slideDown();
             function(i, e){
               ($(document.createElement('div'))
-                .text(e.question)                
-
+                .text(e.question)
               ).prependTo($('#deck')).slideDown();              
               if (e.execute) (new Function(e.execute))();
             }
