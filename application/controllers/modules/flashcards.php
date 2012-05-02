@@ -304,8 +304,7 @@ class FlashCards extends CI_Controller
 			    (SELECT deck_id 
 			     FROM fl_decks 
 			     WHERE deck_name = ?)', array($deck))->result_array();
-    
-    console.log($r);
+    echo var_dump($r);
     foreach($r as &$s){
       $s['position'] = htmlentities($s['position']);
       $s['question'] = htmlentities($s['question']);
