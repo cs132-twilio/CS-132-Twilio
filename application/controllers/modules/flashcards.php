@@ -298,7 +298,8 @@ class FlashCards extends CI_Controller
     
     //$r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($deck))->result_array();
     
-    $r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = \'test\'', array($deck))->result_array();
+    $r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_id IN 
+			    (SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1)', array($deck))->result_array();
     
     /*
     foreach($r as &$s){
