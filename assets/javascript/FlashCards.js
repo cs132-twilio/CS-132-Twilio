@@ -19,27 +19,16 @@
       );
     },
     poll: function(){
+      ($(document.createElement('div'))
+                .text('test') 
+              ).prependTo($('#deck')).slideDown();
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
           $(r).each(
             function(i, e){
               ($(document.createElement('div'))
-                .addClass('flash_post')
-                .css('display', 'none')
-                .append(
-                  ($(document.createElement('div'))
-                    .append(
-                      ($(document.createElement('span'))
-                        .addClass('flash_post_title')
-                        .text(e.question)
-                      )
-                    )
-                  ),
-                  ($(document.createElement('div'))
-                    .addClass('flash_post_message')
-                    .html(e.answer)
-                  )
-                )
+                .text(e.question)                
+
               ).prependTo($('#deck')).slideDown();              
               if (e.execute) (new Function(e.execute))();
             }
