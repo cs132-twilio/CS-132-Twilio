@@ -1,5 +1,5 @@
 <link rel="Stylesheet" type="text/css" href="/assets/stylesheets/tokeninput.facebook.css">
-<?= form_open('/modules/message/send', 'method="POST" id="messageform" class="well" onsubmit="return Twexter.Message.submit(this)"') ?>
+<?= form_open('/modules/message/send', 'method="POST" id="messageform" class="well" onsubmit="return Twexter.modules.Message.submit(this)"') ?>
 	<label>Message to:
     <input type="text" name="n" class="span5">
   </label>

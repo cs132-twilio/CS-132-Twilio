@@ -9,10 +9,12 @@ class cList extends CI_Controller
 
 	function index($c)
 	{
+    $this->checkauth->check();
     if (!(intval($c) > 0)){
       echo "Invalid class id";
       return;
     }
+    $this->session->sess_update();
     $data['class_id'] = $c;
 		$r = $this->db->query('SELECT m.student_id, s.id, s.name, s.number FROM classmap m, students s WHERE m.student_id = s.id AND class_id=?', array($c));
     $data['students'] = $r->result_array();

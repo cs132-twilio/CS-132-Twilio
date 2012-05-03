@@ -7,11 +7,16 @@ class Stream extends CI_Controller
 		parent::__construct();
     $this->load->library('twilio');
     $this->load->library('tank_auth');
+    $this->load->helper('url');
 	}
 
-	function index()
+	function index($c)
 	{
-		header('Status: 403 FORBIDDEN');
+    $this->checkauth->check();
+    $this->session->sess_update();
+    $uid = $this->tank_auth->get_user_id();
+    $data['stream'] = $this->db->query('SELECT str.id as id FROM classlist l, streams str WHERE class_id = ? AND l.id = class_id AND l.owner_id = ?', array($c, $uid))->result_array();
+		$this->load->view('/modules/stream.php', $data);
 	}
 
   function post(){
@@ -29,13 +34,18 @@ class Stream extends CI_Controller
       $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
       return;
     }
-    $this->db->query('INSERT INTO stream (thread, student_id, message, timestamp) VALUES (?, (SELECT id FROM students WHERE number = ?), ?, NOW())', array($id, $_GET['From'], $message[2]));
+    $this->db->query('INSERT INTO stream_posts (thread, student_id, message, `timestamp`)
+                      SELECT ? as thread, s.id as student_id, ? as message,
+                      NOW() as `timestamp` FROM streams str, classmap m, students s
+                      WHERE number = ? AND str.class_id = m.class_id AND
+                      s.id = m.student_id AND ? = str.id',
+                      array($id, $message[2], $_GET['From'], $id));
   }
   
   function poll($thread){
     header('Content-type: application/json');
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.Stream.loop);')));
-    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp) AS timestamp FROM stream, students s WHERE s.id = student_id AND thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.modules.Stream.loop);')));
+    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp) AS timestamp FROM stream_posts, students s WHERE s.id = student_id AND thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
     foreach($r as &$s){
       $s['name'] = htmlentities($s['name']);
       $s['message'] = htmlentities($s['message']);

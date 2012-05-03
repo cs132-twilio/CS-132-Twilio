@@ -1,0 +1,23 @@
+#stream{
+  max-height: 600px;
+  overflow-y: auto;
+}
+.stream_post {
+  height: 50px;
+  padding: 10px;
+  width: 60%;
+  border-radius: 15px;
+  border: 1px solid black;
+  margin: 10px 0;
+  box-shadow: 0 0 10px 0 #AAA inset;
+}
+.stream_post_title {
+  font-size: bigger;
+  font-weight: bold;
+}
+.stream_post_timestamp{
+  color: #AAA;
+}
+.stream_error_title{
+  color: red;
+}

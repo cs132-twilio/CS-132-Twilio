@@ -1,12 +1,16 @@
 (function($){
   Twexter.dashboard = {
-    ajax_load_module: function(module){
-      Twexter.ajax_load('/welcome/modules/' + module.toLowerCase() + '.php', 'moduleContent',
+    ajax_load_module: function(module, c){
+      Twexter.ajax_load('/modules/' + module.toLowerCase() + '/index/' + (c ? c : $('#classTabs > li.active').data('cid')), 'moduleContent',
         function(){
           var f = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()].run;
           if(typeof f == 'function') f();
         }
       );
+    },
+    changeClass: function(c){
+      if (typeof Twexter.modules[$('#moduleTabs .active').text()].changeClass === 'function') return Twexter.modules[$('#moduleTabs .active').text()].changeClass(c);
+      else return false;
     }
   }
   
@@ -24,7 +28,7 @@
       activeTabs('moduleTabs');
       activeTabs('classTabs');
       $('#classTabs > li.class:first').addClass('active');
-      Twexter.ajax_load('/modules/cList/index/1', 'moduleContent');
+      Twexter.dashboard.ajax_load_module('clist');
     }
   );
 })(jQuery);

@@ -7,8 +7,16 @@ class Message extends CI_Controller
 		parent::__construct();
     $this->load->library('tank_auth');
     $this->load->library('twilio');
+    $this->load->helper('form');
+    $this->load->helper('url');
 	}
 
+  function index(){
+    $this->checkauth->check();
+    $this->session->sess_update();
+    $this->load->view('modules/message.php');
+  }
+  
 	function targets(){
     header('Content-type: application/json');
     if ($this->tank_auth->is_logged_in()){
