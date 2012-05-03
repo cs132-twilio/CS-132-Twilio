@@ -30,7 +30,7 @@
 
 <div id="add-new-card" style="display : none;">
 <h3>Add new Card</h3>
-<?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
+<?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submitCard(this)"') ?>
 <label>Add to:
 <select id="deckselect-addcard" name="deckname">
 <option value=''>-Select a Deck-</option>
