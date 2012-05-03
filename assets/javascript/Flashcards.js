@@ -203,7 +203,16 @@
       $('#deckselect-addcard').val(String(old_add_val));
       Twexter.modules.Flashcards.poll();
       
+    },
+    confirmSubmit: function()
+    {
+    var agree=confirm("Are you sure you wish to continue?");
+    if (agree)
+	    return true ;
+    else
+	    return false ;
     }
+ 
   };
 })(jQuery);
 
