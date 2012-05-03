@@ -59,6 +59,10 @@
       );
     },
     submit: function(e){
+      $(this).find('#card_added').clear();
+      $(this).find('#deck_added').clear();
+      $(this).find('#card_deleted').clear();
+      $(this).find('#deck_deleted').clear();
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
@@ -82,6 +86,10 @@
       );
     },
     submitCard: function(e){
+      $(this).find('#card_added').clear();
+      $(this).find('#deck_added').clear();
+      $(this).find('#card_deleted').clear();
+      $(this).find('#deck_deleted').clear();
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
@@ -106,9 +114,12 @@
       );
     },
     submitDelete: function(e){
+      $(this).find('#card_added').clear();
+      $(this).find('#deck_added').clear();
+      $(this).find('#card_deleted').clear();
+      $(this).find('#deck_deleted').clear();
       return !$(e).ajaxSubmit(
-        $.proxy(function(r){
-	  console.log(r);
+        $.proxy(function(r){	  
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
@@ -131,9 +142,12 @@
       );
     },
     submitDeleteDeck: function(e){
+      $(this).find('#card_added').clear();
+      $(this).find('#deck_added').clear();
+      $(this).find('#card_deleted').clear();
+      $(this).find('#deck_deleted').clear();
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
-	  console.log(r);
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
