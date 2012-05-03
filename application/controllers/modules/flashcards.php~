@@ -457,6 +457,16 @@ class FlashCards extends CI_Controller
     }  
   }
   
+  function listdecks() {
+    header('Content-type: application/json');    
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to list decks!')));   
+    
+      $r = $this->db->query('SELECT deck_name 
+			    FROM fl_decks')->result_array();      
+      exit(json_encode($r));            
+     
+  }
+  
    
   
   
