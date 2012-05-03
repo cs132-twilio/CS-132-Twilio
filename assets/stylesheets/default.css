@@ -21,28 +21,27 @@
 
 .success {
   background: #AAFFAA;
-}
-.error {
-  background: #FFAAAA;
-}
-
-#stream{
-  max-height: 600px;
-  overflow-y: auto;
-}
-.stream_post {
-  background: #CCC;
-  min-height: 50px;
-  width: 300px;
+  margin: 5px 10px;
   padding: 5px;
 }
-.stream_post_title {
-  font-size: bigger;
-  font-weight: bold;
-}
-.stream_post_message{
-
-}
-.stream_error_title{
+.error, #registration .error > p {
   color: red;
+  font-size: 10px;
+  margin: 5px 10px;
+  padding: 5px;
+}
+#registration .error, #registration .error > p {
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  height: 1.2em;
+}
+#registration{
+  height: 370px;
+}
+#registration input {
+  margin-bottom: inherit;
+}
+#registration .registration_field {
+  margin: 10px 0;
 }

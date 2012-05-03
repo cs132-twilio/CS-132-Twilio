@@ -1,12 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Stream extends CI_Controller
+class Join extends CI_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
     $this->load->library('twilio');
-    $this->load->library('tank_auth');
 	}
 
 	function index()
@@ -14,22 +13,31 @@ class Stream extends CI_Controller
 		header('Status: 403 FORBIDDEN');
 	}
 
-  function post(){
+  function add(){
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
-    if (!preg_match('/^([\d]+) (.+)$/', substr($_GET['Body'], 2), $message)){
+    $message = preg_split('/[\s]+/', $_GET['Body'], 2);
+    if (!$message[1]){
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
-    $id = intval($message[1]);
-    if ($id <= 0){
-      $this->load->view('twiml.php', array('message' => 'Invalid thread!'));
-      return;
-    }
-    $message = $message[2];
-    $this->db->query('INSERT INTO stream (thread, user_id, message, timestamp) VALUES (?, ?, ?, NOW())', array($id, 1, $message));
+    if (preg_match('/[\d]+/', $message[1])){
+      $cid = intval($message[1]);
+      if ($cid > 0){
+        $r = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']))->result_array();
+        if (count($r) && $r[0]['id']){
+          $this->db->query('REPLACE INTO classmap (class_id, student_id) VALUES (?, ?)', array($cid, $r[0]['id']));
+        } else {
+          $this->load->view('twiml.php', array('message' => 'Please add yourself to the system by sending "JOIN [your name here]" before joining a class'));
+          return;
+        }
+      } else {
+        $this->load->view('twiml.php', array('message' => 'Invalid class number!'));
+        return;
+      }
+    } else $this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
   }
   
   function poll($thread){

@@ -1,5 +1,26 @@
 (function($){
-  Twexter.Message = {
+  Twexter.modules.Message = {
+    run: function(){
+      $.get('/modules/message/targets',
+        function(r){
+          $.ajax({
+            type: "GET",
+            url: "/assets/javascript/jquery.tokeninput.js",
+            success: function(){
+              $("#messageform input[name=n]").tokenInput(r,
+                {
+                  theme: "facebook",
+                  hintText: "Enter a student or class name",
+                  preventDuplicates: true
+                }
+              );
+            },
+            dataType: "script",
+            cache: true
+          });
+        }
+      );
+    },
     submit: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){

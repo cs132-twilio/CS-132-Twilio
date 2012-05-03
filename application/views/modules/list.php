@@ -1,27 +1,18 @@
+<script type="text/javascript" src="/assets/javascript/List.js"></script>
+Class ID: <?= $class_id ?>
 
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th>First Name</th>
-	      <th>Last Name</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <td>Angela</td>
-	      <td>Santin</td>
-	    </tr>
-	    <tr>
-	      <td>Siffat</td>
-	      <td>Hingorani</td>
-	    </tr>
-	    <tr>
-	      <td>Peter</td>
-	      <td>Ciullo</td>
-	    </tr>
-	    <tr>
-	      <td>Ryan</td>
-	      <td>Chan</td>
-	    </tr>
-	  </tbody>
-	</table>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?
+    foreach($students as $s){
+      echo '<tr><td>' . htmlentities($s['name']) . '</td><td>' . htmlentities($s['number']) . '</td></tr>';
+    }
+    ?>
+  </tbody>
+</table>
