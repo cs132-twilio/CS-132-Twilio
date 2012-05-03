@@ -33,7 +33,7 @@
 <?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submitCard(this)"') ?>
 <label>Add to:
 <select id="deckselect-addcard" name="deckname">
-<option value=''>-Select a Deck-</option>
+<option value='-1'>-Select a Deck-</option>
 <?
   if (!count($decks)) echo '<option value="0">No Decks available</option>';
     foreach($decks as $d){
