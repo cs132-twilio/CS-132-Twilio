@@ -19,7 +19,8 @@
         }
       );
     },
-    poll: function(){      
+    poll: function(){ 
+      $('#deck-form-div').empty();
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
 	  var $tbl = $('<table>').attr('id', 'cardsTable');
