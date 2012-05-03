@@ -376,7 +376,7 @@ class FlashCards extends CI_Controller
 			   WHERE deck_id = ?', array($deck_id))->result_array();
 	
 	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer)
-				VALUES(?,?,?,?)', array($deck_id,(intval($last_position)+1),$question,$answer)); 
+				VALUES(?,?,?,?)', array($deck_id,(intval($last_position['maxpos'])+1),$question,$answer)); 
 	exit(json_encode(array('success' => 1, 'message' => 'Card Q:"' . $question . '" A:"' . $answer .  '" added successfully!')));
       }    
           
