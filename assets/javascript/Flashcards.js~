@@ -60,11 +60,7 @@
     },
     submit: function(e){
       
-      return !$(e).ajaxSubmit(
-	$(this).find('#card_added').clear();
-      $(this).find('#deck_added').clear();
-      $(this).find('#card_deleted').clear();
-      $(this).find('#deck_deleted').clear();
+      return !$(e).ajaxSubmit(     
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
@@ -77,6 +73,10 @@
               }
             );
           }
+          $(this).find('#card_added').clear();
+	  $(this).find('#deck_added').clear();
+	  $(this).find('#card_deleted').clear();
+	  $(this).find('#deck_deleted').clear();
 	  if (error) $(this).find('#deck_added').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=deckname]').clearFields();
@@ -88,11 +88,7 @@
     },
     submitCard: function(e){
       
-      return !$(e).ajaxSubmit(
-      $(this).find('#card_added').clear();
-      $(this).find('#deck_added').clear();
-      $(this).find('#card_deleted').clear();
-      $(this).find('#deck_deleted').clear();
+      return !$(e).ajaxSubmit(      
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
@@ -105,6 +101,10 @@
               }
             );
           }
+          $(this).find('#card_added').clear();
+	  $(this).find('#deck_added').clear();
+	  $(this).find('#card_deleted').clear();
+	  $(this).find('#deck_deleted').clear();
 	  if (error) $(this).find('#card_added').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=question]').clearFields();
@@ -116,11 +116,7 @@
       );
     },
     submitDelete: function(e){      
-      return !$(e).ajaxSubmit(
-	$(this).find('#card_added').clear();
-      $(this).find('#deck_added').clear();
-      $(this).find('#card_deleted').clear();
-      $(this).find('#deck_deleted').clear();
+      return !$(e).ajaxSubmit(      
         $.proxy(function(r){	  
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
@@ -133,6 +129,10 @@
               }
             );
           }
+          $(this).find('#card_added').clear();
+	  $(this).find('#deck_added').clear();
+	  $(this).find('#card_deleted').clear();
+	  $(this).find('#deck_deleted').clear();
 	  if (error) $(this).find('#card_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=deletecard]').clearFields();
@@ -145,11 +145,7 @@
     },
     submitDeleteDeck: function(e){      
       return !$(e).ajaxSubmit(
-        $.proxy(function(r){
-	  $(this).find('#card_added').clear();
-	  $(this).find('#deck_added').clear();
-	  $(this).find('#card_deleted').clear();
-	  $(this).find('#deck_deleted').clear();
+        $.proxy(function(r){	  
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
@@ -161,6 +157,10 @@
               }
             );
           }
+          $(this).find('#card_added').clear();
+	  $(this).find('#deck_added').clear();
+	  $(this).find('#card_deleted').clear();
+	  $(this).find('#deck_deleted').clear();
 	  if (error) $(this).find('#deck_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('#deck_deleted').removeClass('error').addClass('success').text(r.message);
