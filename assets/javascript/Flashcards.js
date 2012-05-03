@@ -23,13 +23,23 @@
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
 	  var $tbl = $('<table>').attr('id', 'cardsTable');
+	  $tbl.append(
+		  $('<tr>')
+                      .append($('<th>').text('#'),
+                      $('<th>').text('Question'),
+		      $('<th>').text('Answer')
+		      $('<th>').text('Delete')
+		      )
+		
+		);  
           $(r).each(
             function(i, e){              
 		$tbl.append(
 		  $('<tr>')
                       .append($('<td>').text(e.position),
                       $('<td>').text(e.question),
-		      $('<td>').text(e.question)
+		      $('<td>').text(e.answer),
+		      $('<td>').text('[delete]')
 		      )
 		
 		);  
