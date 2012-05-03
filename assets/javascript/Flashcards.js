@@ -155,6 +155,8 @@
     },
     listDecks: function() {
       var old_main_val = $('#deckselect').val();
+      var old_del_val = $('#deckselect-deletedeck').val();
+      var old_add_val = $('#deckselect-addcard').val();
       $('#deckselect').empty();
       $('#deckselect-deletedeck').empty();
       $('#deckselect-addcard').empty();
@@ -181,6 +183,8 @@
 	  async: true
 	});
       $('#deckselect').val(String(old_main_val));
+      $('#deckselect-deletedeck').val(String(old_del_val));
+      $('#deckselect-addcard').val(String(old_add_val));
       Twexter.modules.Flashcards.poll();
       
     }
