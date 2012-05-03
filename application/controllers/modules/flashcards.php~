@@ -389,35 +389,46 @@ class FlashCards extends CI_Controller
     header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to delete cards!')));
     
-    $delete_positions = $_POST['deletecard'];    
+    $delete_positions = $_POST['deletecard']; 
+    $deck_name = trim($_POST['deckname']);
     
     if(count($delete_positions)<1) {
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, you have not selected any cards for deletion.')));
     }
+    else if(empty($deck_name)) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck selected.')));
+    }
     else {
-      foreach($delete_positions as $p) {
-	
-      }
-    
-    
-    
-	$r = $this->db->query('SELECT deck_id 
-			   FROM fl_decks			   
-			   WHERE deck_name = ?', array($deck_name))->result_array();
+      $r = $this->db->query('SELECT deck_id 
+			    FROM fl_decks			   
+			    WHERE deck_name = ?', array($deck_name))->result_array();
       if(count($r)<1) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
       }
       else {
 	$deck_id = $r[0]['deck_id'];
-	$last_position = $this->db->query('SELECT MAX(position) AS maxpos 
-			   FROM fl_cards			   
-			   WHERE deck_id = ?', array($deck_id))->result_array();
-	$next_position = intval($last_position[0]["maxpos"]) + 1;	
-	
-	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer)
-				VALUES(?,?,?,?)', array($deck_id,$next_position,$question,$answer)); 
-	exit(json_encode(array('success' => 1, 'message' => 'Card Q:"' . $question . '" A:"' . $answer .  '" added successfully!')));
-      }          
+	foreach($delete_positions as $p) {
+	  $s = $this->db->query('SELECT card_id 
+			    FROM fl_cards			   
+			    WHERE deck_id = ? AND position = ?', array($deck_id,$p))->result_array();
+	  if(count($s)>0) {
+	    $this->db->query('DELETE FROM fl_cards			   
+			    WHERE deck_id = ? AND position = ?', array($deck_id,$p))->result_array();
+	    $this->db->query('UPDATE fl_cards
+			      SET position = position - 1
+			      WHERE deck_id = ? AND position > ?', array($deck_id,$p))->result_array();			    
+	  }	
+	}
+	exit(json_encode(array('success' => 1, 'message' => 'Cards deleted successfully.')));
+      }
+    
+    
+      
+    
+    
+    
+      
+          
       
     }
   

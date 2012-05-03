@@ -17,7 +17,7 @@
 <div id="deck-form-div">
 </div>
 <input type="hidden" id="delete-card-deckname" name="deckname" value=""></input>
-<button type="submit" class="btn">Delete Selected Cards</button><span id="deck_deleted"></span>
+<button type="submit" class="btn">Delete Selected Cards</button><span id="card_deleted"></span>
 
 
 <?= form_close() ?>
