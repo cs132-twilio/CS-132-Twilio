@@ -9,9 +9,13 @@ class FlashCards extends CI_Controller
     $this->load->library('tank_auth');
 	}
 
-	function index()
+	function index($c)
 	{
-		header('Status: 403 FORBIDDEN');
+	  $this->checkauth->check();
+	  $this->session->sess_update();
+	  $uid = $this->tank_auth->get_user_id();
+	  $data['decks'] = $this->db->query('SELECT deck_name FROM decks')->result_array();
+		      $this->load->view('/modules/flashcards.php', $data);
 	}
 	
 	

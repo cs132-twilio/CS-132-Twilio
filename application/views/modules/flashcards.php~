@@ -1,7 +1,11 @@
 <select id="deckselect">
-  <option value="">-Select a Deck</option>
-  <option value="test">test</option>
-  <option value="biology">biology</option>
+<option value=''>-Select a Deck-</option>
+<?
+  if (!count($decks)) echo '<option value="0">No Decks available</option>';
+    foreach($decks as $d){
+      echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
+    }
+  ?>
 </select>
 <a onclick="return $('#add-new-deck').show();">Add a new Deck</a>
 <a onclick="return $('#add-new-card').show();">Add a new Card</a>
@@ -9,7 +13,7 @@
 <div id="deck">
 </div>
 
-<div id="add-new-deck">
+<div id="add-new-deck" style="display : none;">
 Add new Deck
 <?= form_open('/modules/flashcards/adddeck', 'method="POST" id="adddeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
 	<label>Deck Name:
