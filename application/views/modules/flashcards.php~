@@ -9,9 +9,9 @@
     }
   ?>
 </select>
-<a onclick="return $('#add-new-deck').show();">Add a new Deck</a>
-<a onclick="return $('#add-new-card').show();">Add a new Card</a>
-<a onclick="return $('#delete-deck').show();">Add a new Card</a>
+<a onclick="return $('#add-new-deck').show();" class="btn">Add a new Deck</a>
+<a onclick="return $('#add-new-card').show();" class="btn">Add a new Card</a>
+<a onclick="return $('#delete-deck').show();" class="btn">Delete a Deck</a>
 
 <div id="deck">
 <?= form_open('/modules/flashcards/deletecard', 'method="POST" id="deck-form" onsubmit="return Twexter.modules.Flashcards.submitDelete(this)"') ?>
@@ -84,7 +84,7 @@
 </label>
 
 <br />
-<button type="submit" class="btn">Add</button><span id="deck_deleted"></span>
+<button type="submit" class="btn">Delete</button><span id="deck_deleted"></span>
 <?= form_close() ?>
 <a onclick="return $('#delete-deck').hide();">Hide</a>
 </div>
