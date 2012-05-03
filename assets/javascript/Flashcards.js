@@ -56,8 +56,7 @@
           }
           if (error) $(this).find('#message_sent').removeClass('success').addClass('error').text(error.message);
           else{
-            $(this).find('[name=n],[name=m]').clearFields();
-            $(this).find('#message_sent').removeClass('error').addClass('success').text('Your message was sent successfully!');
+            console.log('submit was hit lol');
           }
         }, e)
       );
