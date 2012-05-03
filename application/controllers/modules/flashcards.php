@@ -379,7 +379,7 @@ class FlashCards extends CI_Controller
 				VALUES(?,?,?,?)', array($deck_id,$last_position+1,$question,$answer)); 
 	exit(json_encode(array('success' => 1, 'message' => 'Card Q:"' . $question . '" A:"' . $answer .  '" added successfully!')));
       }    
-      }    
+          
       
     }
   
