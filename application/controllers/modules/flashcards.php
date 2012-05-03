@@ -320,10 +320,27 @@ class FlashCards extends CI_Controller
   }
   
   function adddeck() {
-    header('Content-type: application/json');
+    header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
+    
+    $deck_name_split = preg_split('/[\s]+/', trim($_POST['deckname']), 3); 
+    if(count($deck_name_split>1) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck names must only be one word.')));
+    }
     else {
-      exit(json_encode(array('success' => 1, 'message' => 'ad dek')));
+      $deck_name = $deck_name_split[0];
+      $r = $this->db->query('SELECT * 
+			   FROM fl_decks			   
+			   WHERE deck_name = ?', array($deck_name))->result_array();
+      if(count($r)>0) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, a deck with that name already exists.')));
+      }
+      else {
+	$this->db->query('INSERT INTO fl_decks (deck_name)
+				VALUES(?)', array($deck_name)); 
+	exit(json_encode(array('success' => 1, 'message' => 'Deck "' . $deck_name. '" added successfully!')));
+      }    
+      
     }
   
   }
