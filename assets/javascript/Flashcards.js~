@@ -32,7 +32,9 @@
 		      $('<td>').text(e.question)
 		      )
 		
-		);                
+		);  
+	      $tbl.attr('class', 'table');
+	      $tbl.attr('class', 'table-striped');
               $('#deck').append($tbl);                           
               if (e.execute) (new Function(e.execute))();
             }
