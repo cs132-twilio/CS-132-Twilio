@@ -19,20 +19,13 @@
         }
       );
     },
-    poll: function(){
-      ($(document.createElement('div'))
-                .text('test') 
-              ).prependTo($('#deck')).slideDown();
+    poll: function(){      
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
           $(r).each(
-            function(i, e){      
-              (              
-              $(document.createElement('div'))
-                .text('test2') 
-              ).prependTo($('#deck')).slideDown();
+            function(i, e){   
               ($(document.createElement('div'))
-                .text(e.question)
+                .text(e.position + ' | Q: ' + e.question + ' A: ' + e.answer)
               ).prependTo($('#deck')).slideDown();              
               if (e.execute) (new Function(e.execute))();
             }
