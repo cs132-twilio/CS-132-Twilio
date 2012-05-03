@@ -120,6 +120,8 @@
           else{
             $(this).find('[name=deletecard]').clearFields();
             $(this).find('#card_deleted').removeClass('error').addClass('success').text(r.message);
+	    Twexter.modules.Flashcards.poll();
+	    
 	  }
         }, e)
       );
