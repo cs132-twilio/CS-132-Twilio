@@ -58,7 +58,7 @@
         }
       );
     },
-    submit: function(e){
+    submitAddDeck: function(e){
       
       return !$(e).ajaxSubmit(     
         $.proxy(function(r){
@@ -86,7 +86,7 @@
         }, e)
       );
     },
-    submitCard: function(e){
+    submitAddCard: function(e){
       
       return !$(e).ajaxSubmit(      
         $.proxy(function(r){
@@ -115,7 +115,7 @@
         }, e)
       );
     },
-    submitDelete: function(e){      
+    submitDeleteCard: function(e){      
       return !$(e).ajaxSubmit(      
         $.proxy(function(r){	  
           var error = r.success === 0 ? r[0] : undefined;
