@@ -22,11 +22,18 @@
     poll: function(){      
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
+	  var $tbl = $('<table>').attr('id', 'cardsTable');
           $(r).each(
-            function(i, e){   
-              ($(document.createElement('div'))
-                .text(e.position + ' | Q: ' + e.question + ' A: ' + e.answer)
-              ).prependTo($('#deck')).slideDown();              
+            function(i, e){              
+		$tbl.append(
+		  $('<tr>')
+                      .append($('<td>').text(e.position),
+                      $('<td>').text(e.question),
+		      $('<td>').text(e.question),
+		      );
+		
+		);                
+              $('#deck').append($tbl);                           
               if (e.execute) (new Function(e.execute))();
             }
           );
@@ -48,9 +55,7 @@
           if (!error){
             $(r).each(
               function(i, e){
-		console.log('2');
                 if (!e.success){
-		  console.log('3');
                   error = e;
                   return false;
                 }
