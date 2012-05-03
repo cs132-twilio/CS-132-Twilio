@@ -299,37 +299,31 @@ class FlashCards extends CI_Controller
     header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.FlashCards.loop);')));
     
-     /*
-    exit(json_encode(array('position' => 1, 'question' => 'hey sup', 'answer' => 'nm, u?')));
-    return;*/
-    
-    //$r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($deck))->result_array();
-    
     $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
     if(count($phone_r)<1) {
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
     }      
-    $r = $this->db->query('SELECT position, question, answer 
-			   FROM fl_cards 
-			   WHERE deck_id IN 
-			    (SELECT deck_id 
-			     FROM fl_decks 
-			     WHERE deck_name = ?
-			     AND fl_decks.phone_number = ?
-			     )
-			     AND fl_cards.phone_number = ?', array($deck,$phone_r[0]['phone_number'],$phone_r[0]['phone_number']))->result_array();
-    //echo var_dump($r);
-    foreach($r as &$s){
-      $s['position'] = htmlentities($s['position']);
-      $s['question'] = htmlentities($s['question']);
-      $s['answer'] = htmlentities($s['answer']);
+    $r = $this->db->query('SELECT deck_id 
+			FROM fl_decks			   
+			WHERE deck_name = ?
+			AND phone_number = ?', array($deck_name,$phone_r[0]['phone_number']))->result_array();
+    if(count($r)<1) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
     }
-    //echo json_encode($r);
-    
-    //exit(json_encode(array('position' => 1, 'question' => $r[0]['question'], 'answer' => 'nm, u?')));
-    
-    exit(json_encode($r));
-    return;
+    else {
+      $deck_id = $r[0]['deck_id'];
+      $r = $this->db->query('SELECT position, question, answer 
+			    FROM fl_cards 
+			    WHERE deck_id = ?
+			    AND fl_cards.phone_number = ?', array($deck_id,$phone_r[0]['phone_number']))->result_array();
+      foreach($r as &$s){
+	$s['position'] = htmlentities($s['position']);
+	$s['question'] = htmlentities($s['question']);
+	$s['answer'] = htmlentities($s['answer']);
+      }    
+      exit(json_encode($r));
+      return;     
+    } 
     
   }
   
