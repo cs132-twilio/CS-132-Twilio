@@ -39,8 +39,9 @@
       c = c.length ? c : $('#classTabs > li.class:first');
       $(c).addClass('active');
       $.bbq.pushState({'c': $('#classTabs > li.active').data('cid')});
-      Twexter.dashboard.ajax_load_module($.bbq.getState('m') || 'clist', 0, $.bbq.getState('m_args'));
       $.bbq.pushState({m: $.bbq.getState('m') || 'clist'});
+      Twexter.dashboard.ajax_load_module($.bbq.getState('m'), 0, $.bbq.getState('m_args'));
+      $('#moduleTabs li:contains(' + $.bbq.getState('m').charAt(0).toUpperCase() + $.bbq.getState('m').slice(1).toLowerCase() + ')').click();
     }
   );
 })(jQuery);

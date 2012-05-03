@@ -14,6 +14,11 @@
       }
     },
     run: function(){
+      $('#newstream').click(
+        function(){
+        
+        }
+      );
       Twexter.modules.Stream.setloop();
       $('#streamselect').change(
         function(){

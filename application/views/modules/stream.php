@@ -9,6 +9,6 @@
   ?>
 </select>
 <input id="newstream_name" style="display:none;">
-<span class="btn button" id="newstream" style="margin-bottom: 9px;">Add New...</span>
+<span class="btn btn-primary" id="newstream" style="margin-bottom: 9px;">Add New...</span>
 <div id="stream">
 </div>
