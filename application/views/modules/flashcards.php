@@ -3,8 +3,8 @@
   <option value="test">test</option>
   <option value="biology">biology</option>
 </select>
-<a onclick="return $('add-new-deck').toggle();">Add a new Deck</a>
-<a onclick="return $('add-new-card').toggle();">Add a new Card</a>
+<a onclick="return $('#add-new-deck').toggle();">Add a new Deck</a>
+<a onclick="return $('#add-new-card').toggle();">Add a new Card</a>
 
 <div id="deck">
 </div>
