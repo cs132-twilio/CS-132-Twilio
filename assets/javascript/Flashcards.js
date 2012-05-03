@@ -213,6 +213,28 @@
     else
 	    return false ;
     }
+    ,
+    switchInteractionPane: function(type)
+    {
+    var agree=confirm("Are you sure you wish to continue?");
+     switch(type) {
+       case 'delete-deck':
+	  $('#add-new-deck').hide();
+	  $('#add-new-card').hide();
+	  $('#delete-deck').show();
+	  break;
+       case 'add-deck':	  
+	  $('#add-new-card').hide();
+	  $('#delete-deck').hide();
+	  $('#add-new-deck').show();
+	  break;
+       case 'add-card':
+	  $('#add-new-deck').hide();	  
+	  $('#delete-deck').hide();
+	  $('#add-new-card').show();
+	 break;
+     }
+    }
  
   };
 })(jQuery);

@@ -20,9 +20,9 @@
   <?= form_close() ?>  
 </div>
 
-<a onclick="return $('#add-new-deck').show();" class="btn btn-small btn-primary">Add a new Deck</a>
-<a onclick="return $('#add-new-card').show();" class="btn btn-small btn-primary">Add a new Card</a>
-<a onclick="return $('#delete-deck').show();" class="btn btn-small btn-primary">Delete a Deck</a>
+<a onclick="return Twexter.modules.Flashcards.switchInteractionPane('add-deck');" class="btn btn-small btn-primary">Add a new Deck</a>
+<a onclick="return Twexter.modules.Flashcards.switchInteractionPane('add-card');;" class="btn btn-small btn-primary">Add a new Card</a>
+<a onclick="return Twexter.modules.Flashcards.switchInteractionPane('delete-deck');;" class="btn btn-small btn-primary">Delete a Deck</a>
 
 <div id="add-new-deck" style="display : none;">
   <h3>Add new Deck</h3>
