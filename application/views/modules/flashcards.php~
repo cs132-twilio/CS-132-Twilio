@@ -7,7 +7,7 @@
 <a onclick="return $('#add-new-card').toggle();">Add a new Card</a>
 
 <div id="deck">
-<div id="add-new-card" style="visibility:hidden;">
+<div id="add-new-card" style="display : none;">
 Add new Card
 <?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
 	<label>Question:
