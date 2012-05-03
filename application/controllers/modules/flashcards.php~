@@ -10,13 +10,13 @@ class FlashCards extends CI_Controller
 	}
 
 	function index($c)
-	{
+	{/*
 	  $this->checkauth->check();
 	  $this->session->sess_update();
-	  $uid = $this->tank_auth->get_user_id();
+	  $uid = $this->tank_auth->get_user_id();*/
 	  $data['decks'] = $this->db->query('SELECT deck_name FROM fl_decks')->result_array();
-	  $data = array();
-	  $data['decks'] = array('a','b','c','d');
+	  //$data = array();
+	  //$data['decks'] = array('a','b','c','d');
 	  $this->load->view('/modules/flashcards.php', $data);
 	}
 	
