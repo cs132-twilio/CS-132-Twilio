@@ -48,7 +48,9 @@
           if (!error){
             $(r).each(
               function(i, e){
+		console.log(e);
                 if (!e.success){
+		  console.log(e);
                   error = e;
                   return false;
                 }
@@ -57,6 +59,7 @@
           }
           if (error) $(this).find('#message_sent').removeClass('success').addClass('error').text(error.message);
           else{
+	    console.log(e);
             console.log('submit was hit lol');
           }
         }, e)
