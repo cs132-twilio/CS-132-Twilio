@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/assets/javascript/List.js"></script>
 Class ID: <?= $class_id ?>
 
 <table class="table table-striped">

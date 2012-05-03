@@ -5,9 +5,13 @@
     setloop: function(){
       if ($('#streamselect').val() != '0'){
         Twexter.modules.Stream.poll();
-        Twexter.modules.Stream.loop = setInterval(Twexter.modules.Stream.poll, 5000);
+        clearInterval(Twexter.modules.Stream.loop);
+        Twexter.modules.Stream.loop = setInterval(Twexter.modules.Stream.poll, 1000);
       }
-      else clearInterval(Twexter.modules.Stream.loop);
+      else{
+        clearInterval(Twexter.modules.Stream.loop);
+        Twexter.modules.Stream.loop = null;
+      }
     },
     run: function(){
       Twexter.modules.Stream.setloop();
@@ -18,6 +22,12 @@
           Twexter.modules.Stream.setloop();
         }
       );
+      $('#streamselect').change();
+    },
+    changeClass: function(c){
+      clearInterval(Twexter.modules.Stream.loop);
+      Twexter.modules.Stream.loop = null;
+      Twexter.dashboard.ajax_load_module('stream', c);
     },
     poll: function(){
       $.get('/modules/stream/poll/' + $('#streamselect').val() + '?' + Twexter.modules.Stream.lastpost,
@@ -36,7 +46,7 @@
                       ),
                       ($(document.createElement('span'))
                         .addClass('stream_post_timestamp')
-                        .text(' (' + $.timeago(new Date(e.timestamp * 1000)) + ')')
+                        .text(e.timestamp?' (' + $.timeago(new Date(e.timestamp * 1000)) + ')':'')
                       )
                     )
                   ),
