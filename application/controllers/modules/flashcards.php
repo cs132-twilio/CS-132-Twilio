@@ -316,8 +316,8 @@ class FlashCards extends CI_Controller
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
     }
     else {
-      exit(json_encode(array('success' => 0, 'message' => 'in the else. ')));
       $deck_id = $r[0]['deck_id'];
+      exit(json_encode(array('success' => 0, 'message' => 'in the else. ' . $deck_id)));
       $r2 = $this->db->query('SELECT position, question, answer 
 			    FROM fl_cards 
 			    WHERE deck_id = ?', array($deck_id))->result_array();
