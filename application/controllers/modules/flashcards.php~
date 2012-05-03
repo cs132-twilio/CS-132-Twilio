@@ -389,17 +389,18 @@ class FlashCards extends CI_Controller
     header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to delete cards!')));
     
-    $delete_positions = $_POST['deletecard'];
-    exit(json_encode(array('success' => 0, 'message' => var_dump($delete_positions))));
-    return;
+    $delete_positions = $_POST['deletecard'];    
     
-    
-    $answer = trim($_POST['answer']); 
-    $deck_name = trim($_POST['deckname']);  
-    if(strlen($question)>150||strlen($answer)>150) {
-      exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 150 characters each.')));
+    if(count($delete_positions)<1) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, you have not selected any cards for deletion.')));
     }
     else {
+      foreach($delete_positions as $p) {
+	
+      }
+    
+    
+    
 	$r = $this->db->query('SELECT deck_id 
 			   FROM fl_decks			   
 			   WHERE deck_name = ?', array($deck_name))->result_array();
