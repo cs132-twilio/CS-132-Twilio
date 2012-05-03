@@ -36,7 +36,7 @@
     addNewDeck: function(){
       $('#deck').empty();
       ($(document.createElement('div'))
-                .text('<form action="flashcards/add/deck" method="post" target="_blank">Name of Deck: <input type="text" name="deckname" /><input type="submit" value="Submit" /></form>')
+                .html('<form action="flashcards/add/deck" method="post" target="_blank">Name of Deck: <input type="text" name="deckname" /><input type="submit" value="Submit" /></form>')
               ).prependTo($('#deck')).slideDown();        
       
     }
