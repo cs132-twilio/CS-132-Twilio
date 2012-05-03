@@ -6,12 +6,12 @@
             <h2>Your Profile</h2> 
             <hr /> 
             <!-- change this token! -->
-            <form action="." method="POST"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='d0212a418e8676310f5a87cdb952582a' /></div> 
+            <form action="." method="POST"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value="<?php echo $user_id; ?>" /></div> 
  
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
                         <div class="input"> 
-                            <input id="id_username" type="text" name="username" value="<?php echo $users['username']; ?>" maxlength="30" /> 
+                            <input id="id_username" type="text" name="username" value="<?php echo $users[0]['username']; ?>" maxlength="30" /> 
                             <span class="help-block"></span> 
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                     <div class="clearfix"> 
                         <label for="id_email">Email</label> 
                         <div class="input"> 
-                            <input id="id_email" type="text" name="email" value="<?php echo $users['email']; ?>" maxlength="75" /> 
+                            <input id="id_email" type="text" name="email" value="<?php echo $users[0]['email']; ?>" maxlength="75" /> 
                             
                             <span class="help-block"></span> 
                         </div> 
@@ -28,7 +28,7 @@
                 <div class="clearfix"> 
                         <label for="display_name">Display Name</label> 
                         <div class="input"> 
-                            <input id="id_email" type="text" name="email" value="<?php echo  $display_name; ?>" maxlength="75" /> 
+                            <input id="id_email" type="text" name="email" value="<?php echo  $display_name[0]['display_name']; ?>" maxlength="75" /> 
                             <span class="help-block"></span> 
                         </div> 
                     </div> 

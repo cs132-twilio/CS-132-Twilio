@@ -46,13 +46,15 @@ class Welcome extends CI_Controller {
     else redirect($redirect);
   }
 
+
   function profile(){
     $data = $this->_checkauth($data);
     if ($data['user_id']){
  	$data['users'] = $this->db->query('SELECT username, email FROM users WHERE id = ?', array($data['user_id']))->result_array();
-	$data['display_name'] = $this->db->query('SELECT display_name FROM user_profiles WHERE user_id = ?', array($data['user_id']))->result_array();	
-	
-	}
+	$data['display_name'] = $this->db->query('SELECT display_name FROM user_profiles WHERE user_id = ?', array($data['user_id']))->result_array();		
+      $this->render_secure('profile', $data);
+   }
+    else redirect($redirect);
   } 
 
 
