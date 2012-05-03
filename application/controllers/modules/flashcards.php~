@@ -67,7 +67,8 @@ class FlashCards extends CI_Controller
       }  
       
       // get the ID number of the deck
-      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ?       
+      LIMIT 1', array($deck_code));
       $deck_id = 0;
       if ($query->num_rows() > 0)
       {
@@ -339,15 +340,20 @@ class FlashCards extends CI_Controller
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck name is empty.')));
 	return;
       }
+      $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
+      if(count($phone_r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
+      }      
       $r = $this->db->query('SELECT * 
 			   FROM fl_decks			   
-			   WHERE deck_name = ?', array($deck_name))->result_array();
+			   WHERE deck_name = ?
+			   AND phone_number = ?', array($deck_name,$phone_r[0]['phone_number']))->result_array();
       if(count($r)>0) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, a deck with that name already exists.')));
       }
       else {
-	$this->db->query('INSERT INTO fl_decks (deck_name)
-				VALUES(?)', array($deck_name)); 
+	$this->db->query('INSERT INTO fl_decks (deck_name,phone_number)
+				VALUES(?,?)', array($deck_name,$phone_r[0]['phone_number'])); 
 	exit(json_encode(array('success' => 1, 'message' => 'Deck "' . $deck_name. '" added successfully!')));
       }    
       
