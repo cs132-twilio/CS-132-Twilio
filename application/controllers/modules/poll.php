@@ -2,16 +2,14 @@
 
 class Poll extends CI_Controller
 {
-	function __construct()
-	{
-		parent::__construct();
-		$this->load->helper('form');
-	}
+  function __construct(){
+    parent::__construct();
+    $this->load->helper('form');
+  }
 
-	function index()
-	{
-		header('Status: 403 FORBIDDEN');
-	}
+  function index($c){
+    $this->load->view('modules/poll.php');
+  }
 
   function post(){
 
