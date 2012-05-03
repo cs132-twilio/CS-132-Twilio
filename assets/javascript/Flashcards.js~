@@ -43,14 +43,14 @@
     submit: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
-	 console.log(e);
+	 console.log('1');
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
               function(i, e){
-		console.log(e);
+		console.log('2');
                 if (!e.success){
-		  console.log(e);
+		  console.log('3');
                   error = e;
                   return false;
                 }
@@ -59,8 +59,7 @@
           }
           if (error) $(this).find('#message_sent').removeClass('success').addClass('error').text(error.message);
           else{
-	    console.log(e);
-            console.log('submit was hit lol');
+	    console.log('4');
           }
         }, e)
       );
