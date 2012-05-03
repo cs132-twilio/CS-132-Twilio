@@ -1,0 +1,8 @@
+.list_removestudent {
+  width: 10px;
+  height: 10px;
+  opacity: .1;
+}
+.list_removestudent:hover {
+  opacity: .5;
+}
