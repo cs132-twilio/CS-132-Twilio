@@ -1,11 +1,12 @@
+<script type='text/javascript' src='/assets/javascript/profile.js'></script>
 <div class="hero-unit span8 offset1 welcome_container">
 <div class="row" id="profile"> 
     <div class="main span12 columns"> 
         <div class="padding page"> 
             <h3>Edit your Profile</h3> 
-            <hr /> 
-            
-	   <?php  echo form_open("/auth/change_email", 'method="POST"');  ?>
+           </br>
+	   </br>             
+	   <?php  echo form_open("auth/change_email", ' id="change_email_form" method="POST"');  ?>
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
                         <div class="input"> 
@@ -55,13 +56,13 @@
                     </div>
 
                 <div class="actions"> 
-                    <input type="submit" value="Change Email" class="btn" name="settings_form"> 
+                    <input type="submit" value="Change Email" class="btn" name="settings_form" id="change_email"> 
                 </div> 
 		<?php echo form_close(); ?>
             <br/> 
 
 
-          <?php  echo form_open("/auth/change_password", 'method="POST"');  ?>
+          <?php  echo form_open("/auth/change_password", ' id="change_password_form" method="POST"');  ?>
 
               <!--  <div class="clearfix"> 
                         <label for="display_name">Display Name</label> 
@@ -127,12 +128,12 @@
                    </div> 
                    
                 <div class="actions"> 
-                    <input type="submit" value="Change Password" class="btn" name="settings_form"> 
+                    <input type="submit" value="Change Password" class="btn" name="settings_form" id = "change_password"> 
                 </div> 
                 
              <?php echo form_close(); ?>
             <br/> 
-
+</div>
         </div> 
        </div>
        </div>
