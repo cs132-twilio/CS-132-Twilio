@@ -16,7 +16,7 @@
 <div id="deck-form-div">
 </div>
 <input type="hidden" id="delete-card-deckname" name="deckname" value=""></input>
-<button type="submit" class="btn" style="display : none;" id="delete-button">Delete Selected Cards</button><span id="card_deleted"></span>
+<button type="submit" class="btn btn-danger" style="display : none;" id="delete-button" onClick="return confirmSubmit()">Delete Selected Cards</button><span id="card_deleted"></span>
 
 
 <?= form_close() ?>
@@ -87,7 +87,7 @@
 </label>
 
 <br />
-<button type="submit" class="btn">Delete</button><span id="deck_deleted"></span>
+<button type="submit" class="btn btn-danger" onClick="return confirmSubmit()">Delete</button><span id="deck_deleted"></span>
 <?= form_close() ?>
 <a onclick="return $('#delete-deck').hide();">Hide</a>
 </div>
