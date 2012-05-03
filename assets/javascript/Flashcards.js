@@ -45,7 +45,11 @@
 		);  
 	      $tbl.attr('class', 'table table-striped');
 	     
-              $('#deck').append($tbl);                           
+              $('#deck').append($tbl); 
+	      ($(document.createElement('div'))
+                .html('<a onclick="return Twexter.modules.Flashcards.addNewCard();">Add a new Card</a>')
+              ).appendTo($('#deck')).slideDown(); 
+	      
               if (e.execute) (new Function(e.execute))();
             }
           );
