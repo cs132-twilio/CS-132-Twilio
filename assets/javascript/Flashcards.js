@@ -61,13 +61,10 @@
           else{
             $(this).find('[name=deckname]').clearFields();
             $(this).find('#deck_added').removeClass('error').addClass('success').text(r.message);
-	  }, e)
+	  }
+        }, e)
       );
     }
-    
-    
-    
-    
   };
 })(jQuery);
 
