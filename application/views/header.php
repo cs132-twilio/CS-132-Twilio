@@ -42,7 +42,7 @@
             
             <ul id="user-control" class="nav pull-right">
               <?php if ($user_id) { ?>
-              <li><a href="#">Profile</a></li>
+              <li><a href="/profile">Profile</a></li>
               <li><a href="#" onclick="jQuery.post('/auth/logout', {}, function(){document.location.reload(true);});">Log out</a></li>
               <?php } else { ?>
               <li>
