@@ -1,7 +1,6 @@
 <select id="deckselect">
 <option value=''>-Select a Deck-</option>
 <?
-echo '<option value="0">' . var_dump($decks). ' - ' . count($decks) . '</option>';
   if (!count($decks)) echo '<option value="0">No Decks available</option>';
     foreach($decks as $d){
       echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
