@@ -76,7 +76,7 @@
 	  }
         }, e)
       );
-    }
+    },
     submitCard: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
