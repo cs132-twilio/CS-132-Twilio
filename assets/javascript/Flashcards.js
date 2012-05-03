@@ -76,7 +76,7 @@
           else{
             $(this).find('[name=deckname]').clearFields();
             $(this).find('#deck_added').removeClass('error').addClass('success').text(r.message);
-	    Twexter.modules.Flashcards.poll();
+	    Twexter.dashboard.ajax_load_module('Flashcards');
 	  }
         }, e)
       );
@@ -100,7 +100,7 @@
             $(this).find('[name=question]').clearFields();
 	    $(this).find('[name=answer]').clearFields();
             $(this).find('#card_added').removeClass('error').addClass('success').text(r.message);
-	    Twexter.modules.Flashcards.poll();
+	    Twexter.dashboard.ajax_load_module('Flashcards');
 	  }
         }, e)
       );
@@ -124,7 +124,7 @@
           else{
             $(this).find('[name=deletecard]').clearFields();
             $(this).find('#card_deleted').removeClass('error').addClass('success').text(r.message);
-	    Twexter.modules.Flashcards.poll();
+	    Twexter.dashboard.ajax_load_module('Flashcards');
 	    
 	  }
         }, e)
@@ -148,7 +148,7 @@
 	  if (error) $(this).find('#deck_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('#deck_deleted').removeClass('error').addClass('success').text(r.message);
-	    Twexter.modules.Flashcards.poll();	    
+	    Twexter.dashboard.ajax_load_module('Flashcards');	    
 	  }
         }, e)
       );
