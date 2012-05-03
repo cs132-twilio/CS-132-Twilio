@@ -488,7 +488,10 @@ class FlashCards extends CI_Controller
   function listdecks() {
     header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to list decks!')));   
-    
+      $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
+      if(count($phone_r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
+      }   
       $r = $this->db->query('SELECT deck_name 
 			    FROM fl_decks
 			    WHERE phone_number = ?',array($phone_r[0]['phone_number']))->result_array();      
