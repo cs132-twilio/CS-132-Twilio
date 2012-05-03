@@ -174,7 +174,7 @@
         }
       );
       alert(old_main_val);
-      $('#deckselect').val(old_main_val);
+      window.setTimeout($('#deckselect').val(old_main_val),500);
       Twexter.modules.Flashcards.poll();
       
     }
