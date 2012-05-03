@@ -374,8 +374,7 @@ class FlashCards extends CI_Controller
 	$last_position = $this->db->query('SELECT MAX(position) AS maxpos 
 			   FROM fl_cards			   
 			   WHERE deck_id = ?', array($deck_id))->result_array();
-	$next_position = intval($last_position[0]["maxpos"]) + 1;
-	exit(json_encode(array('success' => 0, 'message' => var_dump($next_position))));
+	$next_position = intval($last_position[0]["maxpos"]) + 1;	
 	
 	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer)
 				VALUES(?,?,?,?)', array($deck_id,$next_position,$question,$answer)); 
