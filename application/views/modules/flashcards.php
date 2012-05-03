@@ -3,8 +3,8 @@
   <option value="test">test</option>
   <option value="biology">biology</option>
 </select>
-<a onclick="return $('#add-new-deck').toggle();">Add a new Deck</a>
-<a onclick="return $('#add-new-card').toggle();">Add a new Card</a>
+<a onclick="return $('#add-new-deck').show();">Add a new Deck</a>
+<a onclick="return $('#add-new-card').show();">Add a new Card</a>
 
 <div id="deck">
 </div>
@@ -18,6 +18,7 @@ Add new Deck
 	<br />
 	<button type="submit" class="btn">Add</button><span id="deck_added"></span>
 <?= form_close() ?>
+<a onclick="return $('#add-new-deck').hide();">Hide</a>
 </div>
 
 
@@ -33,6 +34,7 @@ Add new Card
 	<br />
 	<button type="submit" class="btn">Add</button><span id="card_added"></span>
 <?= form_close() ?>
+<a onclick="return $('#add-new-card').hide();">Hide</a>
 </div>
 
 
