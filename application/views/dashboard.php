@@ -20,6 +20,7 @@
       <li class="active"><a onclick="return Twexter.dashboard.ajax_load_module('clist');">List</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('message');">Message</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('stream');">Stream</a></li>
+      <li><a onclick="return ajax_load_module('Poll');">Poll</a></li>
     </ul>
     <div id="moduleContent" >
     </div>
