@@ -46,6 +46,6 @@ class Welcome extends CI_Controller {
       $data['classlist'] = $this->db->query('SELECT id, name FROM classlist WHERE owner_id = ?', array($data['user_id']))->result_array();
       $this->render_secure('dashboard', $data);
     }
-    else redirect($redirect);
+    else redirect('/auth/login');
   }
 }
