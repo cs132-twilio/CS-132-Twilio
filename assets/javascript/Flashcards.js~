@@ -33,8 +33,8 @@
 		      )
 		
 		);  
-	      $tbl.attr('class', 'table');
-	      $tbl.attr('class', 'table-striped');
+	      $tbl.attr('class', 'table table-striped');
+	     
               $('#deck').append($tbl);                           
               if (e.execute) (new Function(e.execute))();
             }
