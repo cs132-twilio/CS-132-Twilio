@@ -45,8 +45,22 @@ class Stream extends CI_Controller
   
   function poll($thread){
     header('Content-type: application/json');
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.modules.Stream.loop);')));
-    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp) AS timestamp FROM stream_posts, students s WHERE s.id = student_id AND thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
+    if (!$this->tank_auth->is_logged_in()){
+      exit(
+        json_encode(
+          array(
+            'success' => 0,
+            'username' => '<span class="stream_error_title">Twexter System Message</span>',
+            'message' => 'You must be <a onclick="Twexter.ajax_load(\'/auth/login?u=/dashboard%23c=\' + Twexter.dashboard.getClass() + \'%26m=stream%26m_args=/' . $thread . '\', \'moduleContent\');">logged in</a> to read messages!',
+            'execute' => 'clearInterval(Twexter.modules.Stream.loop); Twexter.modules.Stream.loop = null;'
+          )
+        )
+      );
+    }
+    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp)
+                           AS timestamp FROM stream_posts, students s WHERE s.id = student_id
+                           AND thread = ? AND unix_timestamp(timestamp) > ?',
+                           array($thread, $_SERVER['QUERY_STRING']))->result_array();
     foreach($r as &$s){
       $s['name'] = htmlentities($s['name']);
       $s['message'] = htmlentities($s['message']);
