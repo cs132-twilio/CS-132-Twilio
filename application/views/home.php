@@ -1,6 +1,4 @@
-
-
-<script type="text/javascript"  src="/assets/javascript/home.js"></script>
+    <script type="text/javascript"  src="/assets/javascript/home.js"></script>
 <div class="hero-unit span8 offset1 welcome_container">
   <div class="row">
     <h1>Twexter</h1>
@@ -33,9 +31,9 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
       </div>
     </div>
-    <div class="span3">
-      <h1>Try Now Free</h1>     
-      <p><a class="btn btn-info btn-large big-button">Sign up &raquo;</a></p>
+    <div class="span3">			
+      <h1>Try Now Free</h1>	
+      <p><a class="btn btn-info btn-large big-button">Sign up &raquo;</a></p>			
     </div>
   </div>
 </div>
@@ -46,15 +44,14 @@
 <div class="row">
   <div class="span4 offset2">
     <h2>About</h2>
-    <p>In recent years, the use of alternative methods in education has become extremely popular. However, although 87% of public school students have an SMS capable device, the f$
+    <p>In recent years, the use of alternative methods in education has become extremely popular. However, although 87% of public school students have an SMS capable device, the full potential of SMS as an educational tool has not yet been exploited.</p>
     <p><a class="btn" href="#">View details &raquo;</a></p>
   </div>
   <div class="span4">
     <h2>Why Twexter</h2>
-    <p>At Twexter, our goal is to allow secondary school teachers to connect with their students through SMS in constructive ways. To achieve this, we provide them with a series o$
+    <p>At Twexter, our goal is to allow secondary school teachers to connect with their students through SMS in constructive ways. To achieve this, we provide them with a series of SMS-based educational tools.</p>
     <p><a class="btn" href="#">View details &raquo;</a></p>
   </div>
 
 
 </div>
-
