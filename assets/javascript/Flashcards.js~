@@ -23,6 +23,7 @@
       $('#deck-form-div').empty();
       $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
         function(r){
+	  console.log(r);
 	  var $tbl = $('<table>').attr('id', 'cardsTable');
 	  $tbl.append(
 		  $('<tr>')
