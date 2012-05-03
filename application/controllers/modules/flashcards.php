@@ -327,7 +327,7 @@ class FlashCards extends CI_Controller
   
   function adddeck() {
     header('Content-type: application/json');    
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to add decks!')));
     
     $deck_name_split = preg_split('/[\s]+/', trim($_POST['deckname']), 3); 
     if(count($deck_name_split)>1) {
@@ -345,6 +345,40 @@ class FlashCards extends CI_Controller
 	$this->db->query('INSERT INTO fl_decks (deck_name)
 				VALUES(?)', array($deck_name)); 
 	exit(json_encode(array('success' => 1, 'message' => 'Deck "' . $deck_name. '" added successfully!')));
+      }    
+      
+    }
+  
+  }
+  
+  
+    function addcard() {
+    header('Content-type: application/json');    
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to add cards!')));
+    
+    $question = trim($_POST['question']);
+    $answer = trim($_POST['answer']); 
+    $deckname = trim($_POST['deckname']);  
+    if(strlen($question)>150||strlen($answer)>150) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 150 characters each.')));
+    }
+    else {
+	$r = $this->db->query('SELECT deck_id 
+			   FROM fl_decks			   
+			   WHERE deck_name = ? LIMIT 1', array($deck_name))->result_array();
+      if(count($r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists.')));
+      }
+      else {
+	$deck_id = $r[0]['deck_id'];
+	$last_position = $this->db->query('SELECT MAX(position) AS maxpos 
+			   FROM fl_cards			   
+			   WHERE deck_id = ?', array($deck_id))->result_array();
+	
+	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer)
+				VALUES(?,?,?,?)', array($deck_id,$last_position+1,$question,$answer)); 
+	exit(json_encode(array('success' => 1, 'message' => 'Card Q:"' . $question . '" A:"' . $answer .  '" added successfully!')));
+      }    
       }    
       
     }
