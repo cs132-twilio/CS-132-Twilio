@@ -36,65 +36,66 @@ $captcha = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table>
+<div>
 	<?php if ($use_username) { ?>
-	<tr>
-		<td><?php echo form_label('Username', $username['id']); ?></td>
-		<td><?php echo form_input($username); ?></td>
-		<td style="color: red;"><?php echo form_error($username['name']); ?><?php echo isset($errors[$username['name']])?$errors[$username['name']]:''; ?></td>
-	</tr>
+	<div class="registration_field">
+		<div><?php echo form_label('Username', $username['id']); ?></div>
+		<div><?php echo form_input($username); ?></div>
+		<div class="error"><?php echo form_error($username['name']); ?><?php echo isset($errors[$username['name']])?$errors[$username['name']]:''; ?></div>
+	</div>
 	<?php } ?>
-	<tr>
-		<td><?php echo form_label('Email Address', $email['id']); ?></td>
-		<td><?php echo form_input($email); ?></td>
-		<td style="color: red;"><?php echo form_error($email['name']); ?><?php echo isset($errors[$email['name']])?$errors[$email['name']]:''; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Password', $password['id']); ?></td>
-		<td><?php echo form_password($password); ?></td>
-		<td style="color: red;"><?php echo form_error($password['name']); ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Confirm Password', $confirm_password['id']); ?></td>
-		<td><?php echo form_password($confirm_password); ?></td>
-		<td style="color: red;"><?php echo form_error($confirm_password['name']); ?></td>
-	</tr>
+	<div class="registration_field">
+		<div><?php echo form_label('Email Address', $email['id']); ?></div>
+		<div><?php echo form_input($email); ?></div>
+		<div class="error"><?php echo form_error($email['name']); ?><?php echo isset($errors[$email['name']])?$errors[$email['name']]:''; ?></div>
+	</div>
+	<div class="registration_field">
+		<div><?php echo form_label('Password', $password['id']); ?></div>
+		<div><?php echo form_password($password); ?></div>
+		<div class="error"><?php echo form_error($password['name']); ?></div>
+	</div class="registration_field">
+	<div class="registration_field">
+		<div><?php echo form_label('Confirm Password', $confirm_password['id']); ?></div>
+		<div><?php echo form_password($confirm_password); ?></div>
+		<div class="error"><?php echo form_error($confirm_password['name']); ?></div>
+	</div>
 
-	<?php if ($captcha_registration) {
+	<?php if ($captcha_regisdivation) {
 		if ($use_recaptcha) { ?>
-	<tr>
-		<td colspan="2">
+	<div class="registration_field">
+		<div colspan="2">
 			<div id="recaptcha_image"></div>
-		</td>
-		<td>
+		</div>
+		<div>
 			<a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a>
 			<div class="recaptcha_only_if_image"><a href="javascript:Recaptcha.switch_type('audio')">Get an audio CAPTCHA</a></div>
 			<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">Get an image CAPTCHA</a></div>
-		</td>
-	</tr>
-	<tr>
-		<td>
+		</div>
+	</div>
+	<div class="registration_field">
+		<div>
 			<div class="recaptcha_only_if_image">Enter the words above</div>
 			<div class="recaptcha_only_if_audio">Enter the numbers you hear</div>
-		</td>
-		<td><input type="text" id="recaptcha_response_field" name="recaptcha_response_field" /></td>
-		<td style="color: red;"><?php echo form_error('recaptcha_response_field'); ?></td>
+		</div>
+		<div><input type="text" id="recaptcha_response_field" name="recaptcha_response_field" /></div>
+		<div class="error"><?php echo form_error('recaptcha_response_field'); ?></div>
 		<?php echo $recaptcha_html; ?>
-	</tr>
+	</div>
 	<?php } else { ?>
-	<tr>
-		<td colspan="3">
+	<div class="registration_field">
+		<div colspan="3">
 			<p>Enter the code exactly as it appears:</p>
 			<?php echo $captcha_html; ?>
-		</td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Confirmation Code', $captcha['id']); ?></td>
-		<td><?php echo form_input($captcha); ?></td>
-		<td style="color: red;"><?php echo form_error($captcha['name']); ?></td>
-	</tr>
+		</div>
+	</div>
+	<div class="registration_field">
+		<div><?php echo form_label('Confirmation Code', $captcha['id']); ?></div>
+		<div><?php echo form_input($captcha); ?></div>
+		<div class="error"><?php echo form_error($captcha['name']); ?></div>
+	</div>
 	<?php }
 	} ?>
-</table>
-<?php echo form_submit('register', 'Register'); ?>
+</div>
+<?php echo form_submit('register', 'Sign up ' . "\xC2\xBB", 'class="btn btn-info btn-large big-button pull-right"');
+      //echo form_submit('register', 'Register'); ?>
 <?php echo form_close(); ?>

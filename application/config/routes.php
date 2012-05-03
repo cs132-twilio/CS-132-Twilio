@@ -43,5 +43,6 @@ $route['404_override'] = '';
 $route['dashboard'] = '/welcome/dashboard';
 $route['profile'] = '/welcome/profile';
 
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

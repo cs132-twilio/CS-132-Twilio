@@ -5,6 +5,7 @@ class Welcome extends CI_Controller {
     parent::__construct();
 
     $this->load->library('tank_auth');
+    $this->load->library('session');
     $this->load->helper('form');
     $this->load->helper('url');
   }
@@ -30,6 +31,7 @@ class Welcome extends CI_Controller {
     $this->load->view('footer', $data);
   }
   function render_secure($view, $data=array(), $redirect = '/auth/login'){
+    $this->session->sess_update();
     if ($this->tank_auth->is_logged_in()) $this->render($view, $data);
     else redirect($redirect);
   }
@@ -37,13 +39,14 @@ class Welcome extends CI_Controller {
   function index(){
     $this->render('home');
   }
+
   function dashboard(){
     $data = $this->_checkauth($data);
     if ($data['user_id']){
       $data['classlist'] = $this->db->query('SELECT id, name FROM classlist WHERE owner_id = ?', array($data['user_id']))->result_array();
       $this->render_secure('dashboard', $data);
     }
-    else redirect($redirect);
+    else redirect('/auth/login');
   }
 
 

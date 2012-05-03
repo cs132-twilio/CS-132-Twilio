@@ -166,4 +166,4 @@
     })
   })
 
-}(window.jQuery);
+}( window.jQuery );

@@ -1,3 +1,4 @@
+<script type='text/javascript' src='/assets/javascript/jquery.bbq.js'></script>
 <script type='text/javascript' src='/assets/javascript/dashboard.js'></script>
 <div class="container-fluid">
   <div class="row-fluid">
@@ -5,12 +6,9 @@
   <!--Sidebar content-->
   <ul id="classTabs" class="nav nav-pills nav-stacked">
       <li class="nav-header"><h4>Your Classes</h4></li>
-      <!--<li class="active"><a onclick="return Twexter.ajax_load('/modules/cList/index/1', 'moduleContent');">Math</a></li>
-      <li><a onclick="return Twexter.ajax_load('/modules/cList/index/2', 'moduleContent');">Biology</a></li>
-      <li><a onclick="return Twexter.ajax_load('/modules/cList/index/3', 'moduleContent');">Web Applications</a></li>-->
       <?
       foreach ($classlist as $c){
-        echo '<li class="class"><a onclick="return Twexter.ajax_load(\'/modules/cList/index/' . $c['id'] . '\', \'moduleContent\');">' . $c['name'] . '</a></li>';
+        echo '<li class="class" data-cid="' . $c['id'] . '"><a onclick="return Twexter.dashboard.changeClass(' . $c['id'] . ');">' . $c['name'] . '</a></li>';
       }
       ?>
   </ul>
@@ -19,9 +17,9 @@
 <div id="modules" class="span10">
   <!--Body content-->
     <ul id="moduleTabs" class="nav nav-tabs">
-      <li class="active"><a onclick="return Twexter.ajax_load('/modules/cList/index/1', 'moduleContent');">List</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('Message');">Message</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('Stream');">Stream</a></li>
+      <li class="active"><a onclick="return Twexter.dashboard.ajax_load_module('clist');">List</a></li>
+      <li><a onclick="return Twexter.dashboard.ajax_load_module('message');">Message</a></li>
+      <li><a onclick="return Twexter.dashboard.ajax_load_module('stream');">Stream</a></li>
     </ul>
     <div id="moduleContent" >
     </div>
