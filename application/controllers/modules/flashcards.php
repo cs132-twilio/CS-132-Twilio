@@ -367,7 +367,7 @@ class FlashCards extends CI_Controller
 			   FROM fl_decks			   
 			   WHERE deck_name = ?', array($deck_name))->result_array();
       if(count($r)<1) {
-	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ' . $deck_name)));
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
       }
       else {
 	$deck_id = $r[0]['deck_id'];
