@@ -39,7 +39,7 @@
                       .append($('<td>').text(e.position),
                       $('<td>').text(e.question),
 		      $('<td>').text(e.answer),
-		      $('<td>').text('[delete]')
+		      $('<td>').text('<input type="checkbox" name="deletecard" value="' + e.position + '" />')
 		      )
 		
 		);  
