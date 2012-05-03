@@ -305,12 +305,19 @@ class FlashCards extends CI_Controller
     
     //$r = $this->db->query('SELECT position, question, answer FROM fl_cards WHERE deck_name = ?', array($deck))->result_array();
     
+    $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
+    if(count($phone_r)<1) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
+    }      
     $r = $this->db->query('SELECT position, question, answer 
 			   FROM fl_cards 
 			   WHERE deck_id IN 
 			    (SELECT deck_id 
 			     FROM fl_decks 
-			     WHERE deck_name = ?)', array($deck))->result_array();
+			     WHERE deck_name = ?
+			     AND fl_decks.phone_number = ?
+			     )
+			     AND fl_cards.phone_number = ?', array($deck,$phone_r[0]['phone_number'],$phone_r[0]['phone_number']))->result_array();
     //echo var_dump($r);
     foreach($r as &$s){
       $s['position'] = htmlentities($s['position']);
@@ -376,9 +383,14 @@ class FlashCards extends CI_Controller
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers must not be empty.')));
     } 
     else {
+	$phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
+	if(count($phone_r)<1) {
+	  exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
+	}      
 	$r = $this->db->query('SELECT deck_id 
 			   FROM fl_decks			   
-			   WHERE deck_name = ?', array($deck_name))->result_array();
+			   WHERE deck_name = ?
+			   AND phone_number = ?', array($deck_name,$phone_r[0]['phone_number']))->result_array();
       if(count($r)<1) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
       }
@@ -386,11 +398,12 @@ class FlashCards extends CI_Controller
 	$deck_id = $r[0]['deck_id'];
 	$last_position = $this->db->query('SELECT MAX(position) AS maxpos 
 			   FROM fl_cards			   
-			   WHERE deck_id = ?', array($deck_id))->result_array();
+			   WHERE deck_id = ?
+			   AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']))->result_array();
 	$next_position = intval($last_position[0]["maxpos"]) + 1;	
 	
-	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer)
-				VALUES(?,?,?,?)', array($deck_id,$next_position,$question,$answer)); 
+	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer,phone_number)
+				VALUES(?,?,?,?,?)', array($deck_id,$next_position,$question,$answer,$phone_r[0]['phone_number'])); 
 	exit(json_encode(array('success' => 1, 'message' => 'Card Q:"' . $question . '" A:"' . $answer .  '" added successfully!')));
       }          
       
@@ -412,9 +425,14 @@ class FlashCards extends CI_Controller
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck selected.')));
     }
     else {
+      $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
+      if(count($phone_r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
+      }   
       $r = $this->db->query('SELECT deck_id 
 			    FROM fl_decks			   
-			    WHERE deck_name = ?', array($deck_name))->result_array();
+			    WHERE deck_name = ?
+			   AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']))->result_array();
       if(count($r)<1) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
       }
@@ -423,13 +441,16 @@ class FlashCards extends CI_Controller
 	foreach($delete_positions as $p) {
 	  $s = $this->db->query('SELECT card_id 
 			    FROM fl_cards			   
-			    WHERE deck_id = ? AND position = ?', array($deck_id,$p))->result_array();
+			    WHERE deck_id = ? AND position = ?
+			    AND phone_number = ?', array($deck_id,$p,$phone_r[0]['phone_number']))->result_array();
 	  if(count($s)>0) {
 	    $this->db->query('DELETE FROM fl_cards			   
-			    WHERE deck_id = ? AND position = ?', array($deck_id,$p));
+			    WHERE deck_id = ? AND position = ?
+			    AND phone_number = ?', array($deck_id,$p,$phone_r[0]['phone_number']));
 	    $this->db->query('UPDATE fl_cards
 			      SET position = position - 1
-			      WHERE deck_id = ? AND position > ?', array($deck_id,$p));		    
+			      WHERE deck_id = ? AND position > ?
+			      AND phone_number = ?', array($deck_id,$p,$phone_r[0]['phone_number']));		    
 	  }	
 	}
 	exit(json_encode(array('success' => 1, 'message' => 'Cards deleted successfully.')));
@@ -446,18 +467,25 @@ class FlashCards extends CI_Controller
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck selected.')));
     }
     else {
+      $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
+      if(count($phone_r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, you don\'t have a phone number.')));
+      }   
       $r = $this->db->query('SELECT deck_id 
 			    FROM fl_decks			   
-			    WHERE deck_name = ?', array($deck_name))->result_array();
+			    WHERE deck_name = ? 
+			    AND phone_number = ?', array($deck_name,$phone_r[0]['phone_number']))->result_array();
       if(count($r)<1) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
       }
       else {
 	$deck_id = $r[0]['deck_id'];	  
 	$this->db->query('DELETE FROM fl_cards			   
-			    WHERE deck_id = ?', array($deck_id));
+			    WHERE deck_id = ?
+			    AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']));
 	$this->db->query('DELETE FROM fl_decks			   
-			    WHERE deck_id = ?', array($deck_id));			
+			    WHERE deck_id = ?
+			    AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']));			
 	exit(json_encode(array('success' => 1, 'message' => 'Deck "' . $deck_name . '" deleted successfully.')));
       }      
     }  
@@ -468,7 +496,8 @@ class FlashCards extends CI_Controller
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to list decks!')));   
     
       $r = $this->db->query('SELECT deck_name 
-			    FROM fl_decks')->result_array();      
+			    FROM fl_decks
+			    WHERE phone_number = ?',array($phone_r[0]['phone_number']))->result_array();      
       exit(json_encode($r));            
      
   }
