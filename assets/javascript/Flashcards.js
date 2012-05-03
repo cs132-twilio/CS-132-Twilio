@@ -42,8 +42,8 @@
     },
     submit: function(e){
       return !$(e).ajaxSubmit(
-      console.log(e);
         $.proxy(function(r){
+	 console.log(e);
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
