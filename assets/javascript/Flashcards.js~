@@ -29,8 +29,8 @@
 		  $('<tr>')
                       .append($('<td>').text(e.position),
                       $('<td>').text(e.question),
-		      $('<td>').text(e.question),
-		      );
+		      $('<td>').text(e.question)
+		      )
 		
 		);                
               $('#deck').append($tbl);                           
