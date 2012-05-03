@@ -31,6 +31,7 @@ class FlashCards extends CI_Controller
       $this->load->view('twiml.php', array('message' => 'Invalid request!'));
       return;
     }
+    $to_num = $_GET['To'];
     $message = preg_split('/[\s]+/', trim($_GET['Body']), 3); 
     // $this->load->view('twiml.php', array('message' => count($message)));
     if (count($message) < 1){
@@ -42,7 +43,7 @@ class FlashCards extends CI_Controller
       // Message format: "FL"
       // Should list available decks
       case 1: 
-	$query = $this->db->query('SELECT deck_name FROM fl_decks');
+	$query = $this->db->query('SELECT deck_name FROM fl_decks WHERE phone_number = ?',array($to_num));
 	$output = 'Decks: ';
 	if ($query->num_rows() > 0)
 	{
@@ -71,8 +72,8 @@ class FlashCards extends CI_Controller
       }  
       
       // get the ID number of the deck
-      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ?       
-      LIMIT 1', array($deck_code));
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? AND phone_number = ?      
+      LIMIT 1', array($deck_code,$to_num));
       $deck_id = 0;
       if ($query->num_rows() > 0)
       {
@@ -154,7 +155,9 @@ class FlashCards extends CI_Controller
       }  
       
       // get the ID number of the deck
-      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
+      $query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? AND phone_number = ?      
+      LIMIT 1', array($deck_code,$to_num));
+      //$query = $this->db->query('SELECT deck_id FROM fl_decks WHERE deck_name = ? LIMIT 1', array($deck_code));
       $deck_id = 0;
       if ($query->num_rows() > 0)
       {
@@ -167,8 +170,7 @@ class FlashCards extends CI_Controller
       }
       $position = 1;
       $answer = 0;
-      switch(strtolower($command)) {
-	
+      switch(strtolower($command)) {	
 	case 'flip':
 	  // get the deck position number for this student
 	  $query = $this->db->query('SELECT position, answer FROM fl_students WHERE student_id = ? AND deck_id = ? LIMIT 1', array($student_id, $deck_id));
