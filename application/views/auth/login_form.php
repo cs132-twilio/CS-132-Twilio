@@ -32,7 +32,7 @@ $captcha = array(
 );
 ?>
 <script type="text/javascript">
-  if (window.location.href.match(/auth\/login$/)) window.location.href='/';
+  if (window.location.href.match(/auth\/login[^\/]*((#|\?).*)?/)) window.location.href='/';
 </script>
 <?php echo form_open($this->uri->uri_string() . '?' . htmlentities($_SERVER['QUERY_STRING'])); ?>
 <table>
