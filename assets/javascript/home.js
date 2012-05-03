@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-
-!function ($) {
-  $(function(){
-    $('#myCarousel').carousel()
-  })
-}(window.jQuery)
-
-
-=======
 (function($){
   $(window).load(
     function(){
@@ -30,4 +20,4 @@
     }
   );
 })(jQuery);
->>>>>>> 1fe90e1f5af548285be33671841705c17b621945
+
