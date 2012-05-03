@@ -4,11 +4,8 @@
         <div class="padding page"> 
             <h3>Edit your Profile</h3> 
             <hr /> 
-            <!-- change this token! -->
             
-	   <?php  echo form_open("/auth/profile", 'method="POST"');  ?>
- <?php var_dump($old_password); ?>
-
+	   <?php  echo form_open("/auth/change_email", 'method="POST"');  ?>
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
                         <div class="input"> 
@@ -38,7 +35,34 @@
                         </div> 
                     </div> 
 
-                <div class="clearfix"> 
+
+
+                   <div class="clearfix">
+                        <label for="password">Current password</label>
+                        <div class="input">
+                            <?php echo form_password(
+                              array(
+                                    'name'  => 'password',
+                                    'id'    => 'password',
+                                    'size' => 30
+                              )
+                            ); ?>
+<!--                <td style="color: red;"><?php echo form_error('old_password'); ?><?php echo isset($errors['old_password'])?$errors['old_password']:''; ?></td>
+-->
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+
+                <div class="actions"> 
+                    <input type="submit" value="Change Email" class="btn" name="settings_form"> 
+                </div> 
+		<?php echo form_close(); ?>
+            <br/> 
+
+
+          <?php  echo form_open("/auth/change_password", 'method="POST"');  ?>
+
+              <!--  <div class="clearfix"> 
                         <label for="display_name">Display Name</label> 
                         <div class="input"> 
                             <?php echo form_input(
@@ -52,6 +76,7 @@
                             <span class="help-block"></span> 
                         </div> 
                     </div> 
+		-->
 
                     <div class="clearfix"> 
                         <label for="id_current_password">Current password</label> 
@@ -98,7 +123,7 @@
                    </div> 
                    
                 <div class="actions"> 
-                    <input type="submit" value="Save changes" class="btn" name="settings_form"> 
+                    <input type="submit" value="Change Password" class="btn" name="settings_form"> 
                 </div> 
                 
              <?php echo form_close(); ?>

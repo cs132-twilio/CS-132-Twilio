@@ -341,7 +341,7 @@ class Auth extends CI_Controller
 	function change_password()
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
-			redirect('/auth/login/');
+			redirect('/');
 
 		} else {
 			$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
@@ -580,16 +580,16 @@ class Auth extends CI_Controller
 		return TRUE;
 	}
 	
-	function profile(){
+/*	function profile(){
  		if (!$this->tank_auth->is_logged_in()) {                                                                // not logged in or not activated
                         redirect('/auth/login/');                        
                 } else {
 			if($this->input->post('email')){
-				$this->change_email_profile();
+				$this->change_email();
 			}
 			
 		}
-	}
+	}*/
 
 	       /**
          * Change user email
