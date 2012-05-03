@@ -17,6 +17,7 @@
       <li class="active"><a onclick="return ajax_load_module('List');">List</a></li>
       <li><a onclick="return ajax_load_module('Message');">Message</a></li>
       <li><a onclick="return ajax_load_module('Stream');">Stream</a></li>
+      <li><a onclick="return ajax_load_module('Poll');">Poll</a></li>
     </ul>
     <div id="moduleContent" >
     <?php include 'application/views/modules/list.php'; ?>
