@@ -301,7 +301,7 @@ class FlashCards extends CI_Controller
   
    function poll($deck){
     header('Content-type: application/json');    
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.FlashCards.loop);')));
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to see flashcards!')));
     
     $phone_r = $this->db->query('SELECT user_profiles.phone_number FROM user_profiles WHERE user_id = ?',array($this->tank_auth->get_user_id()))->result_array();
     if(count($phone_r)<1) {
@@ -316,15 +316,15 @@ class FlashCards extends CI_Controller
     }
     else {
       $deck_id = $r[0]['deck_id'];
-      $r = $this->db->query('SELECT position, question, answer 
+      $r2 = $this->db->query('SELECT position, question, answer 
 			    FROM fl_cards 
 			    WHERE deck_id = ?', array($deck_id))->result_array();
-      foreach($r as &$s){
+      foreach($r2 as &$s){
 	$s['position'] = htmlentities($s['position']);
 	$s['question'] = htmlentities($s['question']);
 	$s['answer'] = htmlentities($s['answer']);
       }    
-      exit(json_encode($r));
+      exit(json_encode($r2));
       return;     
     } 
     
