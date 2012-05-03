@@ -158,6 +158,10 @@
       $('#deckselect').empty();
       $('#deckselect-deletedeck').empty();
       $('#deckselect-addcard').empty();
+      $.ajaxSetup({
+	  async: false
+	});
+      
       $.get('/modules/flashcards/listdecks',
         function(r){
 	  $('#deckselect').append('<option value="-1">-Select a Deck-</option>')
@@ -172,8 +176,10 @@
             }
           );
         }
-      );
-      alert(old_main_val);
+      );      
+      $.ajaxSetup({
+	  async: true
+	});
       $('#deckselect').val(String(old_main_val));
       Twexter.modules.Flashcards.poll();
       
