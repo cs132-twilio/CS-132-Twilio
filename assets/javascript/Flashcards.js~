@@ -215,8 +215,7 @@
     }
     ,
     switchInteractionPane: function(type)
-    {
-    var agree=confirm("Are you sure you wish to continue?");
+    {    
      switch(type) {
        case 'delete-deck':
 	  $('#add-new-deck').hide();
