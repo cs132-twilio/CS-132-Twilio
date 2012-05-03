@@ -324,8 +324,8 @@ class FlashCards extends CI_Controller
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
     
     $deck_name_split = preg_split('/[\s]+/', trim($_POST['deckname']), 3); 
-    if(count($deck_name_split>1)) {
-      exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck names must only be one word.' . count($deck_name_split))));
+    if(count($deck_name_split)>1) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck names must only be one word.')));
     }
     else {
       $deck_name = $deck_name_split[0];
