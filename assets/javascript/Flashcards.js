@@ -57,11 +57,11 @@
               }
             );
           }
-          if (error) $(this).find('#message_sent').removeClass('success').addClass('error').text(error.message);
+	  if (error) $(this).find('#deck_added').removeClass('success').addClass('error').text(error.message);
           else{
-	    console.log('4');
-          }
-        }, e)
+            $(this).find('[name=deckname]').clearFields();
+            $(this).find('#deck_added').removeClass('error').addClass('success').text(r.message);
+	  }, e)
       );
     }
     
