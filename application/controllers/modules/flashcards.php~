@@ -318,8 +318,7 @@ class FlashCards extends CI_Controller
       $deck_id = $r[0]['deck_id'];
       $r = $this->db->query('SELECT position, question, answer 
 			    FROM fl_cards 
-			    WHERE deck_id = ?
-			    AND fl_cards.phone_number = ?', array($deck_id,$phone_r[0]['phone_number']))->result_array();
+			    WHERE deck_id = ?', array($deck_id))->result_array();
       foreach($r as &$s){
 	$s['position'] = htmlentities($s['position']);
 	$s['question'] = htmlentities($s['question']);
@@ -397,7 +396,7 @@ class FlashCards extends CI_Controller
 	$last_position = $this->db->query('SELECT MAX(position) AS maxpos 
 			   FROM fl_cards			   
 			   WHERE deck_id = ?
-			   AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']))->result_array();
+			   ', array($deck_id))->result_array();
 	$next_position = intval($last_position[0]["maxpos"]) + 1;	
 	
 	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer,phone_number)
@@ -440,15 +439,15 @@ class FlashCards extends CI_Controller
 	  $s = $this->db->query('SELECT card_id 
 			    FROM fl_cards			   
 			    WHERE deck_id = ? AND position = ?
-			    AND phone_number = ?', array($deck_id,$p,$phone_r[0]['phone_number']))->result_array();
+			    ', array($deck_id,$p))->result_array();
 	  if(count($s)>0) {
 	    $this->db->query('DELETE FROM fl_cards			   
 			    WHERE deck_id = ? AND position = ?
-			    AND phone_number = ?', array($deck_id,$p,$phone_r[0]['phone_number']));
+			    ', array($deck_id,$p));
 	    $this->db->query('UPDATE fl_cards
 			      SET position = position - 1
 			      WHERE deck_id = ? AND position > ?
-			      AND phone_number = ?', array($deck_id,$p,$phone_r[0]['phone_number']));		    
+			      ', array($deck_id,$p));		    
 	  }	
 	}
 	exit(json_encode(array('success' => 1, 'message' => 'Cards deleted successfully.')));
@@ -480,10 +479,10 @@ class FlashCards extends CI_Controller
 	$deck_id = $r[0]['deck_id'];	  
 	$this->db->query('DELETE FROM fl_cards			   
 			    WHERE deck_id = ?
-			    AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']));
+			    ', array($deck_id));
 	$this->db->query('DELETE FROM fl_decks			   
 			    WHERE deck_id = ?
-			    AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']));			
+			    ', array($deck_id));			
 	exit(json_encode(array('success' => 1, 'message' => 'Deck "' . $deck_name . '" deleted successfully.')));
       }      
     }  

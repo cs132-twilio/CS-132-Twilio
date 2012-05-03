@@ -7,8 +7,7 @@ CREATE TABLE fl_cards (
    deck_id INT(10) NOT NULL,  
    position INT(4) NOT NULL,
    question VARCHAR(160) NOT NULL,
-   answer VARCHAR(160) NOT NULL,
-   phone_number VARCHAR(20) NOT NULL,   
+   answer VARCHAR(160) NOT NULL, 
    PRIMARY KEY(card_id)) ENGINE=InnoDB CHARSET=UTF8;
    
 CREATE TABLE fl_decks (
@@ -23,6 +22,5 @@ CREATE TABLE fl_students (
    deck_id INT(10) NOT NULL,  
    position INT(4) NOT NULL,
    answer BOOLEAN,
-   phone_number VARCHAR(20) NOT NULL, 
    PRIMARY KEY(row_id)) ENGINE=InnoDB CHARSET=UTF8;
    
