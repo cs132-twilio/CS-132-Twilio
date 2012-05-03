@@ -1,20 +1,21 @@
 (function($){
   Twexter.modules.Flashcards = {   
     loop: null,
+ /*
     setloop: function(){
       if ($('#deckselect').val() != ''){
         Twexter.modules.Flashcards.poll();
         Twexter.modules.Flashcards.loop = setInterval(Twexter.modules.Flashcards.poll, 1000);
       }
       else clearInterval(Twexter.modules.Flashcards.loop);
-    },
+    },*/
     run: function(){
-      Twexter.modules.Flashcards.setloop();
+      //Twexter.modules.Flashcards.setloop();
       $('#deckselect').change(
         function(){
           $('#deck').empty();
-          Twexter.modules.Flashcards.lastpost = 0;
-          Twexter.modules.Flashcards.setloop();
+          //Twexter.modules.Flashcards.lastpost = 0;
+          Twexter.modules.Flashcards.poll();
         }
       );
     },
