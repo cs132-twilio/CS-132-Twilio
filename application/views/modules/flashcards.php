@@ -7,6 +7,19 @@
 <a onclick="return $('#add-new-card').toggle();">Add a new Card</a>
 
 <div id="deck">
+<div id="add-new-card" style="visibility:hidden;">
+Add new Card
+<?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
+	<label>Question:
+    <input type="text" name="question" class="span5">
+  </label>
+  <label>Answer:
+    <input type="text" name="answer" class="span5">
+  </label>
+	<br />
+	<button type="submit" class="btn">Add</button><span id="card_added"></span>
+<?= form_close() ?>
+</div>
 </div>
 
 <div id="add-new-deck">
@@ -20,18 +33,8 @@ Add new Deck
 <?= form_close() ?>
 </div>
 
-<div id="add-new-card">
-Add new Card
-<?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
-	<label>Question:
-    <input type="text" name="question" class="span5">
-  </label>
-  <label>Answer:
-    <input type="text" name="answer" class="span5">
-  </label>
-	<br />
-	<button type="submit" class="btn">Add</button><span id="card_added"></span>
-<?= form_close() ?>
-</div>
+
+
+
 
 
