@@ -352,11 +352,48 @@ class FlashCards extends CI_Controller
   }
   
   
-    function addcard() {
+  function addcard() {
     header('Content-type: application/json');    
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to add cards!')));
     
     $question = trim($_POST['question']);
+    $answer = trim($_POST['answer']); 
+    $deck_name = trim($_POST['deckname']);  
+    if(strlen($question)>150||strlen($answer)>150) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 150 characters each.')));
+    }
+    else {
+	$r = $this->db->query('SELECT deck_id 
+			   FROM fl_decks			   
+			   WHERE deck_name = ?', array($deck_name))->result_array();
+      if(count($r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
+      }
+      else {
+	$deck_id = $r[0]['deck_id'];
+	$last_position = $this->db->query('SELECT MAX(position) AS maxpos 
+			   FROM fl_cards			   
+			   WHERE deck_id = ?', array($deck_id))->result_array();
+	$next_position = intval($last_position[0]["maxpos"]) + 1;	
+	
+	$this->db->query('INSERT INTO fl_cards (deck_id,position,question,answer)
+				VALUES(?,?,?,?)', array($deck_id,$next_position,$question,$answer)); 
+	exit(json_encode(array('success' => 1, 'message' => 'Card Q:"' . $question . '" A:"' . $answer .  '" added successfully!')));
+      }          
+      
+    }
+  
+  }
+  
+ function deletecard() {
+    header('Content-type: application/json');    
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to delete cards!')));
+    
+    $delete_positions = $_POST['deletecard'];
+    exit(json_encode(array('success' => 0, 'message' => var_dump($delete_positions))));
+    return;
+    
+    
     $answer = trim($_POST['answer']); 
     $deck_name = trim($_POST['deckname']);  
     if(strlen($question)>150||strlen($answer)>150) {
