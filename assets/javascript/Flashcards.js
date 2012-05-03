@@ -55,13 +55,6 @@
         }
       );
     },
-    addNewDeck: function(){
-      $('#deck').empty();
-      ($(document.createElement('div'))
-                .html('<form action="/modules/flashcards/adddeck" method="POST" id="adddeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"/><label>Deck Name:<input type="text" name="deckname" class="span5"></label><br /><button type="submit" class="btn">Add</button><span id="deck_added"></span></form>')
-              ).prependTo($('#deck')).slideDown();        
-      
-    },
     submit: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){

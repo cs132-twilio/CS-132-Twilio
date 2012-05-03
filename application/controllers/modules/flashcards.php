@@ -358,14 +358,14 @@ class FlashCards extends CI_Controller
     
     $question = trim($_POST['question']);
     $answer = trim($_POST['answer']); 
-    $deckname = trim($_POST['deckname']);  
+    $deck_name = trim($_POST['deckname']);  
     if(strlen($question)>150||strlen($answer)>150) {
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 150 characters each.')));
     }
     else {
 	$r = $this->db->query('SELECT deck_id 
 			   FROM fl_decks			   
-			   WHERE deck_name = ? LIMIT 1', array($deck_name))->result_array();
+			   WHERE deck_name = ?', array($deck_name))->result_array();
       if(count($r)<1) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists.')));
       }
