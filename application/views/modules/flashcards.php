@@ -9,22 +9,25 @@
     }
   ?>
 </select>
-<a onclick="return $('#add-new-deck').show();" class="btn btn-small btn-primary">Add a new Deck</a>
-<a onclick="return $('#add-new-card').show();" class="btn btn-small btn-primary">Add a new Card</a>
-<a onclick="return $('#delete-deck').show();" class="btn btn-small btn-primary">Delete a Deck</a>
+
 
 <div id="deck">
 <?= form_open('/modules/flashcards/deletecard', 'method="POST" id="deck-form" onsubmit="return Twexter.modules.Flashcards.submitDelete(this)"') ?>
 <div id="deck-form-div">
 </div>
 <input type="hidden" id="delete-card-deckname" name="deckname" value=""></input>
-<button type="submit" class="btn">Delete Selected Cards</button><span id="card_deleted"></span>
+<button type="submit" class="btn" style="display : none;" id="delete-button">Delete Selected Cards</button><span id="card_deleted"></span>
 
 
 <?= form_close() ?>
 
   
 </div>
+
+
+<a onclick="return $('#add-new-deck').show();" class="btn btn-small btn-primary">Add a new Deck</a>
+<a onclick="return $('#add-new-card').show();" class="btn btn-small btn-primary">Add a new Card</a>
+<a onclick="return $('#delete-deck').show();" class="btn btn-small btn-primary">Delete a Deck</a>
 
 <div id="add-new-deck" style="display : none;">
 <h3>Add new Deck</h3>
