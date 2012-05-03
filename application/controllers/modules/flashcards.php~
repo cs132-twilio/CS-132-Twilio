@@ -413,10 +413,10 @@ class FlashCards extends CI_Controller
 			    WHERE deck_id = ? AND position = ?', array($deck_id,$p))->result_array();
 	  if(count($s)>0) {
 	    $this->db->query('DELETE FROM fl_cards			   
-			    WHERE deck_id = ? AND position = ?', array($deck_id,$p))->result_array();
+			    WHERE deck_id = ? AND position = ?', array($deck_id,$p));
 	    $this->db->query('UPDATE fl_cards
 			      SET position = position - 1
-			      WHERE deck_id = ? AND position > ?', array($deck_id,$p))->result_array();			    
+			      WHERE deck_id = ? AND position > ?', array($deck_id,$p));			    
 	  }	
 	}
 	exit(json_encode(array('success' => 1, 'message' => 'Cards deleted successfully.')));

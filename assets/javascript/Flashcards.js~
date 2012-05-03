@@ -104,6 +104,7 @@
     submitDelete: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
+	  console.log(r);
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
