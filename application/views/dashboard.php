@@ -1,3 +1,4 @@
+<script type='text/javascript' src='/assets/javascript/jquery.bbq.js'></script>
 <script type='text/javascript' src='/assets/javascript/dashboard.js'></script>
 <div class="container-fluid">
   <div class="row-fluid">
