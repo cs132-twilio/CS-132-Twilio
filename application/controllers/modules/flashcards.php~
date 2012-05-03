@@ -312,6 +312,7 @@ class FlashCards extends CI_Controller
 			WHERE deck_name = ?
 			AND phone_number = ?', array($deck_name,$phone_r[0]['phone_number']))->result_array();
     if(count($r)<1) {
+    exit(json_encode(array('success' => 0, 'message' => $deck_name . ' ' . $phone_r[0]['phone_number'])));
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
     }
     else {
