@@ -11,6 +11,7 @@
 </select>
 <a onclick="return $('#add-new-deck').show();">Add a new Deck</a>
 <a onclick="return $('#add-new-card').show();">Add a new Card</a>
+<a onclick="return $('#delete-deck').show();">Add a new Card</a>
 
 <div id="deck">
 <?= form_open('/modules/flashcards/deletecard', 'method="POST" id="deck-form" onsubmit="return Twexter.modules.Flashcards.submitDelete(this)"') ?>
@@ -64,6 +65,28 @@
 	<button type="submit" class="btn">Add</button><span id="card_added"></span>
 <?= form_close() ?>
 <a onclick="return $('#add-new-card').hide();">Hide</a>
+</div>
+
+
+<div id="delete-deck" style="display : none;">
+<h3>Delete Deck</h3>
+<?= form_open('/modules/flashcards/deletedeck', 'method="POST" id="deletedeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submitDeleteDeck(this)"') ?>
+<label>Delete:
+<select id="deckselect-deletedeck" name="deckname">
+<option value='-1'>-Select a Deck-</option>
+<?
+  if (!count($decks)) echo '<option value="0">No Decks available</option>';
+    foreach($decks as $d){
+      echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
+    }
+  ?>
+</select>
+</label>
+
+<br />
+<button type="submit" class="btn">Add</button><span id="deck_deleted"></span>
+<?= form_close() ?>
+<a onclick="return $('#delete-deck').hide();">Hide</a>
 </div>
 
 

@@ -75,6 +75,7 @@
           else{
             $(this).find('[name=deckname]').clearFields();
             $(this).find('#deck_added').removeClass('error').addClass('success').text(r.message);
+	    Twexter.modules.Flashcards.poll();
 	  }
         }, e)
       );
@@ -98,6 +99,7 @@
             $(this).find('[name=question]').clearFields();
 	    $(this).find('[name=answer]').clearFields();
             $(this).find('#card_added').removeClass('error').addClass('success').text(r.message);
+	    Twexter.modules.Flashcards.poll();
 	  }
         }, e)
       );
@@ -123,6 +125,29 @@
             $(this).find('#card_deleted').removeClass('error').addClass('success').text(r.message);
 	    Twexter.modules.Flashcards.poll();
 	    
+	  }
+        }, e)
+      );
+    },
+    submitDeleteDeck: function(e){
+      return !$(e).ajaxSubmit(
+        $.proxy(function(r){
+	  console.log(r);
+          var error = r.success === 0 ? r[0] : undefined;
+          if (!error){
+            $(r).each(
+              function(i, e){
+                if (!e.success){
+                  error = e;
+                  return false;
+                }
+              }
+            );
+          }
+	  if (error) $(this).find('#deck_deleted').removeClass('success').addClass('error').text(error.message);
+          else{
+            $(this).find('#deck_deleted').removeClass('error').addClass('success').text(r.message);
+	    Twexter.modules.Flashcards.poll();	    
 	  }
         }, e)
       );

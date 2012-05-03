@@ -427,18 +427,35 @@ class FlashCards extends CI_Controller
 	  }	
 	}
 	exit(json_encode(array('success' => 1, 'message' => 'Cards deleted successfully.')));
-      }
-    
-    
-      
-    
-    
-    
-      
-          
-      
-    }
+      }      
+    }  
+  }
   
+  function deletedeck() {
+    header('Content-type: application/json');    
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to delete decks!')));
+    $deck_name = trim($_POST['deckname']);
+    
+    if(empty($deck_name)) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck selected.')));
+    }
+    else {
+      $r = $this->db->query('SELECT deck_id 
+			    FROM fl_decks			   
+			    WHERE deck_name = ?', array($deck_name))->result_array();
+      if(count($r)<1) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
+      }
+      else {
+	$deck_id = $r[0]['deck_id'];	  
+	$this->db->query('DELETE FROM fl_cards			   
+			    WHERE deck_id = ?', array($deck_id));
+	$this->db->query('DELETE FROM fl_decks			   
+			    WHERE deck_id = ?', array($deck_id));
+	}		
+	exit(json_encode(array('success' => 1, 'message' => 'Cards deleted successfully.')));
+      }      
+    }  
   }
   
    
