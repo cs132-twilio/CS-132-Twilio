@@ -4,9 +4,9 @@
     <div class="main span12 columns"> 
         <div class="padding page"> 
             <h3>Edit your Profile</h3> 
-            <hr /> 
-            
-	   <?php  echo form_open("auth/change_email", 'id="change_email_form" method="POST"');  ?>
+           </br>
+	   </br>             
+	   <?php  echo form_open("auth/change_email", ' id="change_email_form" method="POST"');  ?>
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
                         <div class="input"> 
@@ -61,7 +61,7 @@
             <br/> 
 
 
-          <?php  echo form_open("/auth/change_password", 'id="change_password_form" method="POST"');  ?>
+          <?php  echo form_open("/auth/change_password", ' id="change_password_form" method="POST"');  ?>
 
               <!--  <div class="clearfix"> 
                         <label for="display_name">Display Name</label> 
@@ -129,7 +129,7 @@
                 
              <?php echo form_close(); ?>
             <br/> 
-
+</div>
         </div> 
        </div>
        </div>
