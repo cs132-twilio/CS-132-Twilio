@@ -27,7 +27,7 @@
 		  $('<tr>')
                       .append($('<th>').text('#'),
                       $('<th>').text('Question'),
-		      $('<th>').text('Answer')
+		      $('<th>').text('Answer'),
 		      $('<th>').text('Delete')
 		      )
 		
