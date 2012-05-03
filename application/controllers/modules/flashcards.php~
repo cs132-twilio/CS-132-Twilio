@@ -16,9 +16,7 @@ class FlashCards extends CI_Controller
 	  $uid = $this->tank_auth->get_user_id();
 	  $data['decks'] = $this->db->query('SELECT deck_name FROM fl_decks')->result_array();
 	  $data = array();
-	  $data['decks'] = array();
-	  $data['decks'][0] = array();
-	  $data['decks'][0]['deck_name'] = 'TECHDECK';
+	  $data['decks'] = array('a','b','c','d');
 	  $this->load->view('/modules/flashcards.php', $data);
 	}
 	
