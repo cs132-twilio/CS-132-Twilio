@@ -15,7 +15,7 @@
 
 <div id="add-new-deck" style="display : none;">
 Add new Deck
-<?= form_open('/modules/flashcards/adddeck', 'method="POST" id="adddeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
+<? form_open('/modules/flashcards/adddeck', 'method="POST" id="adddeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
 	<label>Deck Name:
     <input type="text" name="deckname" class="span5">
   </label>	
