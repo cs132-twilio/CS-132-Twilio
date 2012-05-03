@@ -320,7 +320,11 @@ class FlashCards extends CI_Controller
   }
   
   function adddeck() {
-    echo "adding deck";
+    header('Content-type: application/json');
+    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
+    else {
+      exit(json_encode(array('success' => 1, 'message' => 'ad dek')));
+    }
   
   }
   
