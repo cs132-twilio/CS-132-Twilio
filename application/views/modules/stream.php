@@ -4,9 +4,11 @@
   <?
     if (!count($stream)) echo '<option value="0">No Streams available</option>';
     foreach($stream as $s){
-      echo '<option value="' . $s['id'] . '">Stream ' . $s['id'] . '</option>';
+      echo '<option value="' . $s['id'] . '"' . ($s['id'] == $sel ?' selected="selected"':'') . '>' . (empty($s['name'])? 'Stream ' . $s['id'] : $s['name']) . '</option>';
     }
   ?>
 </select>
+<input id="newstream_name" style="display:none;">
+<span class="btn button" id="newstream" style="margin-bottom: 9px;">Add New...</span>
 <div id="stream">
 </div>

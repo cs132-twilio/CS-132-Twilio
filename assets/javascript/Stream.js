@@ -3,7 +3,7 @@
     lastpost: 0,
     loop: null,
     setloop: function(){
-      if ($('#streamselect').val() != '0'){
+      if ($('#streamselect').val() > 0){
         Twexter.modules.Stream.poll();
         clearInterval(Twexter.modules.Stream.loop);
         Twexter.modules.Stream.loop = setInterval(Twexter.modules.Stream.poll, 1000);

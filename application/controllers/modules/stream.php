@@ -10,12 +10,13 @@ class Stream extends CI_Controller
     $this->load->helper('url');
 	}
 
-	function index($c)
+	function index($c, $s = null)
 	{
-    $this->checkauth->check();
+    $this->checkauth->check('/modules/stream/index/' . $c . ($s?'/'.$s:''));
     $this->session->sess_update();
     $uid = $this->tank_auth->get_user_id();
-    $data['stream'] = $this->db->query('SELECT str.id as id FROM classlist l, streams str WHERE class_id = ? AND l.id = class_id AND l.owner_id = ?', array($c, $uid))->result_array();
+    $data['sel'] = $s;
+    $data['stream'] = $this->db->query('SELECT str.id as id, str.name as name FROM classlist l, streams str WHERE class_id = ? AND l.id = class_id AND l.owner_id = ?', array($c, $uid))->result_array();
 		$this->load->view('/modules/stream.php', $data);
 	}
 
@@ -44,8 +45,22 @@ class Stream extends CI_Controller
   
   function poll($thread){
     header('Content-type: application/json');
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'username' => '<span class="stream_error_title">Twexter System Message</span>', 'message' => 'You must be <a href="/auth/login">logged in</a> to read messages!', 'execute' => 'clearInterval(Twexter.modules.Stream.loop);')));
-    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp) AS timestamp FROM stream_posts, students s WHERE s.id = student_id AND thread = ? AND unix_timestamp(timestamp) > ?', array($thread, $_SERVER['QUERY_STRING']))->result_array();
+    if (!$this->tank_auth->is_logged_in()){
+      exit(
+        json_encode(
+          array(
+            'success' => 0,
+            'username' => '<span class="stream_error_title">Twexter System Message</span>',
+            'message' => 'You must be <a onclick="Twexter.ajax_load(\'/auth/login?u=/dashboard%23c=\' + Twexter.dashboard.getClass() + \'%26m=stream%26m_args=/' . $thread . '\', \'moduleContent\');">logged in</a> to read messages!',
+            'execute' => 'clearInterval(Twexter.modules.Stream.loop); Twexter.modules.Stream.loop = null;'
+          )
+        )
+      );
+    }
+    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp)
+                           AS timestamp FROM stream_posts, students s WHERE s.id = student_id
+                           AND thread = ? AND unix_timestamp(timestamp) > ?',
+                           array($thread, $_SERVER['QUERY_STRING']))->result_array();
     foreach($r as &$s){
       $s['name'] = htmlentities($s['name']);
       $s['message'] = htmlentities($s['message']);

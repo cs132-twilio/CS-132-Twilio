@@ -31,7 +31,10 @@ $captcha = array(
 	'maxlength'	=> 8,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
+<script type="text/javascript">
+  if (window.location.href.match(/auth\/login$/)) window.location.href='/';
+</script>
+<?php echo form_open($this->uri->uri_string() . '?' . htmlentities($_SERVER['QUERY_STRING'])); ?>
 <table>
 	<tr>
 		<td><?php echo form_label($login_label, $login['id']); ?></td>
