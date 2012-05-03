@@ -33,6 +33,16 @@
         }
       );
     }
+    addNewDeck: function(){
+      ($(document.createElement('div'))
+                .text('ADD NEW DECK')
+              ).prependTo($('#deck')).slideDown();        
+      
+    }
+    
+    
+    
+    
   };
 })(jQuery);
 

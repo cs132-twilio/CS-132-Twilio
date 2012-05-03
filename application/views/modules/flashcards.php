@@ -3,6 +3,6 @@
   <option value="test">test</option>
   <option value="biology">biology</option>
 </select>
-<a onclick="return Twexter.Flashcards.addNewDeck();">Add a new Deck</a>
+<a onclick="return Twexter.Modules.Flashcards.addNewDeck();">Add a new Deck</a>
 <div id="deck">
 </div>
