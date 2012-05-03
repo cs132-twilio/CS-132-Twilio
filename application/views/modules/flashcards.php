@@ -16,7 +16,7 @@
 </div>
 
 <div id="add-new-deck" style="display : none;">
-Add new Deck
+<h3>Add new Deck</h3>
 <?= form_open('/modules/flashcards/adddeck', 'method="POST" id="adddeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
 	<label>Deck Name:
     <input type="text" name="deckname" class="span5">
@@ -29,7 +29,7 @@ Add new Deck
 
 
 <div id="add-new-card" style="display : none;">
-Add new Card
+<h3>Add new Card</h3>
 <?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
 
 <select id="deckselect-addcard">
