@@ -15,6 +15,8 @@
         );
       }
       Twexter.ajax_load('/auth/register', 'registration', callback);
+      // carousel demo
+      $('#myCarousel').carousel();
     }
   );
 })(jQuery);
