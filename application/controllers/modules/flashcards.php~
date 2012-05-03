@@ -325,7 +325,7 @@ class FlashCards extends CI_Controller
     
     $deck_name_split = preg_split('/[\s]+/', trim($_POST['deckname']), 3); 
     if(count($deck_name_split>1)) {
-      exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck names must only be one word.' . var_dump($deck_name_split))));
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck names must only be one word.')));
     }
     else {
       $deck_name = $deck_name_split[0];
