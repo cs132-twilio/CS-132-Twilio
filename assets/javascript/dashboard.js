@@ -1,14 +1,18 @@
 (function($){
   Twexter.dashboard = {
-    ajax_load_module: function(module){
-      Twexter.ajax_load('/welcome/modules/' + module.toLowerCase() + '.php', 'moduleContent',
-        function(){
-          var f = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()].run;
-          if(typeof f == 'function') f();
-        }
-      );
+    ajax_load_module: function(module, c){
+	Twexter.ajax_load('/modules/' + module.toLowerCase() + '/index/' + (c ? c : $('#classTabs > li.active').data('cid')), 'moduleContent',
+	  function(){
+	    var f = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()].run;
+	    if(typeof f == 'function') f();
+	  }
+	);
+      },
+      changeClass: function(c){
+	if (typeof Twexter.modules[$('#moduleTabs .active').text()].changeClass === 'function') return Twexter.modules[$('#moduleTabs .active').text()].changeClass(c);
+	else return false;
+      }
     }
-  }
   
   var activeTabs = function(c){
     $('#' + c + ' > li').click(
