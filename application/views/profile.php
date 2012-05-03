@@ -31,6 +31,7 @@
 				    'size' => 30
 			      )
 			    ); ?>
+                <td style="color: red;"><?php echo form_error('email'); ?><?php echo isset($errors['email'])?$errors['email']:''; ?></td>
                             <span class="help-block"></span> 
                         </div> 
                     </div> 
@@ -47,8 +48,8 @@
                                     'size' => 30
                               )
                             ); ?>
-<!--                <td style="color: red;"><?php echo form_error('old_password'); ?><?php echo isset($errors['old_password'])?$errors['old_password']:''; ?></td>
--->
+                <td style="color: red;"><?php echo form_error('password'); ?><?php echo isset($errors['password'])?$errors['password']:''; ?></td>
+
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -88,8 +89,8 @@
 				    'size' => 30
 			      )
 			    ); ?>
-<!--                <td style="color: red;"><?php echo form_error('old_password'); ?><?php echo isset($errors['old_password'])?$errors['old_password']:''; ?></td>
--->
+                        <td style="color: red;"><?php echo form_error('old_password'); ?><?php echo isset($errors['old_password'])?$errors['old_password']:''; ?></td>
+
                             <span class="help-block"></span> 
                         </div> 
                     </div> 
@@ -104,6 +105,8 @@
                                     'size' => 30
 			      )
 			    ); ?>
+                <td style="color: red;"><?php echo form_error('new_password'); ?><?php echo isset($errors['new_password'])?$errors['new_password']:''; ?></td>
+
                             <span class="help-block"></span> 
                         </div> 
                     </div> 
@@ -118,6 +121,7 @@
 				    'size' => 30
 			      )
 			    ); ?>
+                <td style="color: red;"><?php echo form_error('confirm_new_password'); ?><?php echo isset($errors['confirm_new_password'])?$errors['confirm_new_password']:''; ?></td>
                             <span class="help-block"></span> 
                         </div> 
                    </div> 
