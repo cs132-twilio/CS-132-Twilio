@@ -159,7 +159,7 @@
         function(r){	  
           $(r).each(
             function(i, e){              
-		$('#deckselect').append('<option value="' . e.deck_name . '">' . e.deck_name . '</option>');
+		$('#deckselect').append('<option value="' + e.deck_name + '">' + e.deck_name + '</option>');
               if (e.execute) (new Function(e.execute))();
             }
           );
