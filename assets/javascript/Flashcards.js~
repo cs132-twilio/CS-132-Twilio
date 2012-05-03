@@ -32,7 +32,7 @@
           );
         }
       );
-    }
+    },
     addNewDeck: function(){
       ($(document.createElement('div'))
                 .text('ADD NEW DECK')
