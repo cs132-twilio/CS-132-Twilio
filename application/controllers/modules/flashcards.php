@@ -430,7 +430,7 @@ class FlashCards extends CI_Controller
       $r = $this->db->query('SELECT deck_id 
 			    FROM fl_decks			   
 			    WHERE deck_name = ?
-			   AND phone_number = ?', array($deck_id,$phone_r[0]['phone_number']))->result_array();
+			   AND phone_number = ?', array($deck_name,$phone_r[0]['phone_number']))->result_array();
       if(count($r)<1) {
 	exit(json_encode(array('success' => 0, 'message' => 'Sorry, no deck with that name exists. ')));
       }
