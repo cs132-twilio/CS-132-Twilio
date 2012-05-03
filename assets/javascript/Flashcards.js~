@@ -156,15 +156,21 @@
     listDecks: function() {
       $('#deckselect').empty();
       $.get('/modules/flashcards/listdecks',
-        function(r){	  
+        function(r){
+	  $('#deckselect').append('<option value="-1">-Select a Deck-</option>')
+	  $('#deckselect-deletedeck').append('<option value="-1">-Select a Deck-</option>')
+	  $('#deckselect-addcard').append('<option value="-1">-Select a Deck-</option>')
           $(r).each(
             function(i, e){              
 		$('#deckselect').append('<option value="' + e.deck_name + '">' + e.deck_name + '</option>');
+		$('#deckselect-deletedeck').append('<option value="' + e.deck_name + '">' + e.deck_name + '</option>');
+		$('#deckselect-addcard').append('<option value="' + e.deck_name + '">' + e.deck_name + '</option>');
               if (e.execute) (new Function(e.execute))();
             }
           );
         }
       );
+      Twexter.modules.Flashcards.poll();
       
     }
   };

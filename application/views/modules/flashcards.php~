@@ -1,7 +1,7 @@
 <? $this->load->helper('form'); ?>
 
 <select id="deckselect">
-<option value='-1'>-Select a Deck-</option>
+<option value="-1">-Select a Deck-</option>
 <?
   if (!count($decks)) echo '<option value="0">No Decks available</option>';
     foreach($decks as $d){
