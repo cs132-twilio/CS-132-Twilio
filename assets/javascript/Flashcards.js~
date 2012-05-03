@@ -154,7 +154,10 @@
       );
     },
     listDecks: function() {
+      var old_main_val = $('#deckselect').val();
       $('#deckselect').empty();
+      $('#deckselect-deletedeck').empty();
+      $('#deckselect-addcard').empty();
       $.get('/modules/flashcards/listdecks',
         function(r){
 	  $('#deckselect').append('<option value="-1">-Select a Deck-</option>')
@@ -170,6 +173,7 @@
           );
         }
       );
+      $('#deckselect').val(old_main_val);
       Twexter.modules.Flashcards.poll();
       
     }
