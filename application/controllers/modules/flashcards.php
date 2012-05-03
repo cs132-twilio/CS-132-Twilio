@@ -335,6 +335,10 @@ class FlashCards extends CI_Controller
     }
     else {
       $deck_name = $deck_name_split[0];
+      if(empty($deck_name)) {
+	exit(json_encode(array('success' => 0, 'message' => 'Sorry, deck name is empty.')));
+	return;
+      }
       $r = $this->db->query('SELECT * 
 			   FROM fl_decks			   
 			   WHERE deck_name = ?', array($deck_name))->result_array();
@@ -362,6 +366,9 @@ class FlashCards extends CI_Controller
     if(strlen($question)>150||strlen($answer)>150) {
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 150 characters each.')));
     }
+    else if(empty($question)||empty($answer)) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers must not be empty.')));
+    } 
     else {
 	$r = $this->db->query('SELECT deck_id 
 			   FROM fl_decks			   
