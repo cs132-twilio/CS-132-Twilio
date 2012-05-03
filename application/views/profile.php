@@ -1,14 +1,13 @@
-<div id="body" class="container"> 
+<div class="hero-unit span8 offset1 welcome_container">
     
 <div class="row" id="profile"> 
 
     <div class="main span12 columns"> 
         <div class="padding page"> 
-            <h1>Your Profile</h1> 
+            <h2>Edit your Profile</h2> 
             <hr /> 
-            <!-- change this token! -->
-            <form action="." method="POST"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='d0212a418e8676310f5a87cdb952582a' /></div> -->
-                
+            
+            <form action="." method="POST"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='d0212a418e8676310f5a87cdb952582a' /></div>                 
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
                         <div class="input"> 
@@ -23,6 +22,13 @@
                         <div class="input"> 
                             <input id="id_email" type="text" name="email" value="angiedaniela@gmail.com" maxlength="75" /> 
                             
+                            <span class="help-block"></span> 
+                        </div> 
+                    </div> 
+		<div class="clearfix"> 
+                        <label for="display_name">Display Name</label> 
+                        <div class="input"> 
+                            <input id="id_email" type="text" name="email" value="Angela Santin" maxlength="75" /> 
                             <span class="help-block"></span> 
                         </div> 
                     </div> 
