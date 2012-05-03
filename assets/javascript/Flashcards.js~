@@ -50,6 +50,7 @@
           );
 	  
 	  $tbl.attr('class', 'table table-striped');
+	  $tbl.append('<button type="submit" class="btn">Delete Selected Cards</button><span id="deck_deleted"></span>');
 	     
 	  $('#deck-form').append($tbl); 
         }
