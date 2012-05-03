@@ -34,6 +34,7 @@
       );
     },
     addNewDeck: function(){
+      $('#deck').empty();
       ($(document.createElement('div'))
                 .text('ADD NEW DECK')
               ).prependTo($('#deck')).slideDown();        
