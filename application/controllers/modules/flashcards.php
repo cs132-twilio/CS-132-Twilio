@@ -319,7 +319,7 @@ class FlashCards extends CI_Controller
     
   }
   
-  function adddeck() [
+  function adddeck() {
     echo "adding deck";
   
   }
