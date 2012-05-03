@@ -1,5 +1,4 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
 class Receiver extends CI_Controller
 {
 	function __construct()
@@ -28,6 +27,9 @@ class Receiver extends CI_Controller
       case 'str':
         $this->load->view('twiml.php', array('redirect' => '/modules/stream/post'));
         break;
+      case 'poll':
+	$this->load->view('twiml.php', array('redirect' => 'http://sh35.cs132-twilio.cs.brown.edu/modules/poll/post'));
+	  break;
       default:
         $this->load->view('twiml.php', array('message' => 'Invalid module code'));
     }
