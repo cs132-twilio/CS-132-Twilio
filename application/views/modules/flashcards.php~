@@ -17,6 +17,8 @@
 <div id="deck-form-div">
 </div>
 <button type="submit" class="btn">Delete Selected Cards</button><span id="deck_deleted"></span>
+
+
 <?= form_close() ?>
 
   
