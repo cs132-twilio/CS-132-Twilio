@@ -1,6 +1,7 @@
-<script type="text/javascript" src="/assets/javascript/home.js"></script>
+<script type="text/javascript"  src="/assets/javascript/home.js"></script>
 <div class="hero-unit span8 offset1 welcome_container">
   <div class="row">
+    <h1>Twexter</h1>
     <div class="span5">
       <h1 class="span5">Twexter</h1>
       <div class="span5">
@@ -37,6 +38,8 @@
     </div>
   </div>
 </div>
+
+
 <!-- Example row of columns -->
 <div class="row">
   <div class="span4 offset2">
