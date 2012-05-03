@@ -13,6 +13,11 @@
 <a onclick="return $('#add-new-card').show();">Add a new Card</a>
 
 <div id="deck">
+<?= form_open('/modules/flashcards/deletecard', 'method="POST" id="deck-form" class="well" onsubmit="return Twexter.modules.Flashcards.submitDelete(this)"') ?>
+
+<?= form_close() ?>
+
+  
 </div>
 
 <div id="add-new-deck" style="display : none;">

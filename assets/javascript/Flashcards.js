@@ -13,7 +13,7 @@
       //Twexter.modules.Flashcards.setloop();
       $('#deckselect').change(
         function(){
-          $('#deck').empty();
+          $('#deck-form').empty();
           //Twexter.modules.Flashcards.lastpost = 0;
           Twexter.modules.Flashcards.poll();
         }
@@ -51,7 +51,7 @@
 	  
 	  $tbl.attr('class', 'table table-striped');
 	     
-	  $('#deck').append($tbl); 
+	  $('#deck-form').append($tbl); 
         }
       );
     },
