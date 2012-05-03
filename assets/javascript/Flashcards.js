@@ -59,11 +59,12 @@
       );
     },
     submit: function(e){
-      $(this).find('#card_added').clear();
+      
+      return !$(e).ajaxSubmit(
+	$(this).find('#card_added').clear();
       $(this).find('#deck_added').clear();
       $(this).find('#card_deleted').clear();
       $(this).find('#deck_deleted').clear();
-      return !$(e).ajaxSubmit(
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
@@ -86,11 +87,12 @@
       );
     },
     submitCard: function(e){
+      
+      return !$(e).ajaxSubmit(
       $(this).find('#card_added').clear();
       $(this).find('#deck_added').clear();
       $(this).find('#card_deleted').clear();
       $(this).find('#deck_deleted').clear();
-      return !$(e).ajaxSubmit(
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
@@ -113,12 +115,12 @@
         }, e)
       );
     },
-    submitDelete: function(e){
-      $(this).find('#card_added').clear();
+    submitDelete: function(e){      
+      return !$(e).ajaxSubmit(
+	$(this).find('#card_added').clear();
       $(this).find('#deck_added').clear();
       $(this).find('#card_deleted').clear();
       $(this).find('#deck_deleted').clear();
-      return !$(e).ajaxSubmit(
         $.proxy(function(r){	  
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
@@ -141,13 +143,13 @@
         }, e)
       );
     },
-    submitDeleteDeck: function(e){
-      $(this).find('#card_added').clear();
-      $(this).find('#deck_added').clear();
-      $(this).find('#card_deleted').clear();
-      $(this).find('#deck_deleted').clear();
+    submitDeleteDeck: function(e){      
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
+	  $(this).find('#card_added').clear();
+	  $(this).find('#deck_added').clear();
+	  $(this).find('#card_deleted').clear();
+	  $(this).find('#deck_deleted').clear();
           var error = r.success === 0 ? r[0] : undefined;
           if (!error){
             $(r).each(
