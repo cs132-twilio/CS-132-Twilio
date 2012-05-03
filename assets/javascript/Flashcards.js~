@@ -13,7 +13,7 @@
       //Twexter.modules.Flashcards.setloop();
       $('#deckselect').change(
         function(){
-          $('#deck-form').empty();
+          $('#deck-form-div').empty();
           //Twexter.modules.Flashcards.lastpost = 0;
           Twexter.modules.Flashcards.poll();
         }
@@ -50,9 +50,9 @@
           );
 	  
 	  $tbl.attr('class', 'table table-striped');
-	  $tbl.append('<button type="submit" class="btn">Delete Selected Cards</button><span id="deck_deleted"></span>');
+	  
 	     
-	  $('#deck-form').append($tbl); 
+	  $('#deck-form-div').append($tbl); 
         }
       );
     },
