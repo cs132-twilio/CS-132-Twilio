@@ -29,6 +29,10 @@
       );
       $('#streamselect').change();
     },
+    stop: function(){
+      clearInterval(Twexter.modules.Stream.loop);
+      Twexter.modules.Stream.loop = null;
+    },
     changeClass: function(c){
       clearInterval(Twexter.modules.Stream.loop);
       Twexter.modules.Stream.loop = null;
