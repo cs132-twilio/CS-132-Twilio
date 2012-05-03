@@ -49,7 +49,7 @@
             }
           );  
 	  
-	  $('#delete-card-deckname').attr('value',$('#deckselect').val());
+	  // $('#delete-card-deckname').attr('value',$('#deckselect').val());
 	  $('#deck-form-div').append($tbl); 
         }
       );
