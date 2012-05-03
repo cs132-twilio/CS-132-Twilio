@@ -1,7 +1,8 @@
+<? $this->load->helper('form'); ?>
+
 <select id="deckselect">
 <option value=''>-Select a Deck-</option>
 <?
-  $this->load->helper('form');
   if (!count($decks)) echo '<option value="0">No Decks available</option>';
     foreach($decks as $d){
       echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
@@ -30,6 +31,18 @@ Add new Deck
 <div id="add-new-card" style="display : none;">
 Add new Card
 <?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submit(this)"') ?>
+
+<select id="deckselect-addcard">
+<option value=''>-Select a Deck-</option>
+<?
+  if (!count($decks)) echo '<option value="0">No Decks available</option>';
+    foreach($decks as $d){
+      echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
+    }
+  ?>
+</select>
+
+
 	<label>Question:
     <input type="text" name="question" class="span5">
   </label>
