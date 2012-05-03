@@ -1,6 +1,9 @@
 (function($){
   Twexter.dashboard = {
     ajax_load_module: function(module, c, args){
+      var m = Twexter.dashboard.getModule();
+      var f = Twexter.modules[m.charAt(0).toUpperCase() + m.slice(1).toLowerCase()] ? Twexter.modules[m.charAt(0).toUpperCase() + m.slice(1).toLowerCase()].stop : undefined;
+      if(typeof f == 'function') f();
       Twexter.ajax_load('/modules/' + module.toLowerCase() + '/index/' + (c ? c : Twexter.dashboard.getClass()) + (args || ''), 'moduleContent',
         function(){
           $.bbq.pushState({m: module, m_args: args});
