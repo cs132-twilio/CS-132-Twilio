@@ -6,7 +6,8 @@
             <hr /> 
             <!-- change this token! -->
             
-	   <?php  echo form_open(".", 'method="POST"');  ?>
+	   <?php  echo form_open("/auth/profile", 'method="POST"');  ?>
+ <?php var_dump($old_password); ?>
 
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
@@ -28,9 +29,9 @@
 			    <?php echo form_input(
 			      array(
 				    'name'  => 'email',
-				    'id'    => 'id_email',
+				    'id'    => 'email',
 				    'value' => $users[0]['email'],
-				    'maxlength'  => 75
+				    'size' => 30
 			      )
 			    ); ?>
                             <span class="help-block"></span> 
@@ -57,10 +58,13 @@
                         <div class="input"> 
 			    <?php echo form_password(
 			      array(
-				    'name'  => 'current_password',
-				    'id'    => 'id_current_password'
+				    'name'  => 'old_password',
+				    'id'    => 'old_password',
+				    'size' => 30
 			      )
 			    ); ?>
+<!--                <td style="color: red;"><?php echo form_error('old_password'); ?><?php echo isset($errors['old_password'])?$errors['old_password']:''; ?></td>
+-->
                             <span class="help-block"></span> 
                         </div> 
                     </div> 
@@ -70,8 +74,9 @@
                         <div class="input"> 
 			    <?php echo form_password(
 			      array(
-				    'name'  => 'password1',
-				    'id'    => 'id_password1'
+                                    'name'  => 'new_password',
+                                    'id'    => 'new_password',
+                                    'size' => 30
 			      )
 			    ); ?>
                             <span class="help-block"></span> 
@@ -83,8 +88,9 @@
                         <div class="input"> 
 			    <?php echo form_password(
 			      array(
-				    'name'  => 'password2',
-				    'id'    => 'id_password2'
+				    'name'  => 'confirm_new_password',
+				    'id'    => 'confirm_new_password',
+				    'size' => 30
 			      )
 			    ); ?>
                             <span class="help-block"></span> 
