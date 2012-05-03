@@ -37,7 +37,6 @@ class Message extends CI_Controller
   
   function send(){
     header('Content-type: application/json');
-    exit(json_encode(array('success' => 0, 'messsage' => 'heyyy')));
     if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to send messages!')));
     if ($_SERVER['REQUEST_METHOD'] != 'POST') exit(json_encode(array('success' => 0, 'message' => 'Invalid Request!')));
     if (!$_POST['n'] || !$_POST['m']) exit(json_encode(array('success' => 0, 'messsage' => 'You must fill in all fields')));

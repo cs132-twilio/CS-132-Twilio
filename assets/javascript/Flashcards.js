@@ -49,7 +49,8 @@
             }
           );
 	  
-	  $tbl.attr('class', 'table table-striped');	  
+	  $tbl.attr('class', 'table table-striped');	
+	  $('#delete-card-deckname').attr('value', $('#deckselect').val());
 	     
 	  $('#deck-form-div').append($tbl); 
         }

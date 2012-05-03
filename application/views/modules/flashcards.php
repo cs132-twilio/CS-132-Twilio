@@ -16,6 +16,7 @@
 <?= form_open('/modules/flashcards/deletecard', 'method="POST" id="deck-form" onsubmit="return Twexter.modules.Flashcards.submitDelete(this)"') ?>
 <div id="deck-form-div">
 </div>
+<input type="hidden" id="delete-card-deckname" name="deckname" value=""></input>
 <button type="submit" class="btn">Delete Selected Cards</button><span id="deck_deleted"></span>
 
 
