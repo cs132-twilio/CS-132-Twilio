@@ -10,12 +10,13 @@ class Stream extends CI_Controller
     $this->load->helper('url');
 	}
 
-	function index($c)
+	function index($c, $s = null)
 	{
-    $this->checkauth->check();
+    $this->checkauth->check('/modules/stream/index/' . $c . ($s?'/'.$s:''));
     $this->session->sess_update();
     $uid = $this->tank_auth->get_user_id();
-    $data['stream'] = $this->db->query('SELECT str.id as id FROM classlist l, streams str WHERE class_id = ? AND l.id = class_id AND l.owner_id = ?', array($c, $uid))->result_array();
+    $data['sel'] = $s;
+    $data['stream'] = $this->db->query('SELECT str.id as id, str.name as name FROM classlist l, streams str WHERE class_id = ? AND l.id = class_id AND l.owner_id = ?', array($c, $uid))->result_array();
 		$this->load->view('/modules/stream.php', $data);
 	}
 
