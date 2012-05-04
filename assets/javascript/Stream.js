@@ -4,6 +4,7 @@
     loop: null,
     setloop: function(){
       if ($('#streamselect').val() > 0){
+	$('#streamid').text($('#streamselect').val());
         Twexter.modules.Stream.poll();
         clearInterval(Twexter.modules.Stream.loop);
         Twexter.modules.Stream.loop = setInterval(Twexter.modules.Stream.poll, 1000);

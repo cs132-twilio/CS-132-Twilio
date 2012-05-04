@@ -12,5 +12,6 @@
   <span id="newstream_container"><input id="newstream_name" name="name" placeholder="Enter stream name"></span>
   <span class="btn btn-primary" id="newstream" style="margin-bottom: 9px;">Add New...</span>
 <?= form_close() ?>
+<div>Stream id: <span id="streamid"></span></div>
 <div id="stream">
 </div>
