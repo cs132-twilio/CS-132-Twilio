@@ -485,7 +485,10 @@ class FlashCards extends CI_Controller
 			    ', array($deck_id));
 	$this->db->query('DELETE FROM fl_decks			   
 			    WHERE deck_id = ?
-			    ', array($deck_id));			
+			    ', array($deck_id));
+	$this->db->query('DELETE FROM fl_students			   
+			    WHERE deck_id = ?
+			    ', array($deck_id));
 	exit(json_encode(array('success' => 1, 'message' => 'Deck "' . $deck_name . '" deleted successfully.')));
       }      
     }  
