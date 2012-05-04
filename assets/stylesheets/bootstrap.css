@@ -1650,6 +1650,7 @@ table .span12 {
   border-radius: 4px;
 }
 .well {
+  clear:both;
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;

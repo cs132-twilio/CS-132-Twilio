@@ -1,12 +1,11 @@
 <script type='text/javascript' src='/assets/javascript/profile.js'></script>
 <div class="hero-unit span8 offset1 welcome_container">
 <div class="row" id="profile"> 
-    <div class="main span12 columns"> 
         <div class="padding page"> 
-            <h3>Edit your Profile</h3> 
+            <h2>Edit your profile</h2> 
            </br>
 	   </br>             
-	   <?php  echo form_open("auth/change_email", ' id="change_email_form" method="POST"');  ?>
+	   <?php  echo form_open("auth/change_email", ' id="change_email_form" method="POST" class = "well" ');  ?>
                     <div class="clearfix"> 
                         <label for="id_username">Username</label> 
                         <div class="input"> 
@@ -37,8 +36,6 @@
                         </div> 
                     </div> 
 
-
-
                    <div class="clearfix">
                         <label for="password">Current password</label>
                         <div class="input">
@@ -62,23 +59,7 @@
             <br/> 
 
 
-          <?php  echo form_open("/auth/change_password", ' id="change_password_form" method="POST"');  ?>
-
-              <!--  <div class="clearfix"> 
-                        <label for="display_name">Display Name</label> 
-                        <div class="input"> 
-                            <?php echo form_input(
-			      array(
-				    'name'  => 'name',
-				    'id'    => 'display_name',
-				    'value' => $display_name[0]['display_name'],
-				    'maxlength'  => 20
-			      )
-			    ); ?>
-                            <span class="help-block"></span> 
-                        </div> 
-                    </div> 
-		-->
+          <?php  echo form_open("/auth/change_password", ' id="change_password_form" method="POST" class = "well" ');  ?>
 
                     <div class="clearfix"> 
                         <label for="id_current_password">Current password</label> 
@@ -134,7 +115,6 @@
              <?php echo form_close(); ?>
             <br/> 
 </div>
-        </div> 
        </div>
        </div>
        </div>
