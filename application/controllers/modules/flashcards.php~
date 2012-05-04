@@ -376,8 +376,8 @@ class FlashCards extends CI_Controller
     $question = trim($_POST['question']);
     $answer = trim($_POST['answer']); 
     $deck_name = trim($_POST['deckname']);  
-    if(strlen($question)>150||strlen($answer)>150) {
-      exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 150 characters each.')));
+    if(strlen($question)>145||strlen($answer)>145) {
+      exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers are limited to 145 characters each.')));
     }
     else if(empty($question)||empty($answer)) {
       exit(json_encode(array('success' => 0, 'message' => 'Sorry, questions and answers must not be empty.')));
