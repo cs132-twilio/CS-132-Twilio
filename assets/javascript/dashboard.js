@@ -2,12 +2,14 @@
   Twexter.dashboard = {
     ajax_load_module: function(module, c, args){
       var m = Twexter.dashboard.getModule();
-      var f = Twexter.modules[m.charAt(0).toUpperCase() + m.slice(1).toLowerCase()] ? Twexter.modules[m.charAt(0).toUpperCase() + m.slice(1).toLowerCase()].stop : undefined;
+      m = Twexter.modules[m.charAt(0).toUpperCase() + m.slice(1).toLowerCase()];
+      var f = m ? m.stop : undefined;
       if(typeof f == 'function') f();
       Twexter.ajax_load('/modules/' + module.toLowerCase() + '/index/' + (c ? c : Twexter.dashboard.getClass()) + (args || ''), 'moduleContent',
         function(){
           $.bbq.pushState({m: module, m_args: args});
-          var f = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()].run;
+	  m = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()];
+          var f = m ? m.run : undefined;
           if(typeof f == 'function') f();
         }
       );
