@@ -8,6 +8,7 @@ class Auth extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
+		$this->load->library('MY_form_validation');
 		$this->load->library('security');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
@@ -397,7 +398,9 @@ class Auth extends CI_Controller
 					$this->load->view('json_view', $data);
 				}
 			}
-			$this->load->view('json_view', $data);
+			$data['json'] = $this->form_validation->error_array();
+			$data['json']=json_encode($data['json']);
+			$this->load->sview('json_view', $data);
 		}
 	}
 
