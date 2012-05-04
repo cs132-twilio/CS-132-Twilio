@@ -2,23 +2,43 @@
 
 class Stream extends CI_Controller
 {
-	function __construct()
-	{
-		parent::__construct();
+  function __construct(){
+    parent::__construct();
     $this->load->library('twilio');
     $this->load->library('tank_auth');
     $this->load->helper('url');
-	}
+    $this->load->helper('form');
+  }
 
-	function index($c, $s = null)
-	{
+  function index($c, $s = null){
     $this->checkauth->check('/modules/stream/index/' . $c . ($s?'/'.$s:''));
     $this->session->sess_update();
     $uid = $this->tank_auth->get_user_id();
+    $data['c'] = $c;
     $data['sel'] = $s;
     $data['stream'] = $this->db->query('SELECT str.id as id, str.name as name FROM classlist l, streams str WHERE class_id = ? AND l.id = class_id AND l.owner_id = ?', array($c, $uid))->result_array();
-		$this->load->view('/modules/stream.php', $data);
-	}
+    $this->load->view('/modules/stream.php', $data);
+  }
+
+  function create($c){
+    header('Content-type: application/json');
+    $uid = $this->tank_auth->get_user_id();
+    if (!$uid){
+      echo json_encode(array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page'));
+      return;
+    }
+    if (empty($_POST['name'])){
+      echo json_encode(array('success' => 0, 'message' => 'Stream name must be specified'));
+      return;
+    }
+    try{
+      $this->db->query('INSERT INTO streams (class_id, name) SELECT ? as class_id, ? as name FROM classlist l WHERE l.owner_id = ?', array($c, $_POST['name'], $uid));
+    } catch(PDOException $e) {
+      echo json_encode(array('success' => 0, 'message' => 'An error occured: ' . $e->getMessage()));
+      return;
+    }
+    echo json_encode(array('success' => 1, 'id' => $this->db->insert_id(), 'name' => $_POST['name']));
+  }
 
   function post(){
     if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){

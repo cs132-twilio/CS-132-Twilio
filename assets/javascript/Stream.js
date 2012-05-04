@@ -16,7 +16,26 @@
     run: function(){
       $('#newstream').click(
         function(){
-        
+	  if (!$('#newstream_name').val()){
+	    $('#newstream_container').animate({width: 220});
+	    $('#newstream_container').focus();
+	  } else {
+	      $('#newstream_form').ajaxSubmit(
+		function(r){
+		  if (r.success){
+		    $('#streamselect').append(
+		      ($(document.createElement('option'))
+			.val(r.id)
+			.text(r.name)
+		      )
+		    );
+		    $('#streamselect').val(r.id);
+		    $('#newstream_name').val('');
+		    $('#newstream_container').animate({width: 0});
+		  }
+		}
+	      );
+	  }
         }
       );
       Twexter.modules.Stream.setloop();

@@ -8,7 +8,9 @@
     }
   ?>
 </select>
-<input id="newstream_name" style="display:none;">
-<span class="btn btn-primary" id="newstream" style="margin-bottom: 9px;">Add New...</span>
+<?= form_open('/modules/stream/create/' . $c, 'id="newstream_form" style="display: inline"') ?>
+  <span id="newstream_container"><input id="newstream_name" name="name" placeholder="Enter stream name"></span>
+  <span class="btn btn-primary" id="newstream" style="margin-bottom: 9px;">Add New...</span>
+<?= form_close() ?>
 <div id="stream">
 </div>
