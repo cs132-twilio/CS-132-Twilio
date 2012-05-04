@@ -4,7 +4,6 @@
     loop: null,
     setloop: function(){
       if ($('#streamselect').val() > 0){
-	$('#streamid').text($('#streamselect').val());
         Twexter.modules.Stream.poll();
         clearInterval(Twexter.modules.Stream.loop);
         Twexter.modules.Stream.loop = setInterval(Twexter.modules.Stream.poll, 1000);
@@ -31,6 +30,7 @@
 		      )
 		    );
 		    $('#streamselect').val(r.id);
+		    $('#streamselect').change();
 		    $('#newstream_name').val('');
 		    $('#newstream_container').animate({width: 0});
 		  }
@@ -39,12 +39,26 @@
 	  }
         }
       );
+      $('#deletestream').click(
+        function(){
+	  if (!confirm('Are you sure you wish to delete this stream?')) return false;
+	  $('#deletestream_form').ajaxSubmit(
+	    function(r){
+	      if (r.success){
+		$('#streamselect > option:selected').remove();
+		$('#streamselect').change();
+	      }
+	    }
+	  );
+        }
+      );
       Twexter.modules.Stream.setloop();
       $('#streamselect').change(
         function(){
           $('#stream').empty();
           Twexter.modules.Stream.lastpost = 0;
           Twexter.modules.Stream.setloop();
+	  $('#streamid').text($('#streamselect').val());
         }
       );
       $('#streamselect').change();
