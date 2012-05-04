@@ -22,7 +22,8 @@ class cList extends CI_Controller{
     header('Content-type: application/json');
     $uid = $this->tank_auth->get_user_id();
     if (!$uid){
-      return array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');
+      echo array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');
+      return;
     }
     try{
       $this->db->query('DELETE FROM classmap WHERE EXISTS (SELECT classmap.student_id FROM classlist l WHERE l.id = classmap.class_id AND classmap.class_id = ? AND classmap.student_id = ? AND l.owner_id = ?)', array($cid, $sid, $uid));
@@ -31,6 +32,5 @@ class cList extends CI_Controller{
       return;
     }
     echo json_encode(array('success' => 1));
-    return;
   }
 }

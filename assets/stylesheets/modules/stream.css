@@ -21,3 +21,8 @@
 .stream_error_title{
   color: red;
 }
+#newstream_container{
+  display: inline-block;
+  overflow: hidden;
+  width: 0px;
+}
