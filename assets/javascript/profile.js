@@ -27,7 +27,13 @@ $(document).ready(function(){
 	  },
         failure:
 	  function(data){
+	      alert("Failure occurred"); 
           }
+        error:
+	  function(data){
+	      alert("An error occurred");
+	      document.write(data);
+	  }
       });
       return false;
     });
