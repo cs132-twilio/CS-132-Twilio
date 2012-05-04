@@ -16,7 +16,40 @@
     run: function(){
       $('#newstream').click(
         function(){
-        
+	  if (!$('#newstream_name').val()){
+	    $('#newstream_container').animate({width: 220});
+	    $('#newstream_container').focus();
+	  } else {
+	      $('#newstream_form').ajaxSubmit(
+		function(r){
+		  if (r.success){
+		    $('#streamselect').append(
+		      ($(document.createElement('option'))
+			.val(r.id)
+			.text(r.name)
+		      )
+		    );
+		    $('#streamselect').val(r.id);
+		    $('#streamselect').change();
+		    $('#newstream_name').val('');
+		    $('#newstream_container').animate({width: 0});
+		  }
+		}
+	      );
+	  }
+        }
+      );
+      $('#deletestream').click(
+        function(){
+	  if (!confirm('Are you sure you wish to delete this stream?')) return false;
+	  $('#deletestream_form').ajaxSubmit(
+	    function(r){
+	      if (r.success){
+		$('#streamselect > option:selected').remove();
+		$('#streamselect').change();
+	      }
+	    }
+	  );
         }
       );
       Twexter.modules.Stream.setloop();
@@ -25,6 +58,7 @@
           $('#stream').empty();
           Twexter.modules.Stream.lastpost = 0;
           Twexter.modules.Stream.setloop();
+	  $('#streamid').text($('#streamselect').val());
         }
       );
       $('#streamselect').change();
