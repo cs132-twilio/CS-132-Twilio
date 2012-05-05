@@ -3,6 +3,7 @@
   <div class="row">
     <h1>Twexter</h1>
     <div class="span5">
+      <div class="span5">
         <div id="myCarousel" class="carousel slide">
           <div class="carousel-inner">
             <div class="item active">
@@ -27,13 +28,15 @@
               </div>
             </div>
           </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a> 
         </div>
       </div>
     </div>
-    <div class="span3">
-      <h1 class="span3">Try Now</h1>
-      <?= $user_id?'':'<div class="span3" id="registration"></div>' ?>
-    </div>
+      <div class="span3">
+	<h1 class="span3">Try Now</h1>
+	<?= $user_id?'':'<div class="span3" id="registration"></div>' ?>
+      </div>
   </div>
 </div>
 
