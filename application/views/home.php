@@ -3,8 +3,6 @@
   <div class="row">
     <h1>Twexter</h1>
     <div class="span5">
-      <h1 class="span5">Twexter</h1>
-      <div class="span5">
         <div id="myCarousel" class="carousel slide">
           <div class="carousel-inner">
             <div class="item active">
