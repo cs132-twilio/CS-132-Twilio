@@ -19,22 +19,23 @@ $confirm_new_password = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table>
-	<tr>
-		<td><?php echo form_label('Old Password', $old_password['id']); ?></td>
-		<td><?php echo form_password($old_password); ?></td>
+
+	  <div class="clearfix">
+                <label for="password">Current Password</label>
+		<?php echo form_password($old_password); ?>
 		<td style="color: red;"><?php echo form_error($old_password['name']); ?><?php echo isset($errors[$old_password['name']])?$errors[$old_password['name']]:''; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('New Password', $new_password['id']); ?></td>
-		<td><?php echo form_password($new_password); ?></td>
+	 </div>
+         <div class="clearfix">
+		<label for="password">New Password</label>
+		<?php echo form_password($new_password); ?>
 		<td style="color: red;"><?php echo form_error($new_password['name']); ?><?php echo isset($errors[$new_password['name']])?$errors[$new_password['name']]:''; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Confirm New Password', $confirm_new_password['id']); ?></td>
-		<td><?php echo form_password($confirm_new_password); ?></td>
+        </div>
+	<div class="clearfix">
+                <label for="password">Confirm New Password</label>
+		<?php echo form_password($confirm_new_password); ?>
 		<td style="color: red;"><?php echo form_error($confirm_new_password['name']); ?><?php echo isset($errors[$confirm_new_password['name']])?$errors[$confirm_new_password['name']]:''; ?></td>
-	</tr>
-</table>
-<?php echo form_submit('change', 'Change Password'); ?>
+	</div>
+	<div class="actions"> 
+	  <?php echo form_submit('change', 'Change Your Password', 'class="btn btn-primary"'); ?>
+	</div> 
 <?php echo form_close(); ?>

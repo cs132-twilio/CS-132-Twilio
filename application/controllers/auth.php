@@ -339,10 +339,79 @@ class Auth extends CI_Controller
 	 *
 	 * @return void
 	 */
+// 	function change_password()
+// 	{
+// 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
+// 			redirect('/');
+// 
+// 		} else {
+// 			$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
+// 			$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length['.$this->config->item('password_min_length', 'tank_auth').']|max_length['.$this->config->item('password_max_length', 'tank_auth').']|alpha_dash');
+// 			$this->form_validation->set_rules('confirm_new_password', 'Confirm new Password', 'trim|required|xss_clean|matches[new_password]');
+// 
+// 			$data['errors'] = array();
+// 
+// 			if ($this->form_validation->run()) {								// validation ok
+// 				if ($this->tank_auth->change_password(
+// 						$this->form_validation->set_value('old_password'),
+// 						$this->form_validation->set_value('new_password'))) {	// success
+// 					$this->_show_message($this->lang->line('auth_message_password_changed'));
+// 
+// 				} else {														// fail
+// 					$errors = $this->tank_auth->get_error_message();
+// 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+// 				}
+// 			}
+// 			$this->load->view('profile', $data);
+// 		}
+// 	}
+// 
+// 	/**
+// 	 * Change user email
+// 	 *
+// 	 * @return void
+// 	 */
+// 	function change_email()
+// 	{
+// 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
+// 			redirect('/auth/login/');
+// 		} else {
+// 			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+// 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+// 			$data['errors'] = array();
+// 			if ($this->form_validation->run()) {								// validation ok
+// 				if (!is_null($data = $this->tank_auth->set_new_email(
+// 						$this->form_validation->set_value('email'),
+// 						$this->form_validation->set_value('password')))) {			// success
+// 
+// 					$data['site_name'] = $this->config->item('website_name', 'tank_auth');
+// 
+// 					// Send email with new email address and its activation link
+// 					$this->_send_email('change_email', $data['new_email'], $data);
+// 					$data['json'] = '{"message": "Check your email to confirm your new account."}';
+// 					$this->load->view('json_view', $data);
+// 
+// 				} else {
+// 					$errors = $this->tank_auth->get_error_message();
+// 					foreach ($errors as $k => $v)	$data['json'][$k] = $this->lang->line($v);
+// 					$data['json']=json_encode($data['json']);
+// 					$this->load->view('json_view', $data);
+// 				}
+// 			}
+// 			$data['json'] = $this->form_validation->error_array();
+// 			$data['json']=json_encode($data['json']);
+// 			$this->load->sview('json_view', $data);
+// 		}
+// 	}
+/**
+	 * Change user password
+	 *
+	 * @return void
+	 */
 	function change_password()
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
-			redirect('/');
+			redirect('/auth/login/');
 
 		} else {
 			$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
@@ -362,7 +431,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('profile', $data);
+			$this->load->view('auth/change_password_form', $data);
 		}
 	}
 
@@ -375,10 +444,13 @@ class Auth extends CI_Controller
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
 			redirect('/auth/login/');
+
 		} else {
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+
 			$data['errors'] = array();
+
 			if ($this->form_validation->run()) {								// validation ok
 				if (!is_null($data = $this->tank_auth->set_new_email(
 						$this->form_validation->set_value('email'),
@@ -388,22 +460,17 @@ class Auth extends CI_Controller
 
 					// Send email with new email address and its activation link
 					$this->_send_email('change_email', $data['new_email'], $data);
-					$data['json'] = '{"message": "Check your email to confirm your new account."}';
-					$this->load->view('json_view', $data);
+
+					$this->_show_message(sprintf($this->lang->line('auth_message_new_email_sent'), $data['new_email']));
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
-					foreach ($errors as $k => $v)	$data['json'][$k] = $this->lang->line($v);
-					$data['json']=json_encode($data['json']);
-					$this->load->view('json_view', $data);
+					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$data['json'] = $this->form_validation->error_array();
-			$data['json']=json_encode($data['json']);
-			$this->load->sview('json_view', $data);
+			$this->load->view('auth/change_email_form', $data);
 		}
 	}
-
 	/**
 	 * Replace user email with a new one.
 	 * User is verified by user_id and authentication code in the URL.
