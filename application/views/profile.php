@@ -8,7 +8,7 @@
 	<div class="span7" id="change-email"></div>
 	</br>
 	<div class="span3" id="change-password"></div>
-            <br/> 
+        <br/> 
 </div>
        </div>
        </div>

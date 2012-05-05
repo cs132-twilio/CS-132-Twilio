@@ -34,8 +34,10 @@
       </div>
     </div>
       <div class="span3">
-	<h1 class="span3">Try Now</h1>
-	<?= $user_id?'':'<div class="span3" id="registration"></div>' ?>
+	<?php if (!$user_id) { ?>
+	  <h1 class="span3">Try Now</h1>
+	  <div class="span3" id="registration"></div>
+	<?php } ?>
       </div>
   </div>
 </div>
