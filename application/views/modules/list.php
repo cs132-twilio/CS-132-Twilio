@@ -2,6 +2,8 @@
 <script type="text/javascript" src="/assets/javascript/List.js"></script>
 
 
+<?php echo $class_id; ?>
+
 <table class="table table-striped">
   <thead>
     <tr>

@@ -36,8 +36,10 @@
           <div class="nav-collapse">          
 
             <ul class="nav">
-              <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>		
-              <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
+              <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>
+	      <?php if ($user_id) { ?>
+		<li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
+	      <?php } ?>
             </ul>			
             
             <ul id="user-control" class="nav pull-right">
