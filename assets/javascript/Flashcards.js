@@ -177,7 +177,8 @@
       $('#deckselect-deletedeck').empty();
       $('#deckselect-addcard').empty();
       $.ajaxSetup({
-	  async: false
+	  async: false,
+	  cache:false
 	});
       
       $.get('/modules/flashcards/listdecks',
