@@ -5,7 +5,7 @@
 <div class="span2">
   <!--Sidebar content-->
   <ul id="classTabs" class="nav nav-pills nav-stacked">
-      <li class="nav-header">Your Classes</li>
+      <li class="nav-header"><h2>Classes</h2></li>
       <?
       foreach ($classlist as $c){
         echo '<li class="class" data-cid="' . $c['id'] . '">
@@ -14,7 +14,10 @@
       }
       ?>
   </ul>
+  <a href="/classes"><button id="add-new-classroom "class="btn btn-small btn-primary" style="center" >Add a new Class</button></a>
+
 </div>
+
 
 <div id="modules" class="span10">
   <!--Body content-->

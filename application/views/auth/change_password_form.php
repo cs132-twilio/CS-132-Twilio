@@ -22,11 +22,6 @@ $confirm_new_password = array(
 	  <div class="page-header">
 	  <h2>Change your password:</h2>
 	  </div>
-	  <div class="clearfix">
-                <label for="password">Current Password</label>
-		<?php echo form_password($old_password); ?>
-		<td style="color: red;"><?php echo form_error($old_password['name']); ?><?php echo isset($errors[$old_password['name']])?$errors[$old_password['name']]:''; ?></td>
-	 </div>
          <div class="clearfix">
 		<label for="password">New Password</label>
 		<?php echo form_password($new_password); ?>
@@ -37,6 +32,11 @@ $confirm_new_password = array(
 		<?php echo form_password($confirm_new_password); ?>
 		<td style="color: red;"><?php echo form_error($confirm_new_password['name']); ?><?php echo isset($errors[$confirm_new_password['name']])?$errors[$confirm_new_password['name']]:''; ?></td>
 	</div>
+	  <div class="clearfix">
+                <label for="password">Current Password</label>
+		<?php echo form_password($old_password); ?>
+		<td style="color: red;"><?php echo form_error($old_password['name']); ?><?php echo isset($errors[$old_password['name']])?$errors[$old_password['name']]:''; ?></td>
+	 </div>
 	<div class="actions"> 
 	  <?php echo form_submit('change', 'Change Your Password', 'class="btn btn-primary"'); ?>
 	</div> 
