@@ -33,7 +33,10 @@
     </div>
     <div class="span3">      
       <?= $user_id?'<div id="logged-in-home" class="span3">
-	<h2 style="margin-top:40px; margin-bottom:50px;">You\'re logged in to twexter. Head over to the dashboard to manage your classes.</h2>
+	<div class="logged-in-home-text">
+	  <h2>You are now logged in to Twexter.</h2>	
+	  <h2>Head over to the dashboard to manage your classes.</h2>
+	</div>
 	<p>
 	<a href="dashboard" class="btn btn-large btn-info big-button ">Go to Dashboard</a> 
 	</p>

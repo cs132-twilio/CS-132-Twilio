@@ -20,6 +20,13 @@ body {
 	margin: 0px;
 }
 
+#logged-in-home-text:first-child{
+  margin-top: 16px;  
+}
+#logged-in-home-text:last-child{
+  margin-bottom: 60px;  
+}
+
 .success {
   background: #AAFFAA;
   margin: 5px 10px;
