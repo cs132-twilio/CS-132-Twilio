@@ -34,8 +34,8 @@
     <div class="span3">
       <h1 class="span3">Try Now</h1>
       <?= $user_id?'<div id="logged-in-home">
-	<h2>You\'re logged in to twexter. Head over to the dashboard to manage your classes.
-	<a href="dashboard" class="btn btn-large btn-info big-button">Go to Dashboard</a></h2>
+	<h2>You\'re logged in to twexter. Head over to the dashboard to manage your classes.</h2>
+	<a href="dashboard" class="btn btn-large btn-info big-button">Go to Dashboard</a>
       
       
       </div>':'<div class="span3" id="registration"></div>' ?>
