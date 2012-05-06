@@ -1,9 +1,8 @@
 <script type="text/javascript" src="assets/javascript/Flashcards.js"></script>
 <? $this->load->helper('form'); ?>
 <select id="deckselect">
-  <option value="-1">-Select a Deck-</option>
   <?
-    if (!count($decks)) echo '<option value="0">No Decks available</option>';
+    if (!count($decks)) echo '<option>No Decks available</option>';
       foreach($decks as $d){
 	echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
       }
@@ -44,9 +43,8 @@
   <?= form_open('/modules/flashcards/addcard', 'method="POST" id="addcardform" class="well" onsubmit="return Twexter.modules.Flashcards.submitAddCard(this)"') ?>
     <label>Add to:
       <select id="deckselect-addcard" name="deckname">
-	<option value='-1'>-Select a Deck-</option>
 	<?
-	  if (!count($decks)) echo '<option value="0">No Decks available</option>';
+	  if (!count($decks)) echo '<option>No Decks available</option>';
 	  foreach($decks as $d){
 	    echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
 	  }
@@ -72,9 +70,9 @@
   <?= form_open('/modules/flashcards/deletedeck', 'method="POST" id="deletedeckform" class="well" onsubmit="return Twexter.modules.Flashcards.submitDeleteDeck(this)"') ?>
     <label>Delete:
       <select id="deckselect-deletedeck" name="deckname">
-	<option value='-1'>-Select a Deck-</option>
+	<option>-Select a Deck-</option>
 	<?
-	  if (!count($decks)) echo '<option value="0">No Decks available</option>';
+	  if (!count($decks)) echo '<option>No Decks available</option>';
 	  foreach($decks as $d){
 	    echo '<option value="' . $d['deck_name'] . '">' . $d['deck_name'] . '</option>';
 	  }
