@@ -1,11 +1,16 @@
-.welcome_container {
-	padding-top:15px;
-	padding-bottom:15px;
-  /*white-space: nowrap;*/
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
-/*.welcome_container > *{
-  white-space: normal;
-}*/
+
+.navbar .brand {
+  color: white;
+}
+
+.welcome_container{
+  padding-top:15px;
+	padding-bottom:15px;
+}
 
 .big-button {
 	font-size:2em;
@@ -15,36 +20,29 @@
 	margin: 0px;
 }
 
-.login-field {
-	margin-top:6px;
-}
-
 .success {
   background: #AAFFAA;
-}
-.error {
-  background: #FFAAAA;
-}
-
-#stream{
-  max-height: 600px;
-  overflow-y: auto;
-}
-.stream_post {
-  height: 50px;
+  margin: 5px 10px;
   padding: 5px;
-  width: 80%;
-  border-radius: 15px;
-  border: 3px solid black;
-  margin: 10px 0;
 }
-.stream_post_title {
-  font-size: bigger;
-  font-weight: bold;
-}
-.stream_post_timestamp{
-  color: #AAA;
-}
-.stream_error_title{
+.error, #registration .error > p {
   color: red;
+  font-size: 10px;
+  margin: 5px 10px;
+  padding: 5px;
+}
+#registration .error, #registration .error > p {
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  height: 1.2em;
+}
+#registration{
+  height: 370px;
+}
+#registration input {
+  margin-bottom: inherit;
+}
+#registration .registration_field {
+  margin: 10px 0;
 }

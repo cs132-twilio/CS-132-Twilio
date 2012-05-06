@@ -17,10 +17,6 @@
 <div id="modules" class="span10">
   <!--Body content-->
     <ul id="moduleTabs" class="nav nav-tabs">
-      <li class="active"><a onclick="return Twexter.ajax_load('/modules/cList/index/1', 'moduleContent');">List</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('Message');">Message</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('Stream');">Stream</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('Flashcards');">FlashCards</a></li>
       <li class="active"><a onclick="return Twexter.dashboard.ajax_load_module('clist');">List</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('message');">Message</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('stream');">Stream</a></li>

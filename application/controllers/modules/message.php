@@ -7,8 +7,16 @@ class Message extends CI_Controller
 		parent::__construct();
     $this->load->library('tank_auth');
     $this->load->library('twilio');
+    $this->load->helper('form');
+    $this->load->helper('url');
 	}
 
+  function index(){
+    $this->checkauth->check();
+    $this->session->sess_update();
+    $this->load->view('modules/message.php');
+  }
+  
 	function targets(){
     header('Content-type: application/json');
     if ($this->tank_auth->is_logged_in()){
@@ -48,15 +56,18 @@ class Message extends CI_Controller
     }
     $targets = explode(',', $_POST['n']);
     $r = array();
-    foreach ($targets as $t){
-      $t = strtolower(trim($t));
-      if ($t[0] == 'c' && substr($t, 1)){
-        $list = $this->db->query('SELECT DISTINCT number FROM classlist l, classmap m, students s WHERE m.class_id = ? AND m.student_id = s.id AND owner_id = ? AND m.class_id = l.id', array(substr($t, 1), $uid))->result_array();
-        foreach ($list as $l){
-          $r[] = $this->_send($l['number'], $_POST['m']);
+    $mt = str_split($_POST['m'], 160);
+    foreach ($mt as $m){
+      foreach ($targets as $t){
+        $t = strtolower(trim($t));
+        if ($t[0] == 'c' && substr($t, 1)){
+          $list = $this->db->query('SELECT DISTINCT number FROM classlist l, classmap m, students s WHERE m.class_id = ? AND m.student_id = s.id AND owner_id = ? AND m.class_id = l.id', array(substr($t, 1), $uid))->result_array();
+          foreach ($list as $l){
+            $r[] = $this->_send($l['number'], $m);
+          }
+        } else {
+          $r[] = $this->_send($t, $m);
         }
-      } else {
-        $r[] = $this->_send($t, $_POST['m']);
       }
     }
     echo json_encode($r);

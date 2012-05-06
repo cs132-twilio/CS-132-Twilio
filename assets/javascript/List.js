@@ -1,26 +1,23 @@
 (function($){
-  Twexter.modules.List = {
-    lastpost: 0,
-    loop: null,
-    setloop: function(){
-      if ($('#streamselect').val() != '0'){
-        Twexter.Stream.poll();
-        Twexter.Stream.loop = setInterval(Twexter.Stream.poll, 5000);
-      }
-      else clearInterval(Twexter.Stream.loop);
-    },
+  Twexter.modules.Clist = Twexter.modules.List = {
     run: function(){
-      Twexter.Stream.setloop();
-      $('#streamselect').change(
-        function(){
-          $('#stream').empty();
-          Twexter.Stream.lastpost = 0;
-          Twexter.Stream.setloop();
-        }
+      $('.list_removestudent').click(
+	function(){
+	  if(confirm('Are you sure you wish to remove ' + $(this).parent().parent().find('td:first').text() + ' from ' + $('li.class.active').text() + '?')){
+	    $.get('/modules/clist/delete/' + $('li.class.active').data('cid') + '/' + $(this).parent().parent().data('sid'),
+	      $.proxy(
+		function(r){
+		  if(r.success) $(this).parent().parent().slideUp(null, function(){ $(this).remove(); });
+		},
+		this
+	      )
+	    );
+	  }
+	}
       );
     },
-    classchange: function(c){
-      ajax_load('/list/' + c, 'moduleContent');
+    changeClass: function(c){
+      Twexter.dashboard.ajax_load_module('clist', c);
     }
   };
 })(jQuery);
