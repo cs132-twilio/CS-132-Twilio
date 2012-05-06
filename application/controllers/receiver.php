@@ -32,7 +32,7 @@ class Receiver extends CI_Controller
         break;
       case 'p':
       case 'poll':
-        $this->load->view('twiml.php', array('redirect' => 'http://sh35.cs132-twilio.cs.brown.edu/modules/poll/post'));
+        $this->load->view('twiml.php', array('redirect' => '/modules/poll/post'));
         break;
       default:
         $this->load->view('twiml.php', array('message' => 'Invalid module code'));
