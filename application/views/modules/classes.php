@@ -1,25 +1,29 @@
 <?= form_open('/modules/classes/add', 'method="POST" id="messageform" class="well" onsubmit="return Twexter.modules.Classes.submit_add(this)"') ?>
-  <h2>Add a class here</h2>
+  <h2>Add a class</h2>
       <div class="clearfix">
-	<input type="text" name="new-class" id="new-class" maxlength="20" size="30">
-      </div>
+	<input type="text" name="new-class" id="new-class" maxlength="20" size="30" placeholder="Type the name of your class">
+        </div>
 	<br />
 	<button type="submit" class="btn btn-success">Add Class</button>
 	<span id="add_class"></span>
 <?= form_close() ?>
 
 <?= form_open('/modules/classes/delete', 'method="POST" id="messageform" class="well" onsubmit="return Twexter.modules.Classes.submit_delete(this)"') ?>
-<h2>Delete classes here</h2>
+<h2>Delete classes</h2>
+      <div class="clearfix">
       <div class="control-group"> 
 	  <div class="controls"> 
 	    <?foreach ($classlist as $c){
-		echo '<label class="checkbox" data-cid="' . $c['id'] . '"><input type="checkbox" name="delete_' . $c['id'] . '" value="option1">'
+		echo '<label class="checkbox" data-cid="' . $c['id'] . '"><input type="checkbox" name="delete_' . $c['id'] . '" value="'. $c['id'] .'">'
 		      . $c['name'] . '</label>';
 	    }?>
-	    <p class="help-block"><strong>Note:</strong> Deletion is permanent, you cannot undo this.</p> 
+	    </div>
 	  </div> 
        </div>
-	<br />
+       <div class="alert alert-block alert-error">
+		  <h4 class="alert-heading">Warning!</h4> 
+		  <p>Deletion cannot be undone.</p> 
+	</div>
 	<button type="submit" class="btn btn-danger">Delete Classes</button>
 	<span id="delete_class"></span>
 <?= form_close() ?>

@@ -24,42 +24,16 @@ class Classes extends CI_Controller
   
   
   function add(){
-    header('Content-type: application/json');
-    if (!$this->tank_auth->is_logged_in()) exit(json_encode(array('success' => 0, 'message' => 'You must be logged in to edit your classes!')));
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') exit(json_encode(array('success' => 0, 'message' => 'Invalid Request!')));
-    //if (!$_POST['n'] || !$_POST['m']) exit(json_encode(array('success' => 0, 'messsage' => 'You must fill in all fields')));
-    if ($this->tank_auth->is_logged_in()){
-      $uid = $this->tank_auth->get_user_id();
-    }
-    if (!$uid){
-      return array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');
-    }
-    $targets = explode(',', $_POST['n']);
-    $r = array();
-    foreach ($targets as $t){
-//       $t = strtolower(trim($t));
-//       if ($t[0] == 'c' && substr($t, 1)){
-//         $list = $this->db->query('SELECT DISTINCT number FROM classlist l, classmap m, students s WHERE m.class_id = ? AND m.student_id = s.id AND owner_id = ? AND m.class_id = l.id', array(substr($t, 1), $uid))->result_array();
-//         foreach ($list as $l){
-//           $r[] = $this->_send($l['number'], $_POST['m']);
-//         }
-//       } else {
-//         $r[] = $this->_send($t, $_POST['m']);
-//       }
-//     }
-//     echo json_encode($r);
-  }
-}
-
-function delete($cid){
    header('Content-type: application/json');
-   $uid = $this->tank_auth->get_user_id();
-    if (!$uid){
-      echo array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') exit(json_encode(array('success' => 0, 'message' => 'Invalid Request!')));
+    $owner_id = $this->tank_auth->get_user_id();
+    if (!$owner_id){
+      echo array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');		//check if user logged in
       return;
     }
+    $class_name = $_POST['new-class'];
     try{
-      $this->db->query('DELETE FROM classmap WHERE EXISTS (SELECT classmap.student_id FROM classlist l WHERE l.id = classmap.class_id AND classmap.class_id = ? AND classmap.student_id = ? AND l.owner_id = ?)', array($cid, $sid, $uid));
+      $this->db->query("INSERT INTO classlist (name, owner_id) VALUES (?, ?)", array( $class_name , $owner_id) );
     } catch(PDOException $e) {
       echo json_encode(array('success' => 0, 'message' => 'An error occured: ' . $e->getMessage()));
       return;
@@ -67,4 +41,32 @@ function delete($cid){
     echo json_encode(array('success' => 1));
   }
 
+
+// Delete a class from database
+
+function delete(){
+   header('Content-type: application/json');
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') exit(json_encode(array('success' => 0, 'message' => 'Invalid Request!')));
+    $owner_id = $this->tank_auth->get_user_id();
+    if (!$owner_id){
+      echo array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');		//check if user logged in
+      return;
+    }
+    $post = array();
+    foreach ( $_POST as $key => $value )										//get all classes to be deleted into the post array
+    {
+	$post[$key] = $this->input->post($key);
+    }
+    foreach($post as $class_id){
+	try{
+	  $this->db->query("DELETE FROM classmap WHERE classmap.class_id = ? AND classmap.class_id IN (SELECT classlist.id FROM classlist WHERE classlist.owner_id = ?)", array($class_id, $owner_id));
+	  $this->db->query("DELETE FROM classlist WHERE owner_id = ? AND id = ?", array($owner_id, $class_id));
+	} catch(PDOException $e) {
+	  echo json_encode(array('success' => 0, 'message' => 'An error occured: ' . $e->getMessage()));
+	  return;
+	}
+    }
+    $post['success'] = 1;
+    echo json_encode($post);
+  }
 }
