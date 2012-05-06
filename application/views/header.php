@@ -39,7 +39,8 @@
             <ul class="nav">
               <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>
 	      <?php if ($user_id) { ?>
-		<li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
+		<li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>	
+		<li><a href="#" class="active"><?php echo "Your Twexter number is: ".$phone["phone_number"]; ?></a></li>	
 	      <?php } ?>
             </ul>			
             

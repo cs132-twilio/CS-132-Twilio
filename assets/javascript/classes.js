@@ -14,15 +14,13 @@
               }
             );
           }
-          if (error) $(this).find('#add_class').removeClass('success').addClass('error').text(error.message);
+          if (error) $(this).find('#add_class').after('<div id="added-message" class="alert alert-error">error.message</div>');
           else{
-            //$(this).find('[name=n],[name=m]').clearFields();
-            $(this).find('#add_class').removeClass('error').addClass('success').text('Your class was added successfully!');
-// 	    $(this).find('#add_class').after(
-// 	    
-// 		  +r.class_id+
-// 		  
-// 		);
+            $(this).find('[name=new-class]').clearFields();
+            $(this).remove('#deleted-message');
+            $(this).remove('#added-message');
+            $(this).find('#add_class').after('<div id="added-message" class="alert alert-success"><strong>'+r.name+' was added successfully!</strong> If you want  students to join, ask them to text "JOIN '+r.class_id+'" at your Twexter number.</div>');
+	    $('#delete-form').find('#list_of_classes').after('<label class="checkbox" id="delete_class_'+r.class_id+'"><input type="checkbox" name="delete_'+r.class_id+'" value="'+r.class_id+'">'+r.name+'</label>');
           }
         }, e)
       );
@@ -41,10 +39,12 @@
               }
             );
           }
-          if (error) $(this).find('#delete_class').removeClass('success').addClass('error').text(error.message);
+          if (error) $(this).find('#delete_class').after('<div id="deleted-message" class="alert alert-error">'+error.message+'</div>'); 
           else{
-            //$(this).find('[name=n],[name=m]').clearFields();
-            $(this).find('#delete_class').removeClass('error').addClass('success').text('Deletion was successful!');
+            $(this).remove('#deleted-message');
+            $(this).remove('#added-message');
+            $(this).find('#delete_class').after('<div id="deleted-message" class="alert alert-success"><strong>Your classes were deleted successfully!</strong>');
+	    $('#addform').find('#list_of_classes').remove('delete_class_'+r.class_id);
           }
         }, e)
       );

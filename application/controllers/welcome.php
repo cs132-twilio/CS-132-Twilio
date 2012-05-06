@@ -26,6 +26,8 @@ class Welcome extends CI_Controller {
   function render($view, $data = array()){
     $data = $this->_checkauth($data);
     $data['page'] = $view;
+    $temp = ($this->db->query("SELECT phone_number FROM user_profiles WHERE user_id=?", array($data['user_id']))->result_array());
+    $data['phone'] = $temp[0];
     $this->load->view('header', $data);
     $this->load->view($view, $data);
     $this->load->view('footer', $data);
@@ -62,9 +64,5 @@ class Welcome extends CI_Controller {
    }
     else redirect('/auth/login');
   }
-
-  
-
-
 
 }

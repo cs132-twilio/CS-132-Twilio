@@ -7,7 +7,7 @@
             !$(this).ajaxSubmit(
               function (r){
                 $('#change-email').html(r);
-                callback();
+                callback_email();
               }
             );
             return false;
@@ -20,7 +20,7 @@
             !$(this).ajaxSubmit(
               function (r){
                 $('#change-password').html(r);
-                callback();
+                callback_password();
               }
             );
             return false;
