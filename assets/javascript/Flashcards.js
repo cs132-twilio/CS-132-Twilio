@@ -18,6 +18,7 @@
           Twexter.modules.Flashcards.poll();
         }
       );
+      $('#deckselect').change();
     },
     poll: function(){ 
       $('#deck-form-div').empty();
