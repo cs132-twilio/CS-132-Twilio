@@ -34,6 +34,10 @@ class Receiver extends CI_Controller
       case 'poll':
         $this->load->view('twiml.php', array('redirect' => '/modules/poll/post'));
         break;
+      case 'm':
+      case 'message':
+        $this->load->view('twiml.php', array('redirect' => '/inbox/send'));
+        break;
       default:
         $this->load->view('twiml.php', array('message' => 'Invalid module code'));
     }
