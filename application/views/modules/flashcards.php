@@ -1,3 +1,4 @@
+<script type="text/javascript" src="assets/javascript/Flashcards.js"></script>
 <? $this->load->helper('form'); ?>
 <select id="deckselect">
   <option value="-1">-Select a Deck-</option>
