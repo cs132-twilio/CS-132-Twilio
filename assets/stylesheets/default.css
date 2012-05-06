@@ -20,10 +20,10 @@ body {
 	margin: 0px;
 }
 
-#logged-in-home-text:first-child{
+#logged-in-home-text h2:first-child{
   margin-top: 16px;  
 }
-#logged-in-home-text:last-child{
+#logged-in-home-text h2:last-child{
   margin-bottom: 60px;  
 }
 
