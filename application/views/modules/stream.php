@@ -5,7 +5,7 @@
     <?
       if (!count($stream)) echo '<option value="0">No Streams available</option>';
       foreach($stream as $s){
-	echo '<option value="' . $s['id'] . '"' . ($s['id'] == $sel ?' selected="selected"':'') . '>' . (empty($s['name'])? 'Stream ' . $s['id'] : $s['name']) . '</option>';
+        echo '<option value="' . $s['id'] . '"' . ($s['id'] == $sel ?' selected="selected"':'') . '>' . (empty($s['name'])? 'Stream ' . $s['id'] : $s['name']) . '</option>';
       }
     ?>
   </select>
@@ -15,6 +15,6 @@
   <span class="btn btn-primary" id="newstream" style="margin-bottom: 9px;">Add New</span>
 <?= form_close() ?>
 <span class="btn btn-primary" id="deletestream" style="margin-bottom: 9px;">Delete stream</span>
-<div>Stream id: <span id="streamid"></span></div>
+<div id="streamid"<?= count($stream)?'':' style="display:none"'?>>Stream id: <span></span></div>
 <div id="stream">
 </div>
