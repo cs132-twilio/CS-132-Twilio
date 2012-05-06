@@ -43,12 +43,10 @@
 <div class="row">
   <div class="span4 offset2">
     <h2>About</h2>
-    <p>In recent years, the use of alternative methods in education has become extremely popular. However, although 87% of public school students have an SMS capable device, the full potential of SMS as an educational tool has not yet been exploited.</p>
-    <p><a class="btn" href="#">View details &raquo;</a></p>
+    <p>In recent years, the use of alternative methods in education has become extremely popular. However, although 87% of public school students have an SMS capable device, the full potential of SMS as an educational tool has not yet been exploited.</p>    
   </div>
   <div class="span4">
     <h2>Why Twexter</h2>
-    <p>At Twexter, our goal is to allow secondary school teachers to connect with their students through SMS in constructive ways. To achieve this, we provide them with a series of SMS-based educational tools.</p>
-    <p><a class="btn" href="#">View details &raquo;</a></p>
+    <p>At Twexter, our goal is to allow secondary school teachers to connect with their students through SMS in constructive ways. To achieve this, we provide them with a series of SMS-based educational tools.</p>    
   </div>
 </div>
