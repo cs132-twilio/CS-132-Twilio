@@ -6,7 +6,7 @@
 
 
 <div class="alert alert-info">
-   <strong>Hey there!</strong> If you want more students to join this classroom, ask them to text "JOIN <?php echo $class_id; ?>" at +1....   
+   If you want more students to <strong>join this classroom</strong>, ask them to <strong> text "JOIN <?php echo $class_id; ?>"</strong> to your Twexter number: <strong><?php echo $phone["phone_number"] ?></strong>  
 </div>
 <table class="table table-striped">
   <thead>

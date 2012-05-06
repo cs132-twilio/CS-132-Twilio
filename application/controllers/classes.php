@@ -16,6 +16,8 @@ class Classes extends CI_Controller
     $data['user_id'] = $this->tank_auth->get_user_id();;
     if ($data['user_id']){
       $data['classlist'] = $this->db->query('SELECT id, name FROM classlist WHERE owner_id = ?', array($data['user_id']))->result_array();
+      $temp = ($this->db->query("SELECT phone_number FROM user_profiles WHERE user_id=?", array($data['user_id']))->result_array());
+      $data['phone'] = $temp[0];
       $this->load->view('header', $data);
       $this->load->view('/classes.php', $data);
       $this->load->view('footer', $data);
@@ -75,7 +77,7 @@ function delete(){
 	}
     }
     $post['success'] = 1;
-    $post = array('success' => 1, $classes);
+    $post = array('success' => 1, 'classes' => $classes);
     echo json_encode($post);
   }
 }
