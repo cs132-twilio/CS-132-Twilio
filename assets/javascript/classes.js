@@ -41,8 +41,11 @@
           if (error) $(this).find('#delete_class').after('<div class="alert alert-error temp-message">'+error.message+'</div>'); 
           else{
             $('.temp-message').remove();
-	    $('#delete_class_'+r.class_id).remove();
-            $('#delete_class').after('<div class="alert alert-success temp-message"><strong>Your classes were deleted successfully!</strong>');
+	    for(x in r.classes){
+	      var to_be_deleted = '#delete_class_'+x;
+	      $(to_be_deleted).remove();
+	    }
+	    $('#delete_class').after('<div class="alert alert-success temp-message"><strong>Your classes were deleted successfully!</strong>');
 	    
           }
         }, e)
