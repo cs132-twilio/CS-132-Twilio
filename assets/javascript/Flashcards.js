@@ -77,10 +77,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');
 	  if (error) $(this).find('#deck_added').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=deckname]').clearFields();
@@ -105,10 +104,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');	 
 	  if (error) $(this).find('#card_added').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=question]').clearFields();
@@ -133,10 +131,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');
 	  if (error) $(this).find('#card_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=deletecard]').clearFields();
@@ -161,10 +158,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');
 	  if (error) $(this).find('#deck_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('#deck_deleted').removeClass('error').addClass('success').text(r.message);
