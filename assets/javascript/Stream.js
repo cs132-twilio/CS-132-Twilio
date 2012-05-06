@@ -41,15 +41,15 @@
       );
       $('#deletestream').click(
         function(){
-	  if (!confirm('Are you sure you wish to delete this stream?')) return false;
-	  $('#deletestream_form').ajaxSubmit(
-	    function(r){
-	      if (r.success){
-		$('#streamselect > option:selected').remove();
-		$('#streamselect').change();
-	      }
-	    }
-	  );
+          if ($('#streamselect').val() == 0 || !confirm('Are you sure you wish to delete this stream?')) return false;
+          $('#deletestream_form').ajaxSubmit(
+            function(r){
+              if (r.success){
+                $('#streamselect > option:selected').remove();
+                $('#streamselect').change();
+              }
+            }
+          );
         }
       );
       Twexter.modules.Stream.setloop();
@@ -57,8 +57,14 @@
         function(){
           $('#stream').empty();
           Twexter.modules.Stream.lastpost = 0;
-          Twexter.modules.Stream.setloop();
-	  $('#streamid').text($('#streamselect').val());
+          if ($('#streamselect').val() != 0){
+            Twexter.modules.Stream.setloop();
+            $('#streamid > span').text($('#streamselect').val());
+            $('#streamid').slideDown();
+          } else {
+            $('#streamselect').append('<option value="0">No Streams available</option>');
+            $('#streamid').slideUp();
+          }
         }
       );
       $('#streamselect').change();
