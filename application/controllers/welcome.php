@@ -60,8 +60,10 @@ class Welcome extends CI_Controller {
 	$data[0]['display_name'] =  htmlspecialchars($data[0]['display_name']);
       	$this->render_secure('profile', $data);
    }
-    else redirect($redirect);
-  } 
+    else redirect('/auth/login');
+  }
+
+  
 
 
 

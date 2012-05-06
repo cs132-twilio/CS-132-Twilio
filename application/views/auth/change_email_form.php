@@ -12,8 +12,10 @@ $email = array(
 	'size'	=> 30,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
-
+<?php echo form_open($this->uri->uri_string(),'"class="well"'); ?>
+	  <div class="page-header">
+	  <h2>Update your email:</h2>
+	  </div> 
 	<div class="clearfix">
                 <label for="password">Current Password</label>
 		<?php echo form_password($password); ?>

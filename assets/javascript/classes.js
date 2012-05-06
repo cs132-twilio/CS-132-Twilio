@@ -1,5 +1,5 @@
 (function($){
-  Twexter.modules.Classes = {
+  Twexter.Classes = {
     submit_add: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){

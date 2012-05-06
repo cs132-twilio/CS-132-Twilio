@@ -17,7 +17,7 @@
               <img src="/assets/images/students.jpg" alt="">
               <div class="carousel-caption">
                 <h4>Student engagement</h4>
-                <p>We provide you a simple way to keep your students engaged. They will be more involved, and you will have more time to teach.</p>
+                <p>We provide you a simple way to keep your students engaged.</p>
               </div>
             </div>
             <div class="item">

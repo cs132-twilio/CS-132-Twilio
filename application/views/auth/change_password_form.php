@@ -18,8 +18,10 @@ $confirm_new_password = array(
 	'size' 	=> 30,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
-
+<?php echo form_open($this->uri->uri_string(), '"class="well"'); ?>
+	  <div class="page-header">
+	  <h2>Change your password:</h2>
+	  </div>
 	  <div class="clearfix">
                 <label for="password">Current Password</label>
 		<?php echo form_password($old_password); ?>
