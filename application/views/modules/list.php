@@ -2,8 +2,12 @@
 <script type="text/javascript" src="/assets/javascript/List.js"></script>
 
 
-<?php echo $class_id; ?>
 
+
+
+<div class="alert alert-info">
+   <strong>Hey there!</strong> If you want more students to join this classroom, ask them to text "JOIN <?php echo $class_id; ?>" at +1....   
+</div>
 <table class="table table-striped">
   <thead>
     <tr>

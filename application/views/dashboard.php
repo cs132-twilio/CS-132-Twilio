@@ -5,7 +5,7 @@
 <div class="span2">
   <!--Sidebar content-->
   <ul id="classTabs" class="nav nav-pills nav-stacked">
-      <li class="nav-header"><h2>Classes</h2></li>
+      <li class="nav-header">Your Classes</li>
       <?
       foreach ($classlist as $c){
         echo '<li class="class" data-cid="' . $c['id'] . '">
