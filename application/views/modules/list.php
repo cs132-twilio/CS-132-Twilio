@@ -1,4 +1,3 @@
-<link rel="Stylesheet" type="text/css" href="/assets/stylesheets/modules/list.css">
 <script type="text/javascript" src="/assets/javascript/List.js"></script>
 Class ID: <?= $class_id ?>
 
@@ -12,7 +11,7 @@ Class ID: <?= $class_id ?>
   <tbody>
     <?
     foreach($students as $s){
-      echo '<tr data-sid="' . $s['id'] . '"><td>' . htmlentities($s['name']) . '</td><td>' . htmlentities($s['number']) . '</td><td><img class="list_removestudent" src="/assets/images/glyphicons_207_remove_2.png"</td></tr>';
+      echo '<tr data-sid="' . $s['id'] . '"><td>' . htmlentities($s['name']) . '</td><td>' . htmlentities($s['number']) . '</td><td><a href="#" class="list_removestudent close">&times;</a></td></tr>';
     }
     ?>
   </tbody>
