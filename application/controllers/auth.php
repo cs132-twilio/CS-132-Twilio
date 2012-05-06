@@ -8,7 +8,6 @@ class Auth extends CI_Controller
 
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$this->load->library('MY_form_validation');
 		$this->load->library('security');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
@@ -363,6 +362,7 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
+			$data['success'] = 0;
 			$this->load->view('auth/change_password_form', $data);
 		}
 	}

@@ -11,10 +11,12 @@
       <div id="phone_number">
       <h3>Email  <small><? echo $email;?></small></h3>
       </div>
-      <div id="change-email"></div>
-      </br>
-      <div id="change-password"></div>
-       <br/> 
+      <div>
+	<div id="change-email"></div>
+	</br>
+	<div id="change-password"></div>
+	<br/> 
+      </div>
       </div>
     </div>
   </div>
