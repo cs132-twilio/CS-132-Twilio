@@ -4,18 +4,18 @@
       $.get('/modules/message/targets',
         function(r){
           $.ajax({
-            type: "GET",
-            url: "/assets/javascript/jquery.tokeninput.js",
+            type: 'GET',
+            url: '/assets/javascript/jquery.tokeninput.js',
             success: function(){
-              $("#messageform input[name=n]").tokenInput(r,
+              $('#messageform input[name=n]').tokenInput(r,
                 {
-                  theme: "facebook",
-                  hintText: "Enter a student or class name",
+                  theme: 'facebook',
+                  hintText: 'Enter a student or class name',
                   preventDuplicates: true
                 }
               );
             },
-            dataType: "script",
+            dataType: 'script',
             cache: true
           });
         }
@@ -39,6 +39,7 @@
           if (error) $(this).find('#message_sent').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=n],[name=m]').clearFields();
+            $('#messageform input[name=n]').tokenInput('clear');
             $(this).find('#message_sent').removeClass('error').addClass('success').text('Your message was sent successfully!');
           }
         }, e)
