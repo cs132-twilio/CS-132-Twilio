@@ -21,7 +21,7 @@ body {
 }
 
 #logged-in-home-text h2:first-child{
-  margin-top: 16px;  
+  margin-bottom: 16px;  
 }
 #logged-in-home-text h2:last-child{
   margin-bottom: 60px;  
