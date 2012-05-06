@@ -21,15 +21,19 @@ class Receiver extends CI_Controller
     $code = preg_split('/[\s]+/', $_GET['Body'], 2);
     $code = strtolower($code[0]);
     switch($code){
+      case 'j':
       case 'join':
         $this->load->view('twiml.php', array('redirect' => '/join/add'));
         break;
+      case 's':
       case 'str':
+      case 'stream':
         $this->load->view('twiml.php', array('redirect' => '/modules/stream/post'));
         break;
+      case 'p':
       case 'poll':
-	$this->load->view('twiml.php', array('redirect' => 'http://sh35.cs132-twilio.cs.brown.edu/modules/poll/post'));
-	  break;
+        $this->load->view('twiml.php', array('redirect' => 'http://sh35.cs132-twilio.cs.brown.edu/modules/poll/post'));
+        break;
       default:
         $this->load->view('twiml.php', array('message' => 'Invalid module code'));
     }
