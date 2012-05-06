@@ -1,11 +1,16 @@
-.welcome_container {
-	padding-top:15px;
-	padding-bottom:15px;
-  /*white-space: nowrap;*/
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
-/*.welcome_container > *{
-  white-space: normal;
-}*/
+
+.navbar .brand {
+  color: white;
+}
+
+.welcome_container{
+  padding-top:15px;
+	padding-bottom:15px;
+}
 
 .big-button {
 	font-size:2em;
@@ -13,10 +18,6 @@
 
 .login-form {
 	margin: 0px;
-}
-
-.login-field {
-	margin-top:6px;
 }
 
 .success {
