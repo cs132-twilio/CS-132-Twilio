@@ -22,41 +22,44 @@
     },
     poll: function(){ 
       $('#deck-form-div').empty();
-      $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
-        function(r){
-	  var $tbl = $('<table>').attr('id', 'cardsTable');
-	  $tbl.append(
-		  $('<tr>')
-                      .append($('<th>').text('#'),
-                      $('<th>').text('Question'),
-		      $('<th>').text('Answer'),
-		      $('<th>').text('Delete')
-		      )
+      $.ajax('/modules/flashcards/poll/' + $('#deckselect').val(),
+	{
+	  success: function(r){
+	    var $tbl = $('<table>').attr('id', 'cardsTable');
+	    $tbl.append(
+		    $('<tr>')
+			.append($('<th>').text('#'),
+			$('<th>').text('Question'),
+			$('<th>').text('Answer'),
+			$('<th>').text('Delete')
+			)
+		  
+		  );  
+	    $(r).each(
+	      function(i, e){              
+		  $tbl.append(
+		    $('<tr>')
+			.append($('<td>').text(e.position),
+			$('<td>').text(e.question),
+			$('<td>').text(e.answer),
+			$('<td>').html('<input type="checkbox" name="deletecard[]" value="' + e.position + '"></input>')
+			)
+		  
+		  );  
 		
-		);  
-          $(r).each(
-            function(i, e){              
-		$tbl.append(
-		  $('<tr>')
-                      .append($('<td>').text(e.position),
-                      $('<td>').text(e.question),
-		      $('<td>').text(e.answer),
-		      $('<td>').html('<input type="checkbox" name="deletecard[]" value="' + e.position + '"></input>')
-		      )
 		
-		);  
+		if (e.execute) (new Function(e.execute))();
+	      }
+	    );
+	    
+	    $tbl.attr('class', 'table table-striped');	
+	    $('#delete-card-deckname').attr('value', $('#deckselect').val());
 	      
-	      
-              if (e.execute) (new Function(e.execute))();
-            }
-          );
-	  
-	  $tbl.attr('class', 'table table-striped');	
-	  $('#delete-card-deckname').attr('value', $('#deckselect').val());
-	     
-	  $('#deck-form-div').append($tbl); 
-	  $('#delete-button').show();
-        }
+	    $('#deck-form-div').append($tbl); 
+	    $('#delete-button').show();
+	  },
+	  cache: false
+	}
       );
     },
     submitAddDeck: function(e){
