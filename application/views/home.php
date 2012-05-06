@@ -33,7 +33,7 @@
     </div>
     <div class="span3">      
       <?= $user_id?'<div id="logged-in-home" class="span3">
-	<div class="logged-in-home-text">
+	<div id="logged-in-home-text">
 	  <h2>You are now logged in to Twexter.</h2>	
 	  <h2>Head over to the dashboard to manage your classes.</h2>
 	</div>
