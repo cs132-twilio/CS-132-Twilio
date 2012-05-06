@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="item">
-              <img src="/assets/images/phone.jpg" alt="">
+              <img src="/assets/images/graduate.jpg" alt="">
               <div class="carousel-caption">
                 <h4>Study aid</h4>
                 <p>Texting can now help you connect with your students, and help them achieve their goals.</p>
