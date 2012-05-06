@@ -1,5 +1,5 @@
 <script type='text/javascript' src='/assets/javascript/profile.js'></script>
-<div class="span8 offset1 welcome_container">
+<div class="hero-unit span8 offset1 welcome_container">
   <div class="row" id="profile"> 
       <div class="padding page"> 
 	  <div class="page-header">

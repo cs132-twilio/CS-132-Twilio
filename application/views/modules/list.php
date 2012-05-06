@@ -3,7 +3,7 @@
 
 
 <div class="alert alert-info">
-   If more students want to <strong>join this classroom</strong>, ask them to <strong> text "JOIN <?php echo $class_id; ?>"</strong> to your Twexter number: <strong><?php echo $phone["phone_number"] ?></strong>  
+   Students can <strong>join <?php echo $class_name['name']; ?> </strong> by texting "JOIN <?php echo $class_id; ?>"</strong> to <?php echo $phone["phone_number"] ?>.</strong>  
 </div>
 <table class="table table-striped">
   <thead>

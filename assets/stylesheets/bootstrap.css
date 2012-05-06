@@ -1804,9 +1804,12 @@ table .span12 {
 }
 .btn-small {
   padding: 5px 9px;
-  font-size: 11px;
+  margin-top:10px;
+  margin-bottom:15px;
+  font-size: 13px;
   line-height: 16px;
 }
+
 .btn-small [class^="icon-"] {
   margin-top: -1px;
 }
