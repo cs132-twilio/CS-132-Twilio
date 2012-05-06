@@ -21,6 +21,10 @@ class Receiver extends CI_Controller
     $code = preg_split('/[\s]+/', $_GET['Body'], 2);
     $code = strtolower($code[0]);
     switch($code){
+      case 'fl':
+	//$this->load->view('twiml.php', array('message' => 'Flashcard text received'));
+	$this->load->view('twiml.php', array('redirect' => '/modules/flashcards/post'));
+	break;
       case 'join':
         $this->load->view('twiml.php', array('redirect' => '/join/add'));
         break;

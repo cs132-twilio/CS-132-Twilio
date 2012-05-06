@@ -1,5 +1,19 @@
 (function($){
   Twexter.dashboard = {
+<<<<<<< HEAD
+    ajax_load_module: function(module, c){
+	Twexter.ajax_load('/modules/' + module.toLowerCase() + '/index/' + (c ? c : $('#classTabs > li.active').data('cid')), 'moduleContent',
+	  function(){
+	    var f = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()].run;
+	    if(typeof f == 'function') f();
+	  }
+	);
+      },
+      changeClass: function(c){
+	if (typeof Twexter.modules[$('#moduleTabs .active').text()].changeClass === 'function') return Twexter.modules[$('#moduleTabs .active').text()].changeClass(c);
+	else return false;
+      }
+=======
     ajax_load_module: function(module, c, args){
       var m = Twexter.dashboard.getModule();
       m = Twexter.modules[m.charAt(0).toUpperCase() + m.slice(1).toLowerCase()];
@@ -24,6 +38,7 @@
     },
     getModule: function(){
       return $.bbq.getState('m');
+>>>>>>> 2159c43830bc8be13ed321287c21e08c87e95752
     }
   
   var activeTabs = function(c){
