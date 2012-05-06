@@ -2,11 +2,8 @@
 <script type="text/javascript" src="/assets/javascript/List.js"></script>
 
 
-
-
-
 <div class="alert alert-info">
-   If you want more students to <strong>join this classroom</strong>, ask them to <strong> text "JOIN <?php echo $class_id; ?>"</strong> to your Twexter number: <strong><?php echo $phone["phone_number"] ?></strong>  
+   If more students want to <strong>join this classroom</strong>, ask them to <strong> text "JOIN <?php echo $class_id; ?>"</strong> to your Twexter number: <strong><?php echo $phone["phone_number"] ?></strong>  
 </div>
 <table class="table table-striped">
   <thead>
