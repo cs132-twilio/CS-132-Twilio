@@ -21,7 +21,7 @@ class Classes extends CI_Controller
     else redirect('/auth/login');
   }
   
-  
+//add class  
   
   function add(){
    header('Content-type: application/json');
@@ -31,14 +31,21 @@ class Classes extends CI_Controller
       echo array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');		//check if user logged in
       return;
     }
+    //$this->form_validation->set_rules('new-class', 'trim|required|xss_clean');
     $class_name = $_POST['new-class'];
-    try{
-      $this->db->query("INSERT INTO classlist (name, owner_id) VALUES (?, ?)", array( $class_name , $owner_id) );
-    } catch(PDOException $e) {
-      echo json_encode(array('success' => 0, 'message' => 'An error occured: ' . $e->getMessage()));
-      return;
-    }
-    echo json_encode(array('success' => 1));
+    //if ($this->form_validation->run() == FALSE){
+     // echo json_encode(array('success' => 0, 'message' => 'Invalid Request!'));
+    //}
+    //else{
+	try{
+	  $this->db->query("INSERT INTO classlist (name, owner_id) VALUES (?, ?)", array( $class_name , $owner_id) );
+	  //$class_id = $this->db->insert_id();
+	} catch(PDOException $e) {
+	  echo json_encode(array('success' => 0, 'message' => 'An error occured: ' . $e->getMessage()));
+	  return;
+	}
+	echo json_encode(array('success' => 1, 'class_id' => $class_id));
+   // }
   }
 
 

@@ -4,7 +4,7 @@
 	<input type="text" name="new-class" id="new-class" maxlength="20" size="30" placeholder="Type the name of your class">
         </div>
 	<br />
-	<button type="submit" class="btn btn-success">Add Class</button>
+	<button type="submit" class="btn btn-success">Add a new class</button>
 	<span id="add_class"></span>
 <?= form_close() ?>
 

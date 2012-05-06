@@ -20,10 +20,10 @@
   <!--Body content-->
     <ul id="moduleTabs" class="nav nav-tabs">
       <li class="active"><a onclick="return Twexter.dashboard.ajax_load_module('clist');">List</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('classes');">Edit Your Classes</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('message');">Message</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('stream');">Stream</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('Poll');">Poll</a></li>
+      <li><a onclick="return Twexter.dashboard.ajax_load_module('classes');">Edit Your Classes</a></li>
     </ul>
     <div id="moduleContent" >
     </div>
