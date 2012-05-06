@@ -197,7 +197,8 @@
         }
       );      
       $.ajaxSetup({
-	  async: true
+	  async: true,
+	  cache: true
 	});
       $('#deckselect').val(String(old_main_val));
       $('#deckselect-deletedeck').val(String(old_del_val));
