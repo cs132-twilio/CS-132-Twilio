@@ -100,7 +100,7 @@ class Stream extends CI_Controller
         )
       );
     }
-    $r = $this->db->query('SELECT student_id, name, message, unix_timestamp(timestamp)
+    $r = $this->db->query('SELECT stream_posts.id as id, student_id, name, message, unix_timestamp(timestamp)
                            AS timestamp FROM stream_posts, students s WHERE s.id = student_id
                            AND thread = ? AND unix_timestamp(timestamp) > ?',
                            array($thread, $_SERVER['QUERY_STRING']))->result_array();
