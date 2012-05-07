@@ -39,7 +39,7 @@ class Message extends CI_Controller
     if($response->IsError){
       return array('success' => 0, 'message' => $to . ': ' . $response->ErrorMessage);
     } else {
-      return array('success' => 1, 'message' => 'Message succesfully sent to ' . $to);
+      return array('success' => 1, 'message' => 'Message succesfully sent.');
     }
   }
   

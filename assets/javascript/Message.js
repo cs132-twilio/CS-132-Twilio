@@ -50,7 +50,7 @@
                 }
               }, this)
             );
-          if (!error){
+          if (typeof error == 'undefined' || !error){
             $(this).find('[name=n],[name=m]').clearFields();
             $('#messageform input[name=n]').tokenInput('clear');
           }

@@ -19,3 +19,9 @@
   top: 50px;
   left: 50px;
 }
+
+#message_create {
+
+  background: lightgreen;
+  color: white;
+}
