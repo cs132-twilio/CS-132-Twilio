@@ -39,6 +39,12 @@
             <ul class="nav">
               <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>		
               <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
+              <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
+                <a href="/inbox">
+                  Inbox
+                  <?= $user_id&&$inbox?'<span class="badge badge-info">' . $inbox . '</span>':'' ?>
+                </a>
+              </li>		
             </ul>			
             
             <ul id="user-control" class="nav pull-right">

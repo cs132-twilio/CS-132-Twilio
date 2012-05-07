@@ -95,7 +95,11 @@
                       ),
                       ($(document.createElement('span'))
                         .addClass('stream_post_timestamp')
-                        .text(e.timestamp?' (' + $.timeago(new Date(e.timestamp * 1000)) + ')':'')
+                        .append(
+                          $(document.createElement('span')).text(' ('),
+                          $(document.createElement('span')).addClass('timeago').attr('title', e.timestamp?(new Date(e.timestamp * 1000)).toISOString():''),
+                          $(document.createElement('span')).text(')')
+                        )
                       )
                     )
                   ),
@@ -109,6 +113,7 @@
               if (e.execute) (new Function(e.execute))();
             }
           );
+          $('.timeago').timeago();
         }
       );
     }
