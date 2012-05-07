@@ -11,7 +11,10 @@
         function(){
           $.get('/inbox/count',
             function(r){
-              if (r !== '0') $('#inbox_unread').css('display', 'inline').text(r);
+              if (r !== '0' && r !== ''){
+                $('#inbox_unread').css('display', 'inline').text(r);
+                if (Twexter.inbox) Twexter.inbox.load(0);
+              }
               else if (r === '0') $('#inbox_unread').css('display', 'none');
             }
           );
