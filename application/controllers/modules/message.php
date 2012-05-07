@@ -34,8 +34,8 @@ class Message extends CI_Controller
     }
 	}
   
-  function _send($to, $m){
-    $response = $this->twilio->sms('0000000000', $to, $m);
+  function _send($from, $to, $m){
+    $response = $this->twilio->sms($from, $to, $m);
     if($response->IsError){
       return array('success' => 0, 'message' => $to . ': ' . $response->ErrorMessage);
     } else {
@@ -54,6 +54,8 @@ class Message extends CI_Controller
     if (!$uid){
       return array('success' => 0, 'message' => 'Your session has been timed out. Please refresh the page');
     }
+    $tnum = $this->db->query('SELECT phone_number FROM user_profiles WHERE user_id = ?', array($uid))->result_array();
+    $tnum = $tnum[0]['phone_number'];
     $targets = explode(',', $_POST['n']);
     $r = array();
     $mt = str_split($_POST['m'], 160);
@@ -63,10 +65,10 @@ class Message extends CI_Controller
         if ($t[0] == 'c' && substr($t, 1)){
           $list = $this->db->query('SELECT DISTINCT number FROM classlist l, classmap m, students s WHERE m.class_id = ? AND m.student_id = s.id AND owner_id = ? AND m.class_id = l.id', array(substr($t, 1), $uid))->result_array();
           foreach ($list as $l){
-            $r[] = $this->_send($l['number'], $m);
+            $r[] = $this->_send($tnum, $l['number'], $m);
           }
         } else {
-          $r[] = $this->_send($t, $m);
+          $r[] = $this->_send($tnum, $t, $m);
         }
       }
     }
