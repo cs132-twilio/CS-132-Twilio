@@ -25,6 +25,7 @@
       );
     },
     submit_delete: function(e){
+      if(!confirm("Are you sure you want to delete the selected classes?")) return false;
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
           var error = r.success === 0 ? r[0] : undefined;
