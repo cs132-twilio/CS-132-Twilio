@@ -14,7 +14,11 @@
         );
         $('#registration > form').submit(
           function(){
-            if ($('#registration-page-1').css('margin-left') != '-100%') $('#registration > form button[name=next]').click();
+            if ($('#registration-page-1').css('margin-left') != '-100%') 
+	    {
+	      console.log('in the if');
+	      $('#registration > form button[name=next]').click();
+	    }
             else {
               $(this).ajaxSubmit(
                 function (r){
