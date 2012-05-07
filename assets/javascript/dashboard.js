@@ -8,7 +8,7 @@
       Twexter.ajax_load('/modules/' + module.toLowerCase() + '/index/' + (c ? c : Twexter.dashboard.getClass()) + (args || ''), 'moduleContent',
         function(){
           $.bbq.pushState({m: module, m_args: args});
-	  m = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()];
+          m = Twexter.modules[module.charAt(0).toUpperCase() + module.slice(1).toLowerCase()];
           var f = m ? m.run : undefined;
           if(typeof f == 'function') f();
         }
@@ -40,7 +40,7 @@
     function(){
       activeTabs('moduleTabs');
       activeTabs('classTabs');
-      var c = $('#classtabs > li.class[data-cid=' + $.bbq.getState('c') + ']');
+      var c = $('#classTabs > li.class[data-cid=' + $.bbq.getState('c') + ']');
       c = c.length ? c : $('#classTabs > li.class:first');
       $(c).addClass('active');
       $.bbq.pushState({'c': $('#classTabs > li.active').data('cid')});
