@@ -1,0 +1,80 @@
+.inbox_message {
+  border-color: #ddd;
+  background-color: #fff;
+  color: black;
+  margin-bottom: -1px;
+}
+.inbox_message .inbox_read{
+  background-color: #eee;
+}
+.inbox_raquo {
+  color: #999;
+  margin: 0 10px;
+  font-size: 1.5em;
+  width: 20px;
+}
+.inbox_excerpt {
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 481px){
+  .inbox_title {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+  .inbox_from {
+    display: table-cell;
+    width: 140px;
+  }
+  .inbox_raquo {
+    display: table-cell;
+  }
+  .inbox_excerpt {
+    display: table-cell;
+    white-space: nowrap;
+    margin: 0 10px;
+  }
+  .inbox_timestamp {
+    display: table-cell;
+    width: 150px;
+    text-align: right;
+  }
+}
+@media (max-width: 480px){
+  .inbox_message {
+    padding: 10px 15px 8px 15px;
+  }
+  .inbox_title {
+    position: relative;
+  }
+  .inbox_raquo {
+    display: none;
+  }
+  .inbox_excerpt {
+    display: inline-block;
+    height: 4.5em;
+  }
+  .inbox_timestamp {
+    position: absolute;
+    top: 0;
+    right: 5px;
+  }
+}
+
+.message_view_from {
+  font-weight: bold;
+}
+.message_view_message {
+  margin: 20px 0;
+}
+.message_view_reply {
+  width: 400px;
+  text-align: right;
+}
+.message_view_reply textarea {
+  width: 390px;
+  height: 75px;
+}

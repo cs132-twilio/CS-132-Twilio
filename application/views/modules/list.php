@@ -11,7 +11,7 @@
   <tbody>
     <?
     foreach($students as $s){
-      echo '<tr data-sid="' . $s['id'] . '"><td>' . htmlentities($s['name']) . '</td><td>' . htmlentities($s['number']) . '</td><td><a href="#" class="list_removestudent close">&times;</a></td></tr>';
+      echo '<tr data-sid="' . $s['id'] . '"><td>' . htmlentities($s['name']) . '</td><td>' . htmlentities($s['number']) . '</td><td><span class="list_removestudent close">&times;</span></td></tr>';
     }
     ?>
   </tbody>

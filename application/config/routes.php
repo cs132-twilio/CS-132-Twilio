@@ -43,8 +43,7 @@ $route['404_override'] = '';
 $route['dashboard'] = '/welcome/dashboard';
 $route['profile'] = '/welcome/profile';
 $route['help'] = '/welcome/render_secure/help';
-
-
+$route['inbox'] = '/welcome/render_secure/inbox';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

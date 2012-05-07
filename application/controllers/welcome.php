@@ -28,6 +28,8 @@ class Welcome extends CI_Controller {
     $data['page'] = $view;
     $temp = ($this->db->query("SELECT phone_number FROM user_profiles WHERE user_id=?", array($data['user_id']))->result_array());
     $data['phone'] = $temp[0];
+    $data['inbox'] = $this->db->query('SELECT count(*) as n FROM inbox WHERE `to` = ? AND `read` = 0', array($data['user_id']))->result_array();
+    $data['inbox'] = $data['inbox'][0]['n'];
     $this->load->view('header', $data);
     $this->load->view($view, $data);
     $this->load->view('footer', $data);
@@ -57,6 +59,12 @@ class Welcome extends CI_Controller {
     if ($data['user_id']){
  	$data['users'] = $this->db->query('SELECT username, email FROM users WHERE id = ?', array($data['user_id']))->result_array();
 	$data['display_name'] = $this->db->query('SELECT display_name FROM user_profiles WHERE user_id = ?', array($data['user_id']))->result_array();		
+	$data['users'][0]['username'] =  htmlspecialchars($data['users'][0]['username']);      
+	$data['users'][0]['email'] =  htmlspecialchars($data['users'][0]['email']); 
+	$data[0]['display_name'] =  htmlspecialchars($data[0]['display_name']);
+      	$this->render_secure('profile', $data);
+ 	$data['users'] = $this->db->query('SELECT username, email FROM users WHERE id = ?', array($data['user_id']))->result_array();
+	$data['display_name'] = $this->db->query('SELECT display_name FROM user_profiles WHERE user_id = ?', array($data['user_id']))->result_array();		
 // 	$data['users'][0]['username'] =  htmlspecialchars($data['users'][0]['username']);      
 // 	$data['users'][0]['email'] =  htmlspecialchars($data['users'][0]['email']); 
 	$temp = ($this->db->query("SELECT phone_number FROM user_profiles WHERE user_id=?", array($data['user_id']))->result_array());
@@ -66,6 +74,12 @@ class Welcome extends CI_Controller {
 	$data['email'] = htmlspecialchars($data['users'][0]['email']); 
 	$data['display_name'] =  htmlspecialchars($data[0]['display_name']);
       	$this->render_secure('profile', $data);
+    $data['users'] = $this->db->query('SELECT username, email FROM users WHERE id = ?', array($data['user_id']))->result_array();
+    $data['display_name'] = $this->db->query('SELECT display_name FROM user_profiles WHERE user_id = ?', array($data['user_id']))->result_array();		
+    $data['users'][0]['username'] =  htmlspecialchars($data['users'][0]['username']);      
+    $data['users'][0]['email'] =  htmlspecialchars($data['users'][0]['email']); 
+    $data[0]['display_name'] =  htmlspecialchars($data[0]['display_name']);
+    $this->render_secure('profile', $data);
    }
     else redirect('/auth/login');
   }

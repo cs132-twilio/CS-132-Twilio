@@ -24,22 +24,35 @@
     submit: function(e){
       return !$(e).ajaxSubmit(
         $.proxy(function(r){
-          var error = r.success === 0 ? r[0] : undefined;
-          if (!error){
             $(r).each(
-              function(i, e){
+              $.proxy(function(i, e){
+                $(this).find('#message_log').empty();
+                ($(document.createElement('div'))
+                  .addClass('alert')
+                  .addClass(e.success ? 'alert-success' : 'alert-error')
+                  .css('display', 'none')
+                  .append($(document.createElement('span')).text(e.message))
+                  .append(
+                    ($(document.createElement('span'))
+                      .addClass('close')
+                      .html('&times;')
+                      .click(
+                        function(){
+                          $(this).parent().slideUp(function(){$(this).remove();});
+                        }
+                      )
+                    )
+                  )
+                ).appendTo($(this).find('#message_log')).slideDown(500);
                 if (!e.success){
                   error = e;
                   return false;
                 }
-              }
+              }, this)
             );
-          }
-          if (error) $(this).find('#message_sent').removeClass('success').addClass('error').text(error.message);
-          else{
+          if (!error){
             $(this).find('[name=n],[name=m]').clearFields();
             $('#messageform input[name=n]').tokenInput('clear');
-            $(this).find('#message_sent').removeClass('error').addClass('success').text('Your message was sent successfully!');
           }
         }, e)
       );

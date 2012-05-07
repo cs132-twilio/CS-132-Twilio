@@ -39,10 +39,17 @@
 
             <ul class="nav">
               <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>
-	      <?php if ($user_id) { ?>
-		<li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>	
+	      <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
+              <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
+                <a href="/              <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
+                <a href="/inbox">
+                  Inbox
+<?php if ($user_id) {                >
 		<li class="active"><a><?php echo $phone["phone_number"]; ?></a></li>	
 	      <?php } ?>
+                  <?= $user_id&&$inbox?'<span class="badge badge-info">' . $inbox . '</span>':'' ?>
+                </a>
+              </li>		
             </ul>			
             
             <ul id="user-control" class="nav pull-right">
