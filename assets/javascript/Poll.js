@@ -12,7 +12,10 @@
         $(form).attr('action', '/modules/poll/addPoll/' + Twexter.dashboard.getClass());
         return $(form).ajaxSubmit(
           function(r){
-            $('#message_create').text(r).slideDown(500);
+            //$('#message_create').text(r).slideDown(500);
+            $('#contact-content-wrapper').find('[name=name], [name=polltype], [name=closingtime]').clearFields();
+            $('.temp-message').remove();
+            $('#message_create').after('<div class="alert alert-success temp-message">'+r+'</div>');
           }
         );
         break;
@@ -20,7 +23,10 @@
         $(form).attr('action', '/modules/poll/deletePoll/' + Twexter.dashboard.getClass());
         return $(form).ajaxSubmit(
           function(r){
-            $('#message_delete').text(r).slideDown(500);
+//             $('#message_delete').text(r).slideDown(500);
+            $('#delete-poll').find('[name=pollselect]').clearFields();
+            $('.temp-message').remove();
+            $('#message_delete').after('<div class="alert alert-error temp-message">'+r+'</div>');
           }
         );
         break;

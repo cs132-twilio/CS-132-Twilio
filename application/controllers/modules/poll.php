@@ -150,8 +150,11 @@ class Poll extends CI_Controller
       // first obtain all the values for the poll
       $name = isset($_POST['name']) ? trim($_POST['name']) : '';
       $teacherID = $this->tank_auth->get_user_id();
-      $closingTime = strtotime($_POST['closingtime']);
+//       $closingTime = strtotime($_POST['closingtime']);
       $type = ($_POST['polltype']);
+      $duration = ($_POST['closingtime']);
+      
+      $closingTime = time() + ($duration * 60 * 60);
 
       if ($name == '') {
     echo "You must enter a poll name.";
