@@ -39,10 +39,10 @@ class Join extends CI_Controller
         return;
       }
     } else {
-      //$this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
+      $this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
       $num = $_GET['From'];
       $name = $message[1];
-      $this->db->query('IF EXISTS (SELECT id FROM students WHERE number = ?) UPDATE students SET name = ? WHERE number = ? ELSE INSERT INTO students (name, number) VALUES (?, ?)', array($num, $name, $num, $name, $num));
+      //$this->db->query('IF EXISTS (SELECT id FROM students WHERE number = ?) UPDATE students SET name = ? WHERE number = ? ELSE INSERT INTO students (name, number) VALUES (?, ?)', array($num, $name, $num, $name, $num));
       $this->load->view('twiml.php', array('message' => 'You have been successfully registered. Text JOIN [id] to join a class'));
       return;
     }
