@@ -3,20 +3,18 @@
   <div class="row" id="profile"> 
       <div class="padding page"> 
 
-
-
-    <!--breadcrumb-->
-    <div class="row"> 
+  <!--breadcrumb-->
+  <div class="row"> 
 	<ul class="breadcrumb"> 
-	  <li><a href="/dashboard">Dashboard</a><span class="divider">/</span></li> 
-	  <li class="active"><a href="">Profile</a></li> 
+	  <li class="active"><a href="/dashboard">Dashboard<span class="divider">/</span></li> 
+	  <li><a href="">Profile</a></li> 
 	</ul> 
-    </div> <!--breadcrumb-->
+    </div> 
+
 
 	  <div class="page-header">
 	  <h1>Your Profile</h1>
 	  </div> 
-
       <div id="phone_number">
       <h3>Phone Number  <small><? echo $phone['phone_number'];?></small></h3>
       </div>
