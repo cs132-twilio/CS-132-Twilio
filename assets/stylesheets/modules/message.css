@@ -4,8 +4,21 @@
   margin: 5px 15px;
 }
 
-#message_input textarea{
+/*#message_input textarea{
   width: 392px;
+}*/
+
+#message_input {
+  width: 100%;
+  max-width: 450px;
+}
+
+#message_input textarea {
+  width: 95%;
+}
+
+#message_input .token-input-list-facebook {
+  width: 97%;
 }
 
 #message_log {
