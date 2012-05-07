@@ -1,54 +1,34 @@
-$(document).ready(function(){
-
-  
-  $("#change_email").click( 
-  
+(function($){
+  $(window).load(
     function(){
-    
-        var email=$("#email").val();
-        var password=$("#password").val();
-      	document.write(email);
-	document.write(password); 
-     /*   $.ajax({
-        type: "POST",
-        url: "http://demos.ryantetek.com/codeigniter_samples/index.php/ajax_post/post_action",
-        dataType: "json",
-        data: "username="+username+"&password="+password,
-        cache:false,
-        success: 
-          function(data){
-            $("#form_message").html(data.message).css({'background-color' : data.bg_color}).fadeIn('slow'); 
+      var callback_email = function(){
+        $('#change-email > form').submit(
+          function(){
+            !$(this).ajaxSubmit(
+              function (r){
+                $('#change-email').html(r);
+                callback_email();
+              }
+            );
+            return false;
           }
-        
-        });
-*/
-      return false;
-
-    });
-   $("#change_password").click(
-  
-    function(){
-
-        var old_password=$("#old_password").val();
-        var old_password=$("#old_password").val();
-        var old_password=$("#old_password").val();
-  /*      $.ajax({
-        type: "POST",
-        url: "http://demos.ryantetek.com/codeigniter_samples/index.php/ajax_post/post_action",
-        dataType: "json",
-        data: "username="+username+"&password="+password,
-        cache:false,
-        success:
-          function(data){
-            $("#form_message").html(data.message).css({'background-color' : data.bg_color}).fadeIn('slow');
+        );
+      }
+      var callback_password = function(){
+        $('#change-password > form').submit(
+          function(){
+            !$(this).ajaxSubmit(
+              function (r){
+                $('#change-password').html(r);
+                callback_password();
+              }
+            );
+            return false;
           }
-
-        });
-*/
-      return false;
-
-    });
-
-
-});
-
+        );
+      }
+      Twexter.ajax_load('/auth/change_email', 'change-email', callback_email);
+      Twexter.ajax_load('/auth/change_password', 'change-password', callback_password);
+    }
+  );
+})(jQuery);

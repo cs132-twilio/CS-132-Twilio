@@ -1,0 +1,15 @@
+#message_input, #message_log {
+  display: inline-block;
+  vertical-align: top;
+  margin: 5px 15px;
+}
+
+#message_input textarea{
+  width: 392px;
+}
+
+#message_log {
+  width: 40%;
+  height: 320px;
+  overflow-y: auto;
+}
