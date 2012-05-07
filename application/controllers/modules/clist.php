@@ -11,10 +11,15 @@ class cList extends CI_Controller{
       echo "Invalid class id";
       return;
     }
+    $user_id = $this->tank_auth->get_user_id();
     $this->session->sess_update();
     $data['class_id'] = $c;
+    $temp = $this->db->query('SELECT name FROM classlist WHERE id=?', $c)->result_array();
+    $data['class_name'] = $temp[0];
     $r = $this->db->query('SELECT m.student_id, s.id, s.name, s.number FROM classmap m, students s WHERE m.student_id = s.id AND class_id=?', array($c));
     $data['students'] = $r->result_array();
+    $temp = ($this->db->query("SELECT phone_number FROM user_profiles WHERE user_id=?", $user_id)->result_array());
+    $data['phone'] = $temp[0];
     $this->load->view('modules/list.php', $data);
   }
 
