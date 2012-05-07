@@ -53,6 +53,13 @@
       }
       $('#messageTabs > li.active').not('#inbox_refresh').removeClass('active');
       $('#messageTabs > li[data-id=' + m + ']').addClass('active');
+    },
+    submit: function(e){
+      return !$(e).ajaxSubmit(
+        function(r){
+          if (r.success) $(e).find('textarea').val('');
+        }
+      );
     }
   }
 
