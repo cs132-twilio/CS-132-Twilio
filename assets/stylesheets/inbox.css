@@ -4,6 +4,9 @@
   color: black;
   margin-bottom: -1px;
 }
+.inbox_message.inbox_read{
+  background-color: #eee;
+}
 .inbox_message .inbox_read{
   background-color: #eee;
 }
@@ -17,6 +20,20 @@
   color: #999;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.inbox_tab_close {
+  float: none;
+  visibility: hidden;
+}
+li.active .inbox_tab_close, li:hover .inbox_tab_close {
+  visibility: visible;
+}
+#messageTabs{
+  position: relative;
+}
+#inbox_refresh{
+  position: absolute;
+  right: 0;
 }
 
 @media (min-width: 481px){

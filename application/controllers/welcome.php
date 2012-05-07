@@ -28,8 +28,6 @@ class Welcome extends CI_Controller {
     $data['page'] = $view;
     $temp = ($this->db->query("SELECT phone_number FROM user_profiles WHERE user_id=?", array($data['user_id']))->result_array());
     $data['phone'] = $temp[0];
-    $data['inbox'] = $this->db->query('SELECT count(*) as n FROM inbox WHERE `to` = ? AND `read` = 0', array($data['user_id']))->result_array();
-    $data['inbox'] = $data['inbox'][0]['n'];
     $this->load->view('header', $data);
     $this->load->view($view, $data);
     $this->load->view('footer', $data);

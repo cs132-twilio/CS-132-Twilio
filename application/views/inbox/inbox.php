@@ -1,5 +1,5 @@
 <? foreach($messages as $m){ ?>
-  <div class="inbox_message alert" data-id="<?= $m['id'] ?>">
+  <div class="inbox_message alert<?= $m['read']?' inbox_read':'' ?>" data-id="<?= $m['id'] ?>">
     <div class="inbox_title">
       <span class="inbox_from"><?= $m['from'] ?></span>
       <span class="inbox_raquo">&raquo;</span>
