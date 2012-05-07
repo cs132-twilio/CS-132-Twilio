@@ -8,7 +8,7 @@ class cList extends CI_Controller{
   function index($c){
     $this->checkauth->check();
     if (!(intval($c) > 0)){
-      echo "Invalid class id";
+      echo '&larr; Please select a class from the list';
       return;
     }
     $user_id = $this->tank_auth->get_user_id();
