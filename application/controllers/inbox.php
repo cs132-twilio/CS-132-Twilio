@@ -9,6 +9,12 @@ class Inbox extends CI_Controller {
   function index($id = 0){
     $this->messages($id);
   }
+  function count(){
+    $uid = $this->tank_auth->get_user_id();
+    if (!$uid) return;
+    $r = $this->db->query('SELECT count(*) as n FROM inbox WHERE `to` = ? AND `read` = 0', array($uid))->result_array();
+    echo $r[0]['n'];
+  }
   function messages($id = 0){
     $this->checkauth->check();
     $uid = $this->tank_auth->get_user_id();
@@ -16,8 +22,11 @@ class Inbox extends CI_Controller {
       echo 'Your session has been timed out. Please refresh the page';
       return;
     }
-    $data['messages'] = $this->db->query('SELECT i.id, s.name as `from`, message, timestamp, `read` FROM inbox i, students s WHERE `to` = ? AND s.id = i.`from`' . ($id?' AND i.id = ?':'') . ' ORDER BY timestamp DESC', array($uid, $id))->result_array();
-    if ($id) $this->load->view('inbox/message.php', $data);
+    $data['messages'] = $this->db->query('SELECT i.id as id, s.name as `from`, message, timestamp, `read` FROM inbox i, students s WHERE `to` = ? AND s.id = i.`from`' . ($id?' AND i.id = ?':'') . ' ORDER BY timestamp DESC', array($uid, $id))->result_array();
+    if ($id){
+      $this->db->query('UPDATE inbox SET `read` = 1 WHERE id = ?', array($id));
+      $this->load->view('inbox/message.php', $data);
+    }
     else $this->load->view('inbox/inbox.php', $data);
   }
   
