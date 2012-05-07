@@ -1,8 +1,9 @@
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
+@media (min-width: 981px){
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
 }
-
 .navbar .brand {
   color: white;
 }
@@ -11,7 +12,24 @@ body {
   padding-top:15px;
 	padding-bottom:15px;
 }
-
+@media (min-width: 981px) {
+  .nav {
+    z-index: 2;
+  }
+  #phonenumber {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  #phonenumber > li{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+  }
+}
 #inbox_unread{
   display: none;
 }
