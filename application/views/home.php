@@ -5,8 +5,35 @@
   </div>
   <div class="row">       
     <div class="span5">
+      <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="/assets/images/phone.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Rediscover SMS</h4>
+              <p>All of your students can text. We help you incorporate this into the class.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/images/students.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Student engagement</h4>
+              <p>We provide you a simple way to keep your students engaged. They will be more involved, and you will have more time to teach.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/images/graduate.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Study aid</h4>
+              <p>Texting can now help you connect with your students, and help them achieve their goals.</p>
+            </div>
+          </div>
+	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+        </div>
+      </div>
     </div>
-    <div class="span3">      
+    <div class="span3">
       <?= $user_id?'<div id="logged-in-home" class="span3">
 	<div id="logged-in-home-text">
 	  <h2>You are now logged in to Twexter.</h2>	
