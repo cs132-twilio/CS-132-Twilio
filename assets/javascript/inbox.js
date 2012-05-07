@@ -49,7 +49,7 @@
       $('#inbox_refresh').css('display', m?'none':'inline');
       if (m) $('#inboxContent').load('/inbox/messages/' + m);
       else{
-        $('#inboxContent').load('/inbox/messages', Twexter.inbox.run);
+        $('#inboxContent').load('/inbox/messages/?unread=' + ($('#filterTabs li.active').text() === 'Inbox'?'0':'1'), Twexter.inbox.run);
       }
       $('#messageTabs > li.active').not('#inbox_refresh').removeClass('active');
       $('#messageTabs > li[data-id=' + m + ']').addClass('active');
@@ -65,7 +65,14 @@
 
   $(window).load(
     function(){
-      $('#inboxContent').load('/inbox/messages', Twexter.inbox.run);
+      Twexter.inbox.load(0);
+      $('#filterTabs li').click(
+        function(){
+          $('#filterTabs li.active').removeClass('active');
+          $(this).addClass('active');
+          Twexter.inbox.load(0);
+        }
+      );
       $('#inbox_refresh').click(
         function(){
           Twexter.inbox.load(0);
