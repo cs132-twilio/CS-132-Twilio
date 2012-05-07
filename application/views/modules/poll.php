@@ -23,7 +23,7 @@
 	      <?php echo form_close() ?> 
       </div>
       <div id="select-poll-wrapper" class="span6">
-	      <?php echo form_open("", 'class="well" method="post" onsubmit="Twexter.modules.Poll.submit(this); return false"') ?>
+	      <?php echo form_open('/modules/poll/analyzePoll/' . $c, 'class="well" id="poll_form_view" method="post" onsubmit="Twexter.modules.Poll.submit(this); return false"') ?>
 		      <fieldset>
 			<legend>View data for a poll</legend>
 			  <label for="type">Poll Name</label>
