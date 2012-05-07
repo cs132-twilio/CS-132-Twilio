@@ -183,9 +183,11 @@
       
       $.get('/modules/flashcards/listdecks',
         function(r){
-	  $('#deckselect').append('<option value="-1">-Select a Deck-</option>')
-	  $('#deckselect-deletedeck').append('<option value="-1">-Select a Deck-</option>')
-	  $('#deckselect-addcard').append('<option value="-1">-Select a Deck-</option>')
+	  if(r.count()<1) {
+	    $('#deckselect').append('<option>-Select a Deck-</option>');
+	    $('#deckselect-addcard').append('<option>-Select a Deck-</option>');
+	  }	  
+	  $('#deckselect-deletedeck').append('<option>-Select a Deck-</option>');	  
           $(r).each(
             function(i, e){              
 		$('#deckselect').append('<option value="' + e.deck_name + '">' + e.deck_name + '</option>');
