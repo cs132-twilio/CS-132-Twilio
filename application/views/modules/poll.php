@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
       <div id="contact-content-wrapper" class="span6">
-	      <?php echo form_open("/modules/poll/addPoll", 'class="well" method="post" onsubmit="return !Twexter.modules.Poll.submit(this);"') ?>
+	      <?php echo form_open("/modules/poll/addPoll", 'id="new-poll-form" class="well" method="post" onsubmit="return !Twexter.modules.Poll.submit(this);"') ?>
 		      <fieldset>
 			  <legend>Create a new poll</legend>
 			  <label for="name">Poll Name</label>
@@ -15,15 +15,21 @@
 			    <option value="mc">Multiple Choice (A-D)</option>
 			    <option value="fr">Free Response</option>
 			  </select>
-			  <label for="closingtime">Closing Time</label>
-			  <input type="datetime" name="closingtime">	
+        <label for ="closingtime">Poll Duration</label>
+        <select name="closingtime" class="">
+          <option value="">Select a duration</option>
+          <option value="1">1 hour</option>
+          <option value="2">2 hours</option>
+          <option value="5">5 hours</option>
+          <option value="24">24 hours</option>
+        </select>
 			  <dl><button type="submit" value="create" class="btn btn-primary">Create</button></dl>
 			  <span id="message_create"></span>
 		      </fieldset>
 	      <?php echo form_close() ?> 
       </div>
       <div id="select-poll-wrapper" class="span6">
-	      <?php echo form_open("", 'class="well" method="post" onsubmit="Twexter.modules.Poll.submit(this); return false"') ?>
+	      <?php echo form_open('/modules/poll/analyzePoll/' . $c, 'class="well" id="poll_form_view" method="post" onsubmit="Twexter.modules.Poll.submit(this); return false"') ?>
 		      <fieldset>
 			<legend>View data for a poll</legend>
 			  <label for="type">Poll Name</label>
@@ -46,7 +52,7 @@
       </div>
   </div>
   <div class="row-fluid">
-      <div class="span6">
+      <div id="delete-poll" class="span6">
 	<?php echo form_open("/modules/poll/deletePoll", 'class="well" method="post" onsubmit="return !Twexter.modules.Poll.submit(this);"') ?>
 	      <fieldset>
 		  <legend>Delete a poll</legend>
