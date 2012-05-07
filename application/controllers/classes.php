@@ -69,8 +69,9 @@ function delete(){
     }
     foreach($classes as $class_id){
 	try{
-	  $this->db->query("DELETE FROM classmap WHERE classmap.class_id = ? AND classmap.class_id IN (SELECT classlist.id FROM classlist WHERE classlist.owner_id = ?)", array($class_id, $owner_id));
+	  //$this->db->query("DELETE FROM classmap WHERE classmap.class_id = ? AND classmap.class_id IN (SELECT classlist.id FROM classlist WHERE classlist.owner_id = ?)", array($class_id, $owner_id));
 	  $this->db->query("DELETE FROM classlist WHERE owner_id = ? AND id = ?", array($owner_id, $class_id));
+	
 	} catch(PDOException $e) {
 	  echo json_encode(array('success' => 0, 'message' => 'An error occured: ' . $e->getMessage()));
 	  return;
