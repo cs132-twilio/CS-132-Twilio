@@ -5,7 +5,7 @@
   </div>
   <div class="row">       
     <div class="span5">
-      <div id="myCarousel" class="carousel slide">
+      <div id="myCarousel" class="carousel slide hidden-phone">
         <div class="carousel-inner">
           <div class="item active">
             <img src="/assets/images/phone.jpg" alt="">
@@ -35,7 +35,7 @@
     </div>
     <div class="span3">
       <?= $user_id?'<div id="logged-in-home" class="span3">
-	<div id="logged-in-home-text">
+	<div id="logged-in-home-text" class="hidden-phone">
 	  <h2>You are now logged in to Twexter.</h2>	
 	  <h2>Head over to the dashboard to manage your classes.</h2>
 	</div>

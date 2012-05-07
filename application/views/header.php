@@ -46,11 +46,12 @@
                   Inbox <span id="inbox_unread" class="badge badge-info"></span>
                 </a>
               </li>
-              <?php if ($user_id) { ?>
-              <li class="active"><a><?php echo $phone["phone_number"]; ?></a></li>	
-              <?php } ?>	
             </ul>			
-            
+            <ul class="nav" id="phonenumber">
+	      <?php if ($user_id) { ?>
+              <li><a><?php if(preg_match('/\+([\d])([\d]{3})([\d]{3})([\d]{4})/', $phone["phone_number"], $phone['phone_number'])) unset($phone['phone_number'][0]); echo implode('-', $phone['phone_number']); ?></a></li>	
+              <?php } ?>
+	    </ul>
             <ul id="user-control" class="nav pull-right">
               <?php if ($user_id) { ?>
               <li<?= $page == 'help' ? ' class="active"' : '' ?>><a href="/help">Help</a></li>
