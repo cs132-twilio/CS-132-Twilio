@@ -30,6 +30,12 @@ class Receiver extends CI_Controller
       case 'stream':
         $this->load->view('twiml.php', array('redirect' => '/modules/stream/post'));
         break;
+      case 'f':
+      case 'fl':
+      case 'flash':
+      case 'flashcards':
+        $this->load->view('twiml.php', array('redirect' => '/modules/flashcards/post'));
+        break;        
       case 'p':
       case 'poll':
         $this->load->view('twiml.php', array('redirect' => '/modules/poll/post'));
