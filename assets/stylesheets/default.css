@@ -39,10 +39,20 @@ body {
 }
 #registration{
   height: 370px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 #registration input {
   margin-bottom: inherit;
 }
 #registration .registration_field {
   margin: 10px 0;
+}
+
+#registration-page-1,#registration-page-2{
+  width: 100%;
+  display: inline-block;
+}
+#registration #recaptcha_image > img{
+  max-width: 220px;
 }
