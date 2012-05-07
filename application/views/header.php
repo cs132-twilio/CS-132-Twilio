@@ -44,7 +44,7 @@
                 <a href="/              <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
                 <a href="/inbox">
                   Inbox
-<?php if ($user_id) {                >
+<?php if ($user_id) { ?>
 		<li class="active"><a><?php echo $phone["phone_number"]; ?></a></li>	
 	      <?php } ?>
                   <?= $user_id&&$inbox?'<span class="badge badge-info">' . $inbox . '</span>':'' ?>
