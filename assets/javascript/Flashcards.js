@@ -183,7 +183,7 @@
       
       $.get('/modules/flashcards/listdecks',
         function(r){
-	  if(r.count()<1) {
+	  if(r.length<1) {
 	    $('#deckselect').append('<option>-Select a Deck-</option>');
 	    $('#deckselect-addcard').append('<option>-Select a Deck-</option>');
 	  }	  
