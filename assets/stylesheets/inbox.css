@@ -4,6 +4,9 @@
   color: black;
   margin-bottom: -1px;
 }
+.inbox_message.inbox_read{
+  background-color: #eee;
+}
 .inbox_message .inbox_read{
   background-color: #eee;
 }

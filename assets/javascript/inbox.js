@@ -3,6 +3,7 @@
     run: function(){
       $('.inbox_message').click(
         function(){
+          $(this).addClass('inbox_read');
           var m = $(this).data('id');
           var n = $(this).find('.inbox_from').text();
           var d = $('#messageTabs > li[data-name="' + n + '"]').length;
