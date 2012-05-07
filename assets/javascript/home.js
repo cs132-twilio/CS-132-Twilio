@@ -4,21 +4,17 @@
       var callback = function(){
         $('#registration > form button[name=next]').click(
           function(){
-            $('#registration-page-1').animate({'margin-left':'-100%'}, function(){$('#recaptcha_response_field').focus();});
+            $('#registration-page-1').animate({'margin-left':'-270px'}, function(){$('#recaptcha_response_field').focus();});
           }
         );
         $('#registration > form button[name=back]').click(
           function(){
-            $('#registration-page-1').animate({'margin-left':'0%'});
+            $('#registration-page-1').animate({'margin-left':'0px'});
           }
         );
         $('#registration > form').submit(
           function(){
-            if ($('#registration-page-1').css('margin-left') != '-100%') 
-	    {
-	      console.log('in the if');
-	      $('#registration > form button[name=next]').click();
-	    }
+            if ($('#registration-page-1').css('margin-left') != '-270px') $('#registration > form button[name=next]').click();
             else {
               $(this).ajaxSubmit(
                 function (r){
