@@ -266,29 +266,39 @@ class Poll extends CI_Controller
 
     //SELECT SUM(IF(response='a', 1, 0)) as a, SUM(IF(response='b', 1, 0)) as b, SUM(IF(response='c', 1, 0)) as c, SUM(IF(response='d', 1, 0)) as d FROM poll_responses WHERE teacherID =5 AND pollID =39
 
-    // number of responses with A
-    $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
-          AND response =?', array($teacher_id, $poll_id, 'a'));
+    $r = $this->db->query("SELECT SUM(IF(response='a', 1, 0)) as a, SUM(IF(response='b', 1, 0)) as b, SUM(IF(response='c', 1, 0)) as c, 
+                            SUM(IF(response='d', 1, 0)) as d FROM poll_responses WHERE teacherID =? AND pollID =?", 
+                            array($teacher_id, $poll_id));
     $results = $r->result_array();
-    $a = $results[0]['count'];
+    $a = $results[0]['a'];
+    $b = $results[0]['b'];
+    $c = $results[0]['c'];
+    $d = $results[0]['d'];
 
-    // number of responses with B
-    $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
-          AND response =?', array($teacher_id, $poll_id, 'b'));
-    $results = $r->result_array();
-    $b = $results[0]['count'];
+//     // number of responses with A
+//     $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
+//           AND response =?', array($teacher_id, $poll_id, 'a'));
+//     $results = $r->result_array();
+//     $a = $results[0]['count'];
+// 
+//     // number of responses with B
+//     $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
+//           AND response =?', array($teacher_id, $poll_id, 'b'));
+//     $results = $r->result_array();
+//     $b = $results[0]['count'];
+// 
+//     // number of responses with C
+//     $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
+//       AND response =?', array($teacher_id, $poll_id, 'c'));
+//     $results = $r->result_array();
+//     $c = $results[0]['count'];       
+// 
+//     // number of responses with D
+//     $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
+//       AND response =?', array($teacher_id, $poll_id, 'd'));
+//     $results = $r->result_array();
+//     $d = $results[0]['count'];
 
-    // number of responses with C
-    $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
-      AND response =?', array($teacher_id, $poll_id, 'c'));
-    $results = $r->result_array();
-    $c = $results[0]['count'];       
-
-    // number of responses with D
-    $r = $this->db->query('SELECT COUNT(*) AS count FROM poll_responses WHERE teacherID =? AND pollID =? 
-      AND response =?', array($teacher_id, $poll_id, 'd'));
-    $results = $r->result_array();
-    $d = $results[0]['count'];
     if($_POST['raw']){
       header('Content-type: application/json');
       echo json_encode(array(
