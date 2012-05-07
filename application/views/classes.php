@@ -2,6 +2,14 @@
 <div class="row" id="classes">
 <div class="padding page">
 
+    <!--breadcrumb-->
+    <div class="row"> 
+	<ul class="breadcrumb"> 
+	  <li><a href="/dashboard">Dashboard</a><span class="divider">/</span></li> 
+	  <li class="active"><a href="">Profile</a></li> 
+	</ul> 
+    </div> <!--breadcrumb-->
+
 <div class="page-header">
 	  <h1>Manage your classes</h1>
 </div> 

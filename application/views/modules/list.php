@@ -1,9 +1,7 @@
 <script type="text/javascript" src="/assets/javascript/List.js"></script>
 
 
-<div class="alert alert-info">
-   Students can <strong>join <?php echo $class_name['name']; ?> </strong> by texting "JOIN <?php echo $class_id; ?>"</strong> to <?php echo $phone["phone_number"] ?>.</strong>  
-</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,3 +16,7 @@
     ?>
   </tbody>
 </table>
+
+<div class="alert alert-info">
+   Students can <strong>join <?php echo $class_name['name']; ?> </strong> by texting "JOIN <?php echo $class_id; ?>"</strong> to <?php echo $phone["phone_number"] ?>.</strong>  
+</div>
