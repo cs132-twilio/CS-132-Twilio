@@ -22,7 +22,7 @@
         </div>
 	<br />
 	<button type="submit" class="btn btn-success">Add a new class</button>
-	</br>
+	</br></br></br>
 	<span id="add_class"></span>
 <?= form_close() ?>
 
@@ -50,6 +50,7 @@
 	<button type="submit" class="btn btn-danger">Delete Classes</button>
 	</br>
 	<span id="delete_class"></span>
+	</br></br></br>
 <?= form_close() ?>
 
 <!--</div>-->

@@ -16,27 +16,27 @@
     run: function(){
       $('#newstream').click(
         function(){
-	  if (!$('#newstream_name').val()){
-	    $('#newstream_container').animate({width: 220});
-	    $('#newstream_container').focus();
-	  } else {
-	      $('#newstream_form').ajaxSubmit(
-		function(r){
-		  if (r.success){
-		    $('#streamselect').append(
-		      ($(document.createElement('option'))
-			.val(r.id)
-			.text(r.name)
-		      )
-		    );
-		    $('#streamselect').val(r.id);
-		    $('#streamselect').change();
-		    $('#newstream_name').val('');
-		    $('#newstream_container').animate({width: 0});
-		  }
-		}
-	      );
-	  }
+          if (!$('#newstream_name').val()){
+            $('#newstream_container').animate({width: 220});
+            $('#newstream_container').focus();
+          } else {
+            $('#newstream_form').ajaxSubmit(
+              function(r){
+                if (r.success){
+                  $('#streamselect').append(
+                    ($(document.createElement('option'))
+                      .val(r.id)
+                      .text(r.name)
+                    )
+                  );
+                  $('#streamselect').val(r.id);
+                  $('#streamselect').change();
+                  $('#newstream_name').val('');
+                  $('#newstream_container').animate({width: 0});
+                }
+              }
+            );
+          }
         }
       );
       $('#deletestream').click(
@@ -62,7 +62,7 @@
             $('#streamid > span').text($('#streamselect').val());
             $('#streamid').slideDown();
           } else {
-            $('#streamselect').append('<option value="0">No Streams available</option>');
+            if(!$('#streamselect > option').length) $('#streamselect').append('<option value="0">No Streams available</option>');
             $('#streamid').slideUp();
           }
         }
@@ -83,34 +83,37 @@
         function(r){
           $(r).each(
             function(i, e){
-              ($(document.createElement('div'))
-                .addClass('stream_post')
-                .css('display', 'none')
-                .append(
-                  ($(document.createElement('div'))
-                    .append(
-                      ($(document.createElement('span'))
-                        .addClass('stream_post_title')
-                        .text(e.name)
-                      ),
-                      ($(document.createElement('span'))
-                        .addClass('stream_post_timestamp')
-                        .append(
-                          $(document.createElement('span')).text(' ('),
-                          $(document.createElement('span')).addClass('timeago').attr('title', e.timestamp?(new Date(e.timestamp * 1000)).toISOString():''),
-                          $(document.createElement('span')).text(')')
+              if(!$('#stream > div[data-id=' + e.id + ']').length){
+                ($(document.createElement('div'))
+                  .addClass('stream_post')
+                  .attr('data-id', e.id)
+                  .css('display', 'none')
+                  .append(
+                    ($(document.createElement('div'))
+                      .append(
+                        ($(document.createElement('span'))
+                          .addClass('stream_post_title')
+                          .text(e.name)
+                        ),
+                        ($(document.createElement('span'))
+                          .addClass('stream_post_timestamp')
+                          .append(
+                            $(document.createElement('span')).text(' ('),
+                            $(document.createElement('span')).addClass('timeago').attr('title', e.timestamp?(new Date(e.timestamp * 1000)).toISOString():''),
+                            $(document.createElement('span')).text(')')
+                          )
                         )
                       )
+                    ),
+                    ($(document.createElement('div'))
+                      .addClass('stream_post_message')
+                      .html(e.message)
                     )
-                  ),
-                  ($(document.createElement('div'))
-                    .addClass('stream_post_message')
-                    .html(e.message)
                   )
-                )
-              ).prependTo($('#stream')).slideDown();
+                ).prependTo($('#stream')).slideDown();
               Twexter.modules.Stream.lastpost = e.timestamp;
               if (e.execute) (new Function(e.execute))();
+              }
             }
           );
           $('.timeago').timeago();

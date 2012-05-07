@@ -37,7 +37,11 @@ class Join extends CI_Controller
         $this->load->view('twiml.php', array('message' => 'Invalid class number!'));
         return;
       }
-    } else $this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
+    } else {
+      $this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
+      echo 'You have been successfully registered. Text JOIN [id] to join a class';
+      return;
+    }
   }
   
   function poll($thread){
