@@ -22,41 +22,44 @@
     },
     poll: function(){ 
       $('#deck-form-div').empty();
-      $.get('/modules/flashcards/poll/' + $('#deckselect').val(),
-        function(r){
-	  var $tbl = $('<table>').attr('id', 'cardsTable');
-	  $tbl.append(
-		  $('<tr>')
-                      .append($('<th>').text('#'),
-                      $('<th>').text('Question'),
-		      $('<th>').text('Answer'),
-		      $('<th>').text('Delete')
-		      )
+      $.ajax('/modules/flashcards/poll/' + $('#deckselect').val(),
+	{
+	  success: function(r){
+	    var $tbl = $('<table>').attr('id', 'cardsTable');
+	    $tbl.append(
+		    $('<tr>')
+			.append($('<th>').text('#'),
+			$('<th>').text('Question'),
+			$('<th>').text('Answer'),
+			$('<th>').text('Delete')
+			)
+		  
+		  );  
+	    $(r).each(
+	      function(i, e){              
+		  $tbl.append(
+		    $('<tr>')
+			.append($('<td>').text(e.position),
+			$('<td>').text(e.question),
+			$('<td>').text(e.answer),
+			$('<td>').html('<input type="checkbox" name="deletecard[]" value="' + e.position + '"></input>')
+			)
+		  
+		  );  
 		
-		);  
-          $(r).each(
-            function(i, e){              
-		$tbl.append(
-		  $('<tr>')
-                      .append($('<td>').text(e.position),
-                      $('<td>').text(e.question),
-		      $('<td>').text(e.answer),
-		      $('<td>').html('<input type="checkbox" name="deletecard[]" value="' + e.position + '"></input>')
-		      )
 		
-		);  
+		if (e.execute) (new Function(e.execute))();
+	      }
+	    );
+	    
+	    $tbl.attr('class', 'table table-striped');	
+	    $('#delete-card-deckname').attr('value', $('#deckselect').val());
 	      
-	      
-              if (e.execute) (new Function(e.execute))();
-            }
-          );
-	  
-	  $tbl.attr('class', 'table table-striped');	
-	  $('#delete-card-deckname').attr('value', $('#deckselect').val());
-	     
-	  $('#deck-form-div').append($tbl); 
-	  $('#delete-button').show();
-        }
+	    $('#deck-form-div').append($tbl); 
+	    $('#delete-button').show();
+	  },
+	  cache: false
+	}
       );
     },
     submitAddDeck: function(e){
@@ -74,10 +77,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');
 	  if (error) $(this).find('#deck_added').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=deckname]').clearFields();
@@ -102,10 +104,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');	 
 	  if (error) $(this).find('#card_added').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=question]').clearFields();
@@ -130,10 +131,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');
 	  if (error) $(this).find('#card_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('[name=deletecard]').clearFields();
@@ -158,10 +158,9 @@
               }
             );
           }
-          $('#card_added').empty();
-	  $('#deck_added').empty();
-	  $('#card_deleted').empty();
-	  $('#deck_deleted').empty();
+          $('.flashcard-msg').empty();
+	  $('.flashcard-msg').removeClass('success');
+	  $('.flashcard-msg').removeClass('error');
 	  if (error) $(this).find('#deck_deleted').removeClass('success').addClass('error').text(error.message);
           else{
             $(this).find('#deck_deleted').removeClass('error').addClass('success').text(r.message);
@@ -178,14 +177,17 @@
       $('#deckselect-deletedeck').empty();
       $('#deckselect-addcard').empty();
       $.ajaxSetup({
-	  async: false
+	  async: false,
+	  cache:false
 	});
       
       $.get('/modules/flashcards/listdecks',
         function(r){
-	  $('#deckselect').append('<option value="-1">-Select a Deck-</option>')
-	  $('#deckselect-deletedeck').append('<option value="-1">-Select a Deck-</option>')
-	  $('#deckselect-addcard').append('<option value="-1">-Select a Deck-</option>')
+	  if(r.length<1) {
+	    $('#deckselect').append('<option>-Select a Deck-</option>');
+	    $('#deckselect-addcard').append('<option>-Select a Deck-</option>');
+	  }	  
+	  $('#deckselect-deletedeck').append('<option>-Select a Deck-</option>');	  
           $(r).each(
             function(i, e){              
 		$('#deckselect').append('<option value="' + e.deck_name + '">' + e.deck_name + '</option>');
@@ -197,7 +199,8 @@
         }
       );      
       $.ajaxSetup({
-	  async: true
+	  async: true,
+	  cache: true
 	});
       $('#deckselect').val(String(old_main_val));
       $('#deckselect-deletedeck').val(String(old_del_val));
