@@ -16,8 +16,11 @@ class Inbox extends CI_Controller {
       echo 'Your session has been timed out. Please refresh the page';
       return;
     }
-    $data['messages'] = $this->db->query('SELECT i.id, s.name as `from`, message, timestamp, `read` FROM inbox i, students s WHERE `to` = ? AND s.id = i.`from`' . ($id?' AND i.id = ?':'') . ' ORDER BY timestamp DESC', array($uid, $id))->result_array();
-    if ($id) $this->load->view('inbox/message.php', $data);
+    $data['messages'] = $this->db->query('SELECT i.id as id, s.name as `from`, message, timestamp, `read` FROM inbox i, students s WHERE `to` = ? AND s.id = i.`from`' . ($id?' AND i.id = ?':'') . ' ORDER BY timestamp DESC', array($uid, $id))->result_array();
+    if ($id){
+      $this->db->query('UPDATE inbox SET `read` = 1 WHERE id = ?', array($id));
+      $this->load->view('inbox/message.php', $data);
+    }
     else $this->load->view('inbox/inbox.php', $data);
   }
   
