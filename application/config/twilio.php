@@ -18,7 +18,7 @@
 	/**
 	 * Mode ("sandbox" or "prod")
 	 **/
-	$config['mode']   = 'sandbox';
+	$config['mode']   = 'prod';
 
 	/**
 	 * Account SID
@@ -38,7 +38,7 @@
 	/**
 	 * Twilio Phone Number
 	 **/
-	$config['number']        = '6468083224';
+	$config['number']        = '4012341863';
 
 
 /* End of file twilio.php */
