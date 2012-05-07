@@ -6,8 +6,8 @@
   <!--breadcrumb-->
   <div class="row"> 
 	<ul class="breadcrumb"> 
-	  <li class="active"><a href="/dashboard">Dashboard<span class="divider">/</span></li> 
-	  <li><a href="">Profile</a></li> 
+	  <li><a href="/dashboard">Dashboard</a><span class="divider">/</span></li> 
+	  <li class="active">Profile</li> 
 	</ul> 
     </div> 
 
