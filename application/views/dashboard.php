@@ -1,18 +1,26 @@
 <script type='text/javascript' src='/assets/javascript/jquery.bbq.js'></script>
 <script type='text/javascript' src='/assets/javascript/dashboard.js'></script>
+<link rel="Stylesheet" type="text/css" href="/assets/stylesheets/dashboard.css">
+
 <div class="container-fluid">
   <div class="row-fluid">
 <div class="span2">
   <!--Sidebar content-->
   <ul id="classTabs" class="nav nav-pills nav-stacked">
-      <li class="nav-header"><h4>Your Classes</h4></li>
+      <li class="nav-header"><h2>Classes</h2></li>
+
+  <a href="/classes"><center><button id="add-new-classroom" class="btn btn-small btn-primary">Manage your classes</button></center></a>
+
       <?
       foreach ($classlist as $c){
-        echo '<li class="class" data-cid="' . $c['id'] . '"><a onclick="return Twexter.dashboard.changeClass(' . $c['id'] . ');">' . $c['name'] . '</a></li>';
+        echo '<li class="class" data-cid="' . $c['id'] . '">
+	      <a onclick="return Twexter.dashboard.changeClass(' . $c['id'] . ');">' . $c['name'] . '</a>
+	      </li>';
       }
       ?>
   </ul>
 </div>
+
 
 <div id="modules" class="span10">
   <!--Body content-->

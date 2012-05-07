@@ -69,7 +69,7 @@ class Auth extends CI_Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect($_GET['u'] ? $_GET['u'] : '');
+					redirect($_GET['u'] ? $_GET['u'] : 'dashboard');
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();
@@ -333,7 +333,8 @@ class Auth extends CI_Controller
 		$this->load->view('auth/reset_password_form', $data);
 	}
 
-	/**
+
+/**
 	 * Change user password
 	 *
 	 * @return void
@@ -341,7 +342,7 @@ class Auth extends CI_Controller
 	function change_password()
 	{
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
-			redirect('/');
+			redirect('/auth/login/');
 
 		} else {
 			$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean');
@@ -361,7 +362,8 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('profile', $data);
+			$data['success'] = 0;
+			$this->load->view('auth/change_password_form', $data);
 		}
 	}
 
@@ -398,10 +400,9 @@ class Auth extends CI_Controller
 					foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
 				}
 			}
-			$this->load->view('profile', $data);
+			$this->load->view('auth/change_email_form', $data);
 		}
 	}
-
 	/**
 	 * Replace user email with a new one.
 	 * User is verified by user_id and authentication code in the URL.
@@ -580,59 +581,6 @@ class Auth extends CI_Controller
 		return TRUE;
 	}
 	
-/*	function profile(){
- 		if (!$this->tank_auth->is_logged_in()) {                                                                // not logged in or not activated
-                        redirect('/auth/login/');                        
-                } else {
-			if($this->input->post('email')){
-				$this->change_email();
-			}
-			
-		}
-	}*/
-
-	       /**
-         * Change user email
-         *
-         * @return void
-         */
-        function change_email_profile()
-        {
-                if (!$this->tank_auth->is_logged_in()) {                                                                // not logged in or not activated
-                        redirect('/auth/login/');
-
-                } else {
-                        $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-                        $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
-
-                        $data['errors'] = array();
-
-                        if ($this->form_validation->run()) {                                                            // validation ok
-                                if (!is_null($data = $this->tank_auth->set_new_email(
-                                                $this->form_validation->set_value('email'),
-                                                $this->form_validation->set_value('password')))) {                      // success
-                
-                                        $data['site_name'] = $this->config->item('website_name', 'tank_auth');
-                
-                                        // Send email with new email address and its activation link
-                                        $this->_send_email('change_email', $data['new_email'], $data);
-                                                
-                                        $this->_show_message(sprintf($this->lang->line('auth_message_new_email_sent'), $data['new_email']));
-                        
-                                } else {                                                                                                                
-                                        $errors = $this->tank_auth->get_error_message();
-                                        foreach ($errors as $k => $v)   $data['errors'][$k] = $this->lang->line($v);
-                                }
-                        }
-                        echo "success!";
-                }
-        }
-
-
-
-
-
-
 
 }
 

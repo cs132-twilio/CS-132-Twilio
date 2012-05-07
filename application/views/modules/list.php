@@ -1,11 +1,11 @@
 <script type="text/javascript" src="/assets/javascript/List.js"></script>
-Class ID: <?= $class_id ?>
+
+
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Number</th>
+      <th>Student Name</th>
     </tr>
   </thead>
   <tbody>
@@ -16,3 +16,7 @@ Class ID: <?= $class_id ?>
     ?>
   </tbody>
 </table>
+
+<div class="alert alert-info">
+   Students can <strong>join <?php echo $class_name['name']; ?> </strong> by texting "JOIN <?php echo $class_id; ?>"</strong> to <?php echo $phone["phone_number"] ?>.</strong>  
+</div>

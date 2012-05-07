@@ -21,6 +21,7 @@
     <script src="/assets/javascript/default.js" type="text/javascript"></script>
     <script src="/assets/javascript/Message.js" type="text/javascript"></script>
     <script src="/assets/javascript/Stream.js" type="text/javascript"></script>
+    <script src="/assets/javascript/classes.js" type="text/javascript"></script>
     <script src="/assets/javascript/Flashcards.js" type="text/javascript"></script>
   </head>
 
@@ -37,11 +38,15 @@
           <div class="nav-collapse">          
 
             <ul class="nav">
-              <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>		
-              <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
+              <li<?= $page == 'home' ? ' class="active"' : '' ?>><a href="/">Home</a></li>
+	      <li<?= $page == 'dashboard' ? ' class="active"' : '' ?>><a href="/dashboard">Dashboard</a></li>		
               <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
+                <a href="/              <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
                 <a href="/inbox">
                   Inbox
+<?php if ($user_id) {                >
+		<li class="active"><a><?php echo $phone["phone_number"]; ?></a></li>	
+	      <?php } ?>
                   <?= $user_id&&$inbox?'<span class="badge badge-info">' . $inbox . '</span>':'' ?>
                 </a>
               </li>		
@@ -49,7 +54,9 @@
             
             <ul id="user-control" class="nav pull-right">
               <?php if ($user_id) { ?>
-              <li><a href="/profile">Profile</a></li>
+              <li<?= $page == 'help' ? ' class="active"' : '' ?>><a href="/help">Help</a></li>
+              <li<?= $page == 'profile' ? ' class="active"' : '' ?>><a href="/profile">Profile</a></li>
+	      <li class="divider-vertical"></li> 
               <li><a href="#" onclick="jQuery.post('/auth/logout', {}, function(){document.location.reload(true);});">Log out</a></li>
               <?php } else { ?>
               <li>
