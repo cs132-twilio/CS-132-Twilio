@@ -1,26 +1,18 @@
 <script type='text/javascript' src='/assets/javascript/jquery.bbq.js'></script>
 <script type='text/javascript' src='/assets/javascript/dashboard.js'></script>
-<link rel="Stylesheet" type="text/css" href="/assets/stylesheets/dashboard.css">
-
 <div class="container-fluid">
   <div class="row-fluid">
 <div class="span2">
   <!--Sidebar content-->
   <ul id="classTabs" class="nav nav-pills nav-stacked">
-      <li class="nav-header"><h2>Classes</h2></li>
-
-  <a href="/classes"><center><button id="add-new-classroom" class="btn btn-small btn-primary">Manage your classes</button></center></a>
-
+      <li class="nav-header"><h4>Your Classes</h4></li>
       <?
       foreach ($classlist as $c){
-        echo '<li class="class" data-cid="' . $c['id'] . '">
-	      <a onclick="return Twexter.dashboard.changeClass(' . $c['id'] . ');">' . $c['name'] . '</a>
-	      </li>';
+        echo '<li class="class" data-cid="' . $c['id'] . '"><a onclick="return Twexter.dashboard.changeClass(' . $c['id'] . ');">' . $c['name'] . '</a></li>';
       }
       ?>
   </ul>
 </div>
-
 
 <div id="modules" class="span10">
   <!--Body content-->
@@ -29,7 +21,7 @@
       <li><a onclick="return Twexter.dashboard.ajax_load_module('message');">Message</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('stream');">Stream</a></li>
       <li><a onclick="return Twexter.dashboard.ajax_load_module('Poll');">Poll</a></li>
-      <li><a onclick="return Twexter.dashboard.ajax_load_module('Flashcards');">FlashCards</a></li>
+      <li><a onclick="return Twexter.dashboard.ajax_load_module('Flashcards');">Flashcards</a></li>
     </ul>
     <div id="moduleContent" >
     </div>
