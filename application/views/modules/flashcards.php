@@ -16,7 +16,7 @@
     </div>
     <input type="hidden" id="delete-card-deckname" name="deckname" value=""></input>
     <button type="submit" class="btn btn-danger" style="display : none;" id="delete-button" onClick="return Twexter.modules.Flashcards.confirmSubmit()">Delete Selected Cards</button>
-    <span id="card_deleted"></span>
+    <span id="card_deleted"  class="flashcard-msg"></span>
   <?= form_close() ?>  
 </div>
 
@@ -32,7 +32,7 @@
     </label>	
     <br />
     <button type="submit" class="btn">Add</button>
-    <span id="deck_added"></span>
+    <span id="deck_added"  class="flashcard-msg"></span>
   <?= form_close() ?>
   <a onclick="return $('#add-new-deck').hide();">Hide</a>
 </div>
@@ -59,7 +59,7 @@
     </label>
     <br />
     <button type="submit" class="btn">Add</button>
-    <span id="card_added"></span>
+    <span id="card_added"  class="flashcard-msg"></span>
   <?= form_close() ?>
   <a onclick="return $('#add-new-card').hide();">Hide</a>
 </div>
@@ -80,7 +80,7 @@
       </select>
     </label>
     <br />
-    <button type="submit" class="btn btn-danger" onClick="return Twexter.modules.Flashcards.confirmSubmit()">Delete</button><span id="deck_deleted"></span>
+    <button type="submit" class="btn btn-danger" onClick="return Twexter.modules.Flashcards.confirmSubmit()">Delete</button><span id="deck_deleted" class="flashcard-msg"></span>
   <?= form_close() ?>
   <a onclick="return $('#delete-deck').hide();">Hide</a>
 </div>
