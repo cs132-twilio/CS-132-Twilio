@@ -43,8 +43,7 @@
               <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
               <li<?= $page == 'inbox' ? ' class="active"' : '' ?>>
                 <a href="/inbox">
-                  Inbox
-                  <?= $user_id&&$inbox?'<span class="badge badge-info">' . $inbox . '</span>':'' ?>
+                  Inbox <span id="inbox_unread" class="badge badge-info"></span>
                 </a>
               </li>
               <?php if ($user_id) { ?>

@@ -12,6 +12,10 @@ body {
 	padding-bottom:15px;
 }
 
+#inbox_unread{
+  display: none;
+}
+
 .big-button {
 	font-size:2em;
 }

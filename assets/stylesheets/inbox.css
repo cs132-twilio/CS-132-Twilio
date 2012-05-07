@@ -21,6 +21,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.inbox_tab_close {
+  float: none;
+  visibility: hidden;
+}
+li.active .inbox_tab_close, li:hover .inbox_tab_close {
+  visibility: visible;
+}
+#messageTabs{
+  position: relative;
+}
+#inbox_refresh{
+  position: absolute;
+  right: 0;
+}
 
 @media (min-width: 481px){
   .inbox_title {

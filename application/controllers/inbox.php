@@ -9,6 +9,12 @@ class Inbox extends CI_Controller {
   function index($id = 0){
     $this->messages($id);
   }
+  function count(){
+    $uid = $this->tank_auth->get_user_id();
+    if (!$uid) return;
+    $r = $this->db->query('SELECT count(*) as n FROM inbox WHERE `to` = ? AND `read` = 0', array($uid))->result_array();
+    echo $r[0]['n'];
+  }
   function messages($id = 0){
     $this->checkauth->check();
     $uid = $this->tank_auth->get_user_id();

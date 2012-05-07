@@ -17,6 +17,7 @@
       <!--Body content-->
         <ul id="messageTabs" class="nav nav-tabs">
           <li class="active" data-id="0"><a onclick="return Twexter.inbox.load(0);">Inbox</a></li>
+          <li id="inbox_refresh" class="active"><a><span class="icon-refresh"></span></a></li>
         </ul>
         <div id="inboxContent">
           <div style="text-align: center;">
