@@ -29,6 +29,7 @@ class Join extends CI_Controller
         $r = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']))->result_array();
         if (count($r) && $r[0]['id']){
           $this->db->query('REPLACE INTO classmap (class_id, student_id) VALUES (?, ?)', array($cid, $r[0]['id']));
+          $this->load->view('twiml.php', array('message' => 'You have been added to class ' . $cid));
         } else {
           $this->load->view('twiml.php', array('message' => 'Please add yourself to the system by sending "JOIN [your name here]" before joining a class'));
           return;
@@ -39,7 +40,7 @@ class Join extends CI_Controller
       }
     } else {
       $this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
-      echo 'You have been successfully registered. Text JOIN [id] to join a class';
+      $this->load->view('twiml.php', array('message' => 'You have been successfully registered. Text JOIN [id] to join a class'));
       return;
     }
   }
