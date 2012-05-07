@@ -62,7 +62,7 @@
             $('#streamid > span').text($('#streamselect').val());
             $('#streamid').slideDown();
           } else {
-            $('#streamselect').append('<option value="0">No Streams available</option>');
+            if(!$('#streamselect > option').length) $('#streamselect').append('<option value="0">No Streams available</option>');
             $('#streamid').slideUp();
           }
         }
