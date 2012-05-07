@@ -29,6 +29,9 @@
     font-weight: bold;
     font-size: larger;
   }
+  #phonenumber > li > a{
+    color: white;
+  }
 }
 #inbox_unread{
   display: none;
