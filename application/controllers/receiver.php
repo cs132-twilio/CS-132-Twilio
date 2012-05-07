@@ -25,6 +25,10 @@ class Receiver extends CI_Controller
       case 'join':
         $this->load->view('twiml.php', array('redirect' => '/join/add'));
         break;
+      case 'u':
+      case 'unjoin':
+        $this->load->view('twiml.php', array('redirect' => '/join/unjoin'));
+        break;
       case 's':
       case 'str':
       case 'stream':

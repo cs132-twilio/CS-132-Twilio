@@ -27,10 +27,10 @@
               <h4>Study aid</h4>
               <p>Texting can now help you connect with your students, and help them achieve their goals.</p>
             </div>
-          </div>
-	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a> 
+          </div>          
         </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> 
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a> 
       </div>
     </div>
     <div class="span3">
