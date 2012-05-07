@@ -29,6 +29,7 @@ class Join extends CI_Controller
         $r = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']))->result_array();
         if (count($r) && $r[0]['id']){
           $this->db->query('REPLACE INTO classmap (class_id, student_id) VALUES (?, ?)', array($cid, $r[0]['id']));
+          $this->load->view('twiml.php', array('message' => 'You have been added to class ' . $cid));
         } else {
           $this->load->view('twiml.php', array('message' => 'Please add yourself to the system by sending "JOIN [your name here]" before joining a class'));
           return;
@@ -39,7 +40,38 @@ class Join extends CI_Controller
       }
     } else {
       $this->db->query('REPLACE INTO students (name, number) VALUES (?, ?)', array($message[1], $_GET['From']));
-      echo 'You have been successfully registered. Text JOIN [id] to join a class';
+      $this->load->view('twiml.php', array('message' => 'You have been successfully registered. Text JOIN [id] to join a class'));
+      return;
+    }
+  }
+  
+  function unjoin(){
+    if ($_SERVER['REQUEST_METHOD'] != 'GET' || !$_GET['Body'] || !$_GET['From'] || !$_GET['To']){
+      $this->load->view('twiml.php', array('message' => 'Invalid request!'));
+      return;
+    }
+    $message = preg_split('/[\s]+/', $_GET['Body'], 2);
+    if (!$message[1]){
+      $this->load->view('twiml.php', array('message' => 'Invalid request!'));
+      return;
+    }
+    if (preg_match('/[\d]+/', $message[1])){
+      $cid = intval($message[1]);
+      if ($cid > 0){
+        $r = $this->db->query('SELECT id FROM students WHERE number = ? LIMIT 1', array($_GET['From']))->result_array();
+        if (count($r) && $r[0]['id']){
+          $this->db->query('DELETE FROM classmap WHERE class_id = ? AND student_id = ?', array($cid, $r[0]['id']));
+          $this->load->view('twiml.php', array('message' => 'You are no longer in class ' . $cid));
+        } else {
+          $this->load->view('twiml.php', array('message' => 'You are not in the system and thus cannot unjoin any classes.'));
+          return;
+        }
+      } else {
+        $this->load->view('twiml.php', array('message' => 'Invalid class number!'));
+        return;
+      }
+    } else {
+      $this->load->view('twiml.php', array('message' => 'Text "unjoin [id]" to leave a class.'));
       return;
     }
   }
